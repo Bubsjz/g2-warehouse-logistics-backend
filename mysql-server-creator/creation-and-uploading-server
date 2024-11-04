@@ -118,8 +118,7 @@ CREATE TABLE IF NOT EXISTS `wharehouse`.`delivery` (
   `truck_id_truck` INT NOT NULL,
   `origin_warehouse_id` INT NOT NULL,
   `destination_warehouse_id` INT NOT NULL,
-  `status sending` ENUM('pending', 'review', 'correction needed', 'ready departure', 'in transit', 'delivered') NULL,
-  `status reception` ENUM('arriving', 'arrived', 'review', 'send back', 'accepted') NULL,
+  `status` ENUM('pending', 'review', 'correction needed', 'ready departure', 'in transit', 'pending reception', 'accepted', 'send back') NULL,
   `comments` VARCHAR(500) NULL,
   PRIMARY KEY (`id_delivery`),
   INDEX `fk_delivery_truck1_idx` (`truck_id_truck` ASC) VISIBLE,
@@ -145,13 +144,13 @@ ENGINE = InnoDB;
 
 -- Data `delivery`
 
-INSERT INTO `delivery` (`send_date`, `received_date`, `truck_id_truck`, `origin_warehouse_id`, `destination_warehouse_id`, `status sending`, `status reception`, `comments`)
+INSERT INTO `delivery` (`send_date`, `received_date`, `truck_id_truck`, `origin_warehouse_id`, `destination_warehouse_id`, `status`, `comments`)
 VALUES 
-  ('2024-11-01 08:30:00', NULL, 1, 1, 2, 'ready departure', NULL, NULL),
-  ('2024-11-02 09:00:00', NULL, 3, 2, 3, 'in transit', 'arriving', NULL),
-  ('2024-11-03 10:00:00', '2024-11-03 15:30:00', 5, 3, 4, 'delivered', 'accepted', NULL),
-  ('2024-11-04 12:00:00', NULL, 6, 3, 1, 'pending', NULL, NULL),
-  ('2024-11-05 13:00:00', NULL, 8, 4, 3, 'correction needed', NULL, 'Las cantidades no se ajustan al stock');
+  ('2024-11-01 08:30:00', NULL, 1, 1, 2, 'ready departure', NULL),
+  ('2024-11-02 09:00:00', NULL, 3, 2, 3, 'in transit', NULL),
+  ('2024-11-03 10:00:00', '2024-11-03 15:30:00', 5, 3, 4, 'accepted', NULL),
+  ('2024-11-04 12:00:00', NULL, 6, 3, 1, 'pending', NULL),
+  ('2024-11-05 13:00:00', NULL, 8, 4, 3, 'correction needed', 'Las cantidades no se ajustan al stock');
 
 
 -- -----------------------------------------------------

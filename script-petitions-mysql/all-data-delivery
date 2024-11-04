@@ -1,0 +1,87 @@
+SELECT 
+    d.id_delivery AS 'ID envío',
+    d.send_date AS 'Fecha envío',
+    d.received_date AS 'Fecha recepción',
+    t.plate AS 'Matrícula',
+    u.name AS 'Nombre conductor',
+    u.surname AS 'Apellido conductor',
+    wh_origin.name AS 'Almacén origen',
+    wh_origin.adress AS 'Dirección almacén origen',
+    wh_destination.name AS 'Almacén destino',
+    wh_destination.adress AS 'Dirección almacén destino',
+    d.`status` AS 'Estado envío',
+    d.comments AS 'Comentarios',
+    p.name AS 'Nombre producto',
+    dp.quantity AS 'Cantidad producto'
+FROM 
+    delivery d
+JOIN 
+    truck t ON d.truck_id_truck = t.id_truck
+JOIN 
+    user u ON t.driver_id_user = u.id_user
+JOIN 
+    warehouse wh_origin ON d.origin_warehouse_id = wh_origin.id_warehouse
+JOIN 
+    warehouse wh_destination ON d.destination_warehouse_id = wh_destination.id_warehouse
+JOIN 
+    delivery_products dp ON d.id_delivery = dp.delivery_id_delivery
+JOIN 
+    product p ON dp.product_id_product = p.id_product;
+
+/* Si se quiere pedir un id en concreto
+
+ WHERE 
+    d.id_delivery = 3; */
+
+/* Si se quiere que los productos estén en una sola línea
+
+ GROUP BY 
+    d.id_delivery, t.plate, u.name, u.surname, 
+    wh_origin.name, wh_origin.adress, 
+    wh_destination.name, wh_destination.adress, 
+    d.`status sending`, d.`status reception`, d.comments;*/
+
+
+/* Para exportar en formato JSON */
+
+SELECT JSON_OBJECT(
+    'ID_delivery', d.id_delivery,
+    'Send_date', d.send_date,
+    'Received_date', d.received_date,
+    'Status', d.`status`,
+    'Truck', JSON_OBJECT(
+        'ID_truck', t.id_truck,
+        'Plate', t.plate
+    ),
+    'Origin wharehouse', JSON_OBJECT(
+        'ID_wharehouse', w1.id_warehouse,
+        'Name', w1.name,
+        'Adress', w1.adress
+    ),
+    'Destiny wharehouse', JSON_OBJECT(
+        'ID_wharehouse', w2.id_warehouse,
+        'Name', w2.name,
+        'Adress', w2.adress
+    ),
+    'Products', JSON_ARRAYAGG(
+        JSON_OBJECT(
+            'ID_product', p.id_product,
+            'Product_name', p.name,
+            'Quantity', dp.quantity
+        )
+    )
+) AS Delivery
+FROM 
+    delivery d
+JOIN 
+    warehouse w1 ON d.origin_warehouse_id = w1.id_warehouse
+JOIN 
+    warehouse w2 ON d.destination_warehouse_id = w2.id_warehouse
+LEFT JOIN 
+    truck t ON d.truck_id_truck = t.id_truck
+LEFT JOIN 
+    delivery_products dp ON d.id_delivery = dp.delivery_id_delivery
+LEFT JOIN 
+    product p ON dp.product_id_product = p.id_product
+GROUP BY 
+    d.id_delivery;
