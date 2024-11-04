@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `wharehouse`.`delivery` (
   `truck_id_truck` INT NOT NULL,
   `origin_warehouse_id` INT NOT NULL,
   `destination_warehouse_id` INT NOT NULL,
-  `status` ENUM('pending', 'review', 'correction needed', 'ready departure', 'in transit', 'pending reception', 'accepted', 'send back') NULL,
+  `status` ENUM('pending', 'review', 'correction needed', 'ready departure', 'in transit', 'pending reception', 'accepted', 'send back') NOT NULL,
   `comments` VARCHAR(500) NULL,
   PRIMARY KEY (`id_delivery`),
   INDEX `fk_delivery_truck1_idx` (`truck_id_truck` ASC) VISIBLE,
