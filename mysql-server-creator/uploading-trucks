@@ -1,0 +1,12 @@
+USE `wharehouse`;
+
+INSERT INTO `truck` (`plate`, `driver_id_user`)
+VALUES 
+  ('8936-IDN', 1),
+  ('9563-PBJ', 2),
+  ('1342-YGN', 3),
+  ('6290-RDF', 4),
+  ('4756-JKL', 5),
+  ('0874-UIO', 6),
+  ('2345-RTY', 7),
+  ('1638-VRG', 8);
