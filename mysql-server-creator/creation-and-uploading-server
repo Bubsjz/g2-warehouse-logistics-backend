@@ -23,8 +23,9 @@ CREATE TABLE IF NOT EXISTS `wharehouse`.`warehouse` (
   `locality` VARCHAR(45) NOT NULL,
   `adress` VARCHAR(100) NOT NULL,
   `image` VARCHAR(255) NULL,
-  PRIMARY KEY (`id_warehouse`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id_warehouse`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC)
+)ENGINE = InnoDB;
 
 -- Data `wharehouse`
 
