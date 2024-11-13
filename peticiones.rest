@@ -1,3 +1,7 @@
 @url = http://localhost:3000/dashboard
 
 GET {{url}}/clientes
+
+###
+
+GET {{url}}/clientes/3
