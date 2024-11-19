@@ -1,9 +1,10 @@
-const { getAllUsers, getUsersById, createUser, updateUser, deleteUser } = require('../controllers/boss.controller');
+const { getAllUsers, getUsersById, createUser, updateUser, deleteUser, getAllWarehouse } = require('../controllers/boss.controller');
 
 const router = require('express').Router();
 
 router.get('/users', getAllUsers)
 router.get('/users/:id', getUsersById )
+router.get('/warehouse', getAllWarehouse)
 
 router.post('/users', createUser)
 

@@ -38,3 +38,8 @@ Content-Type: application/json
 
 ###
 DELETE {{url}}/users/14
+
+// /api/boss/WAREHOUSE
+
+###
+GET {{url}}/warehouse

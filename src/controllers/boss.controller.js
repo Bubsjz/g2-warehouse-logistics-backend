@@ -1,4 +1,4 @@
-const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserByid } = require("../models/boss.model")
+const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserByid, selectAllWarehouse } = require("../models/boss.model")
 
 const getAllUsers = async (req, res, next) => {
     try {
@@ -22,6 +22,14 @@ const getUsersById = async (req, res, next) => {
     }
 }
 
+const getAllWarehouse = async (req, res, next) => {
+    try {
+        const [result] = await selectAllWarehouse()
+        res.json(result)
+    } catch (error) {
+        next(error)
+    }
+}
 
 const createUser = async (req, res, next) => {
     try {
@@ -56,5 +64,5 @@ const deleteUser = async (req, res, next) => {
 }
 
 module.exports = {
-    getAllUsers, getUsersById, createUser, updateUser, deleteUser
+    getAllUsers, getUsersById, getAllWarehouse, createUser, updateUser, deleteUser
 }

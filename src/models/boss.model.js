@@ -8,6 +8,10 @@ function selectUserById(id) {
     return pool.query('select * from user where id_user = ?', [id])
 }
 
+function selectAllWarehouse() {
+    return pool.query('select * from warehouse')
+}
+
 function insertUser({ name, surname, email, password, rol, asigned_id_warehouse }) {
     return pool.query(
         'insert into user (name, surname, email, password, rol, asigned_id_warehouse) values (?, ?, ?, ?, ?, ?)', [name, surname, email, password, rol, asigned_id_warehouse]
@@ -25,5 +29,5 @@ function deleteUserByid(id) {
 }
 
 module.exports = {
-    selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserByid
+    selectAllUsers, selectUserById, selectAllWarehouse, insertUser, updateUserById, deleteUserByid
 }
