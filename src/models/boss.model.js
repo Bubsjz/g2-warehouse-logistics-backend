@@ -22,8 +22,10 @@ function insertUser({ name, surname, email, password, rol, asigned_id_warehouse 
     )
 }
 
-function insertWarehouse({}) {
-
+function insertWarehouse({ name, locality, adress, image }) {
+    return pool.query(
+        'insert into warehouse (name, locality, adress, image) values (?, ?, ?, ?)', [name, locality, adress, image]
+    )
 }
 
 function updateUserById(id, {name, surname, email, password, rol, asigned_id_warehouse}){

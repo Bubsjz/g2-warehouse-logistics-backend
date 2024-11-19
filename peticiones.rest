@@ -47,3 +47,15 @@ GET {{url}}/warehouse
 ###
 
 GET {{url}}/warehouse/3
+
+###
+
+POST {{url}}/warehouse
+Content-Type: application/json
+
+{
+    "name": "West Warehouse",
+    "locality": "Cáceres",
+    "adress": "Ctra. Malpartida, 7, 10910 Cáceres",
+    "image": "west.jpg"
+}
