@@ -1,4 +1,4 @@
-const { selectAllUsers, selectUserById } = require("../models/boss.model")
+const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserByid } = require("../models/boss.model")
 
 const getAllUsers = async (req, res, next) => {
     try {
@@ -22,6 +22,39 @@ const getUsersById = async (req, res, next) => {
     }
 }
 
+
+const createUser = async (req, res, next) => {
+    try {
+        const [result] = await insertUser(req.body)
+        const [user] = await selectUserById(result.insertId)
+        res.status(201).json(user[0])
+    } catch (error) {
+        next(error)
+    }
+}
+
+const updateUser = async (req, res, next) => {
+    const { id } = req.params
+    try {
+        await updateUserById(id, req.body)
+        const [user] = await selectUserById(id)
+        res.json(user[0])
+    } catch (error) {
+        next(error)
+    }
+}
+
+const deleteUser = async (req, res, next) => {
+    const { id } = req.params
+    try {
+        const [user] = await selectUserById(id)
+        await deleteUserByid(id)
+        res.json(user[0])
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
-    getAllUsers, getUsersById
+    getAllUsers, getUsersById, createUser, updateUser, deleteUser
 }

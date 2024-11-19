@@ -7,3 +7,34 @@ GET {{url}}/users
 ###
 
 GET {{url}}/users/8
+
+###
+
+POST {{url}}/users
+Content-Type: application/json
+
+{
+    "name": "Olga",
+    "surname": "Suarez",
+    "email": "olga.suarez@gmail.com",
+    "password": "123456",
+    "rol": "manager",
+    "asigned_id_warehouse": 3
+}
+
+###
+
+PUT {{url}}/users/14
+Content-Type: application/json
+
+{
+    "name": "Felipe",
+    "surname": "Duran",
+    "email": "felipeduran@gmail.com",
+    "password": "123456",
+    "rol": "manager",
+    "asigned_id_warehouse": 2
+}
+
+###
+DELETE {{url}}/users/14
