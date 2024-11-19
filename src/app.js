@@ -6,7 +6,8 @@ const app = express();
 app.use(express.json());
 
 
-// Aqui podriamos poner la configuracion de ruta: ej app.use('/api',require('./routes/apiRoutes'));
+// Rutas del jefe usuarios
+app.use('/api/boss', require('./routes/boss.routes'))
 
 
 
