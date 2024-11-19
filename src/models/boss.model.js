@@ -45,6 +45,7 @@ function deleteUserById(id) {
 }
 
 function deleteWarehouseById(id) {
+    return pool.query('delete from warehouse where id_warehouse = ?', [id])
 
 }
 

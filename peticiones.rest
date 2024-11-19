@@ -71,3 +71,7 @@ Content-Type: application/json
     "adress": "Ctra. Malpartida, 10, 10910 Cáceres",
     "image": "dd.jpg"
 }
+
+###
+
+DELETE {{url}}/warehouse/9
