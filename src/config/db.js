@@ -10,4 +10,5 @@ const pool = mysql.createPool({
     database: process.env.DB_DATABASE,
 });
 
+
 module.exports = pool.promise();
