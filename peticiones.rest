@@ -59,3 +59,15 @@ Content-Type: application/json
     "adress": "Ctra. Malpartida, 7, 10910 Cáceres",
     "image": "west.jpg"
 }
+
+###
+
+PUT {{url}}/warehouse/5
+Content-Type: application/json
+
+{
+    "name": "dd",
+    "locality": "Pontevedra",
+    "adress": "Ctra. Malpartida, 10, 10910 Cáceres",
+    "image": "dd.jpg"
+}

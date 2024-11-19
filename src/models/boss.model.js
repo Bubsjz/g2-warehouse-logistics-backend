@@ -34,8 +34,10 @@ function updateUserById(id, {name, surname, email, password, rol, asigned_id_war
     )
 }
 
-function updateWarehouseByid(id, {}) {
-
+function updateWarehouseByid(id, { name, locality, adress, image}) {
+    return pool.query(
+        'update warehouse set name = ?, locality = ?, adress = ?, image = ? where id_warehouse = ?', [name, locality, adress, image, id]
+    )
 }
 
 function deleteUserById(id) {
