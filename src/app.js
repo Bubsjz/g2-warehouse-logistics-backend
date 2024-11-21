@@ -2,10 +2,12 @@
 const express = require('express');
 
 
+
 const app = express();
 app.use(express.json());
 
-
+// Route configuration
+app.use('/api', require('./routes/warehouseRoutes'));
 // Aqui podriamos poner la configuracion de ruta: ej app.use('/api',require('./routes/apiRoutes'));
 
 
