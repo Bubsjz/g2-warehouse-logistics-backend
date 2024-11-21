@@ -1,27 +1,33 @@
-const { selectAll, selectById } = require("../models/manager.model")
+const { selectAll, selectById, selectOutgoingOrders, selectIncomingOrders } = require("../models/manager.model")
 
-// Example controller
-const getAllClientes = async (req, res, next) => {
-    console.log("Hola")
+// Pedidos de salida
+const getOutgoingOrders = async (req, res, next) => {
+    console.log("getOutgoingOrders")
+
     try {
-        const [result] = await selectAll()    //almacenamos la query en una variable
-        res.json(result)
+        const warehouseId = req.query.warehouseId
+        const [orders] = await selectOutgoingOrders(warehouseId)
+        res.json(orders)
     } catch (error) {
         next(error)
     }
 }
 
-const getClientById = async (req, res, next) => {
-    console.log("hey")
-    clientId = req.params.clientId
+
+// Pedidos de entrada
+const getIncomingOrders = async (req, res, next) => {
+    console.log("getIncomingOrders")
+
+    
     try {
-      const [result] = await selectById(clientId)
-      res.json(result)
+      const warehouseId = req.query.warehouseId
+      const [orders] = await selectIncomingOrders(warehouseId)
+      res.json(orders)
     } catch (error) {
         next(error)
     }
 }
 
 module.exports = {
-    getAllClientes, getClientById
+    getOutgoingOrders, getIncomingOrders
 }

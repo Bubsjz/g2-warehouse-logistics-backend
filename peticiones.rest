@@ -1,7 +1,9 @@
 @url = http://localhost:3000/dashboard
 
-GET {{url}}/clientes
+// Obtener pedidos de salida de un almacén en concreto
+GET {{url}}/manager/outgoing-orders?warehouseId=3
 
 ###
 
-GET {{url}}/clientes/3
+// Obtener pedidos de entrada de un almacén en concreto
+GET {{url}}/manager/incoming-orders?warehouseId=3
