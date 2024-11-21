@@ -1,9 +1,20 @@
-@url = http://localhost:3000/dashboard
+@url = http://localhost:3000/dashboard/manager
 
-// Obtener pedidos de salida de un almacén en concreto
-GET {{url}}/manager/outgoing-orders?warehouseId=3
+// Obtener pedidos de salida de un almacén en concreto (origin)
+GET {{url}}/outgoing-orders?warehouseId=3
 
 ###
 
-// Obtener pedidos de entrada de un almacén en concreto
-GET {{url}}/manager/incoming-orders?warehouseId=3
+// Obtener pedidos de entrada de un almacén en concreto (destination)
+GET {{url}}/incoming-orders?warehouseId=4
+
+###
+
+// Actualizar pedidos
+PUT {{url}}/order/21
+Content-Type: application/json
+
+{
+    "status": "review",
+    "comments": "Falta añadir un palé"
+}
