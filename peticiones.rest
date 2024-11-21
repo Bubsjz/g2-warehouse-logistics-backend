@@ -6,7 +6,7 @@ GET {{url}}/outgoing-orders?warehouseId=3
 ###
 
 // Obtener pedidos de entrada de un almacén en concreto (destination)
-GET {{url}}/incoming-orders?warehouseId=4
+GET {{url}}/incoming-orders?warehouseId=2
 
 ###
 
@@ -16,5 +16,5 @@ Content-Type: application/json
 
 {
     "status": "review",
-    "comments": "Falta añadir un palé"
+    "comments": "Pedido erronea"
 }

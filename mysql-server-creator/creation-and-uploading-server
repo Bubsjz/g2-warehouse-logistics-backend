@@ -5,42 +5,40 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema wharehouse
+-- Schema logistics
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema wharehouse
+-- Schema logistics
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `wharehouse` DEFAULT CHARACTER SET utf8 ;
-USE `wharehouse` ;
+CREATE SCHEMA IF NOT EXISTS `logistics` DEFAULT CHARACTER SET utf8 ;
+USE `logistics` ;
 
 -- -----------------------------------------------------
--- Table `wharehouse`.`warehouse`
+-- Table `logistics`.`warehouse`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `wharehouse`.`warehouse` (
+CREATE TABLE IF NOT EXISTS `logistics`.`warehouse` (
   `id_warehouse` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `locality` VARCHAR(45) NOT NULL,
   `adress` VARCHAR(100) NOT NULL,
   `image` VARCHAR(255) NULL,
   PRIMARY KEY (`id_warehouse`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC)
 )ENGINE = InnoDB;
 
--- Data `wharehouse`
+-- Data `logistics`
 
 INSERT INTO `warehouse` (`name`, `locality`, `adress`)
 VALUES 
-  ('Central Warehouse', 'Madrid', 'C. de Arboleda, 10, Puente de Vallecas, 28031 Madrid'),
   ('North Warehouse', 'Burgos', 'Ctra. Burgos, 32, 09001 Burgos'),
   ('South Warehouse', 'Sevilla', 'C. Automoción, 38, Norte, 41007 Sevilla'),
   ('East Warehouse', 'Girona', 'Carrer de la Indústria, 14, 17005 Girona');
 
 
 -- -----------------------------------------------------
--- Table `wharehouse`.`user`
+-- Table `logistics`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `wharehouse`.`user` (
+CREATE TABLE IF NOT EXISTS `logistics`.`user` (
   `id_user` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `surname` VARCHAR(45) NOT NULL,
@@ -54,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `wharehouse`.`user` (
   UNIQUE INDEX `password_UNIQUE` (`password` ASC) VISIBLE,
   CONSTRAINT `fk_user_warehouse1`
     FOREIGN KEY (`asigned_id_warehouse`)
-    REFERENCES `wharehouse`.`warehouse` (`id_warehouse`)
+    REFERENCES `logistics`.`warehouse` (`id_warehouse`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -77,11 +75,10 @@ VALUES
   ('Roberto', 'Marín', 'roberin@gmail.com', '£H(d2%A33+51', 'manager', 4),
   ('María', 'Domínguez', 'mardomin@gmail.com', '29OtH8"v2"h)', 'administrator', 1);
 
-
 -- -----------------------------------------------------
 -- Table `wharehouse`.`truck`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `wharehouse`.`truck` (
+CREATE TABLE IF NOT EXISTS `logistics`.`truck` (
   `id_truck` INT NOT NULL AUTO_INCREMENT,
   `plate` VARCHAR(10) NOT NULL,
   `driver_id_user` INT NOT NULL,
@@ -112,7 +109,7 @@ VALUES
 -- -----------------------------------------------------
 -- Table `wharehouse`.`delivery`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `wharehouse`.`delivery` (
+CREATE TABLE IF NOT EXISTS `logistics`.`delivery` (
   `id_delivery` INT NOT NULL AUTO_INCREMENT,
   `send_date` DATETIME NULL,
   `received_date` DATETIME NULL,
@@ -157,7 +154,7 @@ VALUES
 -- -----------------------------------------------------
 -- Table `wharehouse`.`product`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `wharehouse`.`product` (
+CREATE TABLE IF NOT EXISTS `logistics`.`product` (
   `id_product` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_product`),
@@ -178,7 +175,7 @@ VALUES
 -- -----------------------------------------------------
 -- Table `wharehouse`.`delivery_products`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `wharehouse`.`delivery_products` (
+CREATE TABLE IF NOT EXISTS `logistics`.`delivery_products` (
   `id_delivery_products` INT NOT NULL AUTO_INCREMENT,
   `product_id_product` INT NULL,
   `quantity` DECIMAL(10,0) NOT NULL,
