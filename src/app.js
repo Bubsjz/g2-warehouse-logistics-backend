@@ -7,7 +7,7 @@ app.use(express.json());
 
 
 // Aqui podriamos poner la configuracion de ruta: ej app.use('/api',require('./routes/apiRoutes'));
-
+app.use("/login", require ("./routes/authorization.routes"))
 
 
 // Error handler

@@ -1,8 +1,8 @@
 // Example controller
-const getAll = (req, res, next) => {
+const login = (req, res, next) => {
     res.send('getAll');
 }
 
 module.exports = {
-    getAll
+    login
 }
