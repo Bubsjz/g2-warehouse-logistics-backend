@@ -67,7 +67,11 @@ const createUser = async (req, res, next) => {
 
 const createWarehouse = async (req, res, next) => {
     try {
-        const [result] = await insertWarehouse(req.body)
+        const warehouseData = {
+            ...req.body,
+            image: req.file ? req.file.filename : null
+        }
+        const [result] = await insertWarehouse(warehouseData)
         const [warehouse] = await selectWarehouseById(result.insertId)
         res.status(201).json(warehouse[0])
     } catch (error) {
@@ -89,7 +93,11 @@ const updateUser = async (req, res, next) => {
 const updateWarehouse = async (req, res, next) => {
     const { id } = req.params
     try {
-        await updateWarehouseByid(id, req.body)
+        const warehouseData = {
+            ...req.body,
+            image: req.file ? req.file.filename : undefined
+        }
+        await updateWarehouseByid(id, warehouseData)
         const [warehouse] = await selectWarehouseById(id)
         res.json(warehouse[0])
     } catch (error) {

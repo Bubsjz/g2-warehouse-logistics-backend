@@ -1,6 +1,6 @@
 // Creacion y configuracion de la app Express
 const express = require('express');
-
+const path = require('path')
 
 const app = express();
 app.use(express.json());
@@ -9,7 +9,8 @@ app.use(express.json());
 // Rutas del jefe usuarios
 app.use('/api/boss', require('./routes/boss.routes'))
 
-
+//Servir las imagenes de la carpeta uploads
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
 // Error handler
 app.use((err, req, res, next) => {
