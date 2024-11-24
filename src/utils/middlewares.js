@@ -6,7 +6,7 @@ const checkToken = async (req, res, next) => {
     // Token exists?
     const authHeaders = req.headers["authorization"]
     if(!authHeaders) {
-        return res.status(403).json({ message: "Authorization header is missing"})
+        return res.status(403).json({ message: "Token is missing"})
     }
 
     try {
@@ -29,6 +29,12 @@ const checkToken = async (req, res, next) => {
     next()
 }
 
+const authenticateManager = (req, res, next) => {
+    if(req.user.role !== "manager") return res.status(403).json({ message: "Acces denied: Not a manager"})
+    next()
+
+}
+
 module.exports = {
-    checkToken
+    checkToken, authenticateManager
 }

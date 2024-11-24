@@ -7,9 +7,9 @@ Content-Type: application/json
 {
     "name": "Prueba",
     "surname": "Prueba",
-    "email": "13@hotmail.com",
-    "password": "13",
-    "role": "",
+    "email": "14@hotmail.com",
+    "password": "14",
+    "role": "manager",
     "assigned_id_warehouse": 2
 }
 
@@ -25,5 +25,5 @@ Content-Type: application/json
 
 ###
 
-GET {{url}}/hola
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI0NzA1MzEsImV4cCI6MTczMjQ3NDEzMX0.eyQ8iHMHbmHZ91M7IouLpzflICUoUgDJdqwKXrgT0-k
+GET {{url}}/manager
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI0Nzg0MzgsImV4cCI6MTczMjQ4MjAzOH0.EfH5f2yaS6p1phZ9-xDffPvauCBYyevrJzzXD5h4qSU
