@@ -16,27 +16,27 @@ function selectWarehouseById(id) {
     return pool.query('select * from warehouse where id_warehouse = ?', [id])
 }
 
-function insertUser({ name, surname, email, password, rol, asigned_id_warehouse }) {
+function insertUser({ name, surname, email, password, role, assigned_id_warehouse }) {
     return pool.query(
-        'insert into user (name, surname, email, password, rol, asigned_id_warehouse) values (?, ?, ?, ?, ?, ?)', [name, surname, email, password, rol, asigned_id_warehouse]
+        'insert into user (name, surname, email, password, role, assigned_id_warehouse) values (?, ?, ?, ?, ?, ?)', [name, surname, email, password, role, assigned_id_warehouse]
     )
 }
 
-function insertWarehouse({ name, locality, adress, image }) {
+function insertWarehouse({ name, locality, address, image }) {
     return pool.query(
-        'insert into warehouse (name, locality, adress, image) values (?, ?, ?, ?)', [name, locality, adress, image]
+        'insert into warehouse (name, locality, address, image) values (?, ?, ?, ?)', [name, locality, address, image]
     )
 }
 
-function updateUserById(id, {name, surname, email, password, rol, asigned_id_warehouse}){
+function updateUserById(id, {name, surname, email, password, role, assigned_id_warehouse}){
     return pool.query(
-        'update user set name = ?, surname = ?, email = ?, password = ?, rol = ?, asigned_id_warehouse = ? where id_user = ?', [name, surname, email, password, rol, asigned_id_warehouse, id] 
+        'update user set name = ?, surname = ?, email = ?, password = ?, role = ?, assigned_id_warehouse = ? where id_user = ?', [name, surname, email, password, role, assigned_id_warehouse, id] 
     )
 }
 
-function updateWarehouseByid(id, { name, locality, adress, image}) {
+function updateWarehouseByid(id, { name, locality, address, image}) {
     return pool.query(
-        'update warehouse set name = ?, locality = ?, adress = ?, image = ? where id_warehouse = ?', [name, locality, adress, image, id]
+        'update warehouse set name = ?, locality = ?, address = ?, image = ? where id_warehouse = ?', [name, locality, address, image, id]
     )
 }
 

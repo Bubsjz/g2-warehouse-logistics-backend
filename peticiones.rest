@@ -18,8 +18,8 @@ Content-Type: application/json
     "surname": "Suarez",
     "email": "olga.suarez@gmail.com",
     "password": "123456",
-    "rol": "manager",
-    "asigned_id_warehouse": 3
+    "role": "manager",
+    "assigned_id_warehouse": 3
 }
 
 ###
@@ -32,8 +32,8 @@ Content-Type: application/json
     "surname": "Duran",
     "email": "felipeduran@gmail.com",
     "password": "123456",
-    "rol": "manager",
-    "asigned_id_warehouse": 2
+    "role": "manager",
+    "assigned_id_warehouse": 2
 }
 
 ###
@@ -56,22 +56,22 @@ Content-Type: application/json
 {
     "name": "West Warehouse",
     "locality": "Cáceres",
-    "adress": "Ctra. Malpartida, 7, 10910 Cáceres",
+    "address": "Ctra. Malpartida, 7, 10910 Cáceres",
     "image": "west.jpg"
 }
 
 ###
 
-PUT {{url}}/warehouse/5
+PUT {{url}}/warehouse/2
 Content-Type: application/json
 
 {
     "name": "dd",
     "locality": "Pontevedra",
-    "adress": "Ctra. Malpartida, 10, 10910 Cáceres",
+    "address": "Ctra. Malpartida, 10, 10910 Cáceres",
     "image": "dd.jpg"
 }
 
 ###
 
-DELETE {{url}}/warehouse/9
+DELETE {{url}}/warehouse/2
