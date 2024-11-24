@@ -37,7 +37,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{url}}/users/13
+DELETE {{url}}/users/12
 
 // /api/boss/WAREHOUSE
 
@@ -54,7 +54,7 @@ POST {{url}}/warehouse
 Content-Type: application/json
 
 {
-    "name": "West Warehouse",
+    "name": "Oest Warehouse",
     "locality": "Cáceres",
     "address": "Ctra. Malpartida, 7, 10910 Cáceres",
     "image": "west.jpg"
@@ -74,4 +74,4 @@ Content-Type: application/json
 
 ###
 
-DELETE {{url}}/warehouse/2
+DELETE {{url}}/warehouse/16
