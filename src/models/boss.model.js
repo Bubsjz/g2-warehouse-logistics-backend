@@ -9,11 +9,13 @@ function selectAllWarehouse() {
 }
 
 function selectUserById(id) {
-    return pool.query('select * from user where id_user = ?', [id])
+    return pool.query(`
+        select user.*, warehouse.name AS warehouse_name, warehouse.locality, warehouse.address, warehouse.image from user left join warehouse on user.assigned_id_warehouse = warehouse.id_warehouse where user.id_user = ?`, [id])
 }
 
 function selectWarehouseById(id) {
-    return pool.query('select * from warehouse where id_warehouse = ?', [id])
+    return pool.query(`
+        select warehouse.*, user.id_user, user.name AS user_name, user.surname, user.email, user.role from warehouse left join user on warehouse.id_warehouse = user.assigned_id_warehouse where warehouse.id_warehouse = ?`, [id])
 }
 
 function insertUser({ name, surname, email, password, role, assigned_id_warehouse }) {

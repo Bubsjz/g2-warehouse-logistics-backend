@@ -46,7 +46,7 @@ GET {{url}}/warehouse
 
 ###
 
-GET {{url}}/warehouse/3
+GET {{url}}/warehouse/2
 
 ###
 

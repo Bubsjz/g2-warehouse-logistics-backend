@@ -25,7 +25,7 @@ const getUsersById = async (req, res, next) => {
         if (result.length === 0) {
             return res.status(404).json({ error: 'User not found' })
         }
-        res.json(result[0])
+        res.json (result[0])
     } catch (error) {
         next(error)
     }
@@ -38,7 +38,18 @@ const getWarehouseById = async (req, res, next) => {
         if (result.length === 0) {
             return res.status(404).json({ error: 'Warehouse not found' })
         }
-        res.json(result[0])
+        res.json({
+            ...result[0],
+            users: result
+            .filter(row => row.id_user)
+            .map(({ id_user, user_name, surname, email, role}) => ({
+                id_user,
+                name: user_name,
+                surname,
+                email,
+                role
+            }))
+    })
     } catch (error) {
         next (error)
     }
