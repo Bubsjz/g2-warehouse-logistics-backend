@@ -1,14 +1,29 @@
 @url = http://localhost:3000/dashboard
 
+
+POST {{url}}/register
+Content-Type: application/json
+
+{
+    "name": "Prueba",
+    "surname": "Prueba",
+    "email": "13@hotmail.com",
+    "password": "13",
+    "role": "",
+    "assigned_id_warehouse": 2
+}
+
+###
+
 POST {{url}}/login
 Content-Type: application/json
 
 {
-    "email": "marinieves@hotmail.com",
-    "password": "2FM:;tDi>1A4"
+    "email": "13@hotmail.com",
+    "password": "13"
 }
 
 ###
 
 GET {{url}}/hola
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJ1c2VyX3JvbGUiOiJkcml2ZXIiLCJpYXQiOjE3MzI0NjcxNjEsImV4cCI6MTczMjQ3MDc2MX0.6cOxiVUSYYWMrE8vbgGSHJ90IOObo8p1qI3w8D3O2Jw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI0NzA1MzEsImV4cCI6MTczMjQ3NDEzMX0.eyQ8iHMHbmHZ91M7IouLpzflICUoUgDJdqwKXrgT0-k

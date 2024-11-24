@@ -14,8 +14,11 @@ function selectById(id) {
     return pool.query(`select * from user where id_user = ?`, [id])
 }
 
-function insertUser() {
-
+function insertUser({name, surname, email, password, role, assigned_id_warehouse}) {
+    const finalRole = role || "operator"
+    return pool.query(`
+        insert into user (name, surname, email, password, role, assigned_id_warehouse)
+        values (?, ?, ?, ?, ?, ?)`, [name, surname, email, password, finalRole, assigned_id_warehouse])
 }
 
 

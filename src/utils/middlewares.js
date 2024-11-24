@@ -12,7 +12,8 @@ const checkToken = async (req, res, next) => {
     try {
         // Verify if token is correct
         let data = jwt.verify(authHeaders, process.env.PRIVATEKEY)
-        console.log(data)
+        // console.log("middleware")
+        // console.log(data)
 
         // Check if user exists
         const [user] = await selectById(data.user_id)
@@ -24,7 +25,7 @@ const checkToken = async (req, res, next) => {
     }
 
 
-    console.log(req.user)
+    // console.log(req.user)
     next()
 }
 
