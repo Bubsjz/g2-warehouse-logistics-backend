@@ -20,7 +20,8 @@ function selectIncomingOrders(warehouseId) {
          from delivery d
          join truck t on d.truck_id_truck = t.id_truck
          join warehouse w on d.origin_warehouse_id = w.id_warehouse
-         where d.destination_warehouse_id = ?`
+         where d.destination_warehouse_id = ?
+         and d.status in ("pending reception", "review")`
         , [warehouseId]
     )
 }
