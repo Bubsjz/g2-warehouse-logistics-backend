@@ -4,7 +4,7 @@ const { selectAll, selectById, selectOutgoingOrders, selectIncomingOrders, chang
 const getOutgoingOrders = async (req, res, next) => {
 
     try {
-        const warehouseId = req.query.warehouseId
+        const warehouseId = req.user.assigned_id_warehouse //this comes from middleware
         const [orders] = await selectOutgoingOrders(warehouseId)
         res.json(orders)
         

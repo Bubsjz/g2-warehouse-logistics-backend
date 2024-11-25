@@ -8,7 +8,8 @@ function selectOutgoingOrders(warehouseId) {
          from delivery d
          join truck t on d.truck_id_truck = t.id_truck
          join warehouse w on d.destination_warehouse_id = w.id_warehouse
-         where d.origin_warehouse_id = ?`
+         where d.origin_warehouse_id = ?
+         and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
         , [warehouseId]
     )
 }
