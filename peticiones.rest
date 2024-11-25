@@ -1,0 +1,20 @@
+@url = http://localhost:3000/dashboard/manager
+
+// Obtener pedidos de salida de un almacén en concreto (origin)
+GET {{url}}/outgoing-orders?warehouseId=3
+
+###
+
+// Obtener pedidos de entrada de un almacén en concreto (destination)
+GET {{url}}/incoming-orders?warehouseId=2
+
+###
+
+// Actualizar pedidos
+PUT {{url}}/order/21
+Content-Type: application/json
+
+{
+    "status": "review",
+    "comments": "Pedido erronea"
+}
