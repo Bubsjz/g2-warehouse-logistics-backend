@@ -159,6 +159,13 @@ const deleteWarehouse = async (req, res, next) => {
     const { id } = req.params
     try {
         const [warehouse] = await selectWarehouseById(id)
+        if (!warehouse.length){
+            return res.status(404).json({error: 'Warehouse not found'})
+        }
+        const imagePath = path.join(__dirname, '../../uploads', warehouse[0].image)
+        if (warehouse[0].image && fs.existsSync(imagePath)){
+            fs.unlinkSync(imagePath)
+        }
         await deleteWarehouseById(id)
         res.json(warehouse[0])
     } catch (error) {
