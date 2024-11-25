@@ -35,6 +35,12 @@ const authenticateManager = (req, res, next) => {
 
 }
 
+const authenticateOperator = (req, res, next) => {
+    if(req.user.role !== "operator") return res.status(403).json({ message: "Acces denied: Not a operator"})
+    next()
+
+}
+
 const validateWarehouseId = (req, res, next) => {
     console.log("pasa por middleware")
 
@@ -48,5 +54,5 @@ const validateWarehouseId = (req, res, next) => {
 };
 
 module.exports = {
-    checkToken, authenticateManager, validateWarehouseId
+    checkToken, authenticateManager, validateWarehouseId, authenticateOperator
 }

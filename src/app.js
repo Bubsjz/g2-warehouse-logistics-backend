@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 
 // Route configuration
-app.use('/api', require('./routes/warehouseRoutes'));
+app.use('/dashboard', require('./routes/api.routes'));
 // Aqui podriamos poner la configuracion de ruta: ej app.use('/api',require('./routes/apiRoutes'));
 app.use("/dashboard", require ("./routes/authorization.routes"))
 

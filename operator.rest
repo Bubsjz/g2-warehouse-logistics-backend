@@ -1,0 +1,24 @@
+@url = http://localhost:3000/dashboard
+
+###
+GET {{url}}/operator/order-list
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI1NzAzODAsImV4cCI6MTczMjU3Mzk4MH0.rgs10C4XeGglLJg5Bc4ymy_XH3SGKK_N6TII73ed34w
+
+###
+GET {{url}}/operario/order-form/5
+
+
+### Crear un nuevo pedido
+POST {{url}}/operator/order-form
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI1NzE3MTQsImV4cCI6MTczMjU3NTMxNH0.BisDHV2wqjHVgIfd0EYlmeoaq1Rmklvxh8ZZ_gmgX_8
+
+{
+    "send_date": "2024-11-23T12:00:00",        
+    "received_date": "2024-11-25T12:00:00",    
+    "truck_id_truck": 42,                
+    "origin_warehouse_id": 9,             
+    "destination_warehouse_id": 3,         
+    "status": "pending",                
+    "comments": "Entrega programada para el lunes." 
+}

@@ -19,11 +19,11 @@ POST {{url}}/login
 Content-Type: application/json
 
 {
-    "email": "14@hotmail.com",
-    "password": "14"
+    "email": "13@hotmail.com",
+    "password": "13"
 }
 
 ###
 
 GET {{url}}/manager
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjU1MTcwNiwiZXhwIjoxNzMyNTU1MzA2fQ.2zMECn2njV93euk5FGFAy4KFqMhAWeU0--SVNxOqSuI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjU2OTYwMCwiZXhwIjoxNzMyNTczMjAwfQ.KAVNxNiGoIE-RiIGHwjvQ76_acah3BeueeQqqtTFFOU

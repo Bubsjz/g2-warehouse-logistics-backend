@@ -1,9 +1,10 @@
 const { selectAll, selectById, postDelivery} = require("../models/apiOperarioModel");
 
 const getAllDeliveryByUser = async (req, res, next) => {
-    const {id_user} = req.user;
+    console.log(req.user)
+    const id = req.user.id_user;
     try {
-        const [result] = await selectAll(id_user);
+        const [result] = await selectAll(id);
         res.json(result);
     } catch (error) {
         next(error);
