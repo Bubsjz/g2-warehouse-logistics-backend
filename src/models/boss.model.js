@@ -36,7 +36,7 @@ function updateUserById(id, {name, surname, email, password, role, assigned_id_w
     )
 }
 
-function updateWarehouseByid(id, { name, locality, address, image}) {
+function updateWarehouseById(id, { name, locality, address, image}) {
     return pool.query(
         'update warehouse set name = ?, locality = ?, address = ?, image = ? where id_warehouse = ?', [name, locality, address, image, id]
     )
@@ -52,5 +52,5 @@ function deleteWarehouseById(id) {
 }
 
 module.exports = {
-    selectAllUsers, selectAllWarehouse, selectUserById, selectWarehouseById, insertUser, insertWarehouse, updateUserById, updateWarehouseByid, deleteUserById, deleteWarehouseById
+    selectAllUsers, selectAllWarehouse, selectUserById, selectWarehouseById, insertUser, insertWarehouse, updateUserById, updateWarehouseById, deleteUserById, deleteWarehouseById
 }

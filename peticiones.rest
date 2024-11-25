@@ -70,4 +70,4 @@ image: < ./path/to/oestwarehouse.jpg
 
 ###
 
-DELETE {{url}}/warehouse/16
+DELETE {{url}}/warehouse/13

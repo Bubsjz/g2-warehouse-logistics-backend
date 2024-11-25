@@ -8,7 +8,9 @@ const storage = multer.diskStorage({
         cb(null, path.join(__dirname, '../../uploads'))
     },
     filename: (req, file, cb) => {
-        const uniqueName = `${Date.now()}-${file.originalname}`
+        const warehouseId = req.params.id
+        const extension = path.extname(file.originalname)
+        const uniqueName = `warehouse-${warehouseId}${extension}`
         cb(null, uniqueName)
     }
 })

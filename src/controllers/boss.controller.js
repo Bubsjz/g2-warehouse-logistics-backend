@@ -1,4 +1,7 @@
-const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserByid, selectAllWarehouse, deleteUserById, selectWarehouseById, insertWarehouse, updateWarehouseByid, deleteWarehouseById } = require("../models/boss.model")
+const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserById, selectAllWarehouse, selectWarehouseById, insertWarehouse, updateWarehouseById, deleteWarehouseById } = require("../models/boss.model")
+
+const fs = require('fs')
+const path = require('path')
 
 const getAllUsers = async (req, res, next) => {
     try {
@@ -93,17 +96,35 @@ const updateUser = async (req, res, next) => {
 const updateWarehouse = async (req, res, next) => {
     const { id } = req.params
     try {
+        // Procesar la nueva imagen (si se sube)
+        let newImageName = null;
+        if (req.file) {
+            const extension = path.extname(req.file.originalname);
+            newImageName = `warehouse-${id}${extension}`;
+            // Renombrar la nueva imagen para sobrescribir la existente
+            const newImagePath = path.join(__dirname, '../../uploads', newImageName);
+            fs.renameSync(req.file.path, newImagePath);
+        }
+        // Actualizar el almacén en la base de datos
         const warehouseData = {
             ...req.body,
-            image: req.file ? req.file.filename : undefined
-        }
-        await updateWarehouseByid(id, warehouseData)
-        const [warehouse] = await selectWarehouseById(id)
-        res.json(warehouse[0])
+            image: newImageName // La imagen se actualizará solo si hay una nueva
+        };
+        await updateWarehouseById(id, warehouseData);
+        // Obtener el almacén actualizado
+        const [updatedWarehouse] = await selectWarehouseById(id);
+        res.json(updatedWarehouse[0]);
     } catch (error) {
-        next (error)
+        // Si ocurre un error, eliminar la imagen subida (si existe)
+        if (req.file) {
+            fs.unlink(req.file.path, (err) => {
+                if (err) console.error('Error al eliminar la imagen temporal:', err);
+            });
+        }
+        next(error);
     }
-}
+};
+
 
 const deleteUser = async (req, res, next) => {
     const { id } = req.params
