@@ -75,7 +75,25 @@ const createWarehouse = async (req, res, next) => {
             image: req.file ? req.file.filename : null
         }
         const [result] = await insertWarehouse(warehouseData)
-        const [warehouse] = await selectWarehouseById(result.insertId)
+        const warehouseId = result.insertId
+        if (req.file){
+            const extension = path.extname(req.file.originalname)
+            const newImageName = `warehouse-${warehouseId}${extension}`
+            const oldImagePath = path.join(__dirname, '../../uploads', req.file.filename)
+            const newImagePath = path.join(__dirname, '../../uploads', newImageName)
+
+            fs.renameSync(oldImagePath, newImagePath)
+
+            const updateData = {
+                name: req.body.name,
+                locality: req.body.locality,
+                address: req.body.address,
+                image: newImageName
+            }
+
+            await updateWarehouseById(warehouseId, updateData)
+        }
+        const [warehouse] = await selectWarehouseById(warehouseId)
         res.status(201).json(warehouse[0])
     } catch (error) {
         next (error)
