@@ -35,9 +35,6 @@ const authenticateManager = (req, res, next) => {
 
 }
 
-module.exports = {
-    checkToken, authenticateManager
-}
 const validateWarehouseId = (req, res, next) => {
     console.log("pasa por middleware")
 
@@ -50,4 +47,6 @@ const validateWarehouseId = (req, res, next) => {
     next();
 };
 
-module.exports = validateWarehouseId;
+module.exports = {
+    checkToken, authenticateManager, validateWarehouseId
+}

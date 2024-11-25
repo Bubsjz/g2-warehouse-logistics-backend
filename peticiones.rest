@@ -2,6 +2,7 @@
 
 // Obtener pedidos de salida de un almacén en concreto (origin)
 GET {{url}}/outgoing-orders?warehouseId=3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjU1MTcwNiwiZXhwIjoxNzMyNTU1MzA2fQ.2zMECn2njV93euk5FGFAy4KFqMhAWeU0--SVNxOqSuI
 
 ###
 

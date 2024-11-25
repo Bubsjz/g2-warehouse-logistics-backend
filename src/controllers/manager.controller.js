@@ -2,7 +2,7 @@ const { selectAll, selectById, selectOutgoingOrders, selectIncomingOrders, chang
 
 // Pedidos de salida
 const getOutgoingOrders = async (req, res, next) => {
-
+    console.log(req.user)
     try {
         const warehouseId = req.user.assigned_id_warehouse //this comes from middleware
         const [orders] = await selectOutgoingOrders(warehouseId)
@@ -15,9 +15,9 @@ const getOutgoingOrders = async (req, res, next) => {
 
 // Pedidos de entrada
 const getIncomingOrders = async (req, res, next) => {
-
+    console.log(req.user)
     try {
-      const warehouseId = req.query.warehouseId
+      const warehouseId = req.user.assigned_id_warehouse
       const [orders] = await selectIncomingOrders(warehouseId)
       res.json(orders)
 
