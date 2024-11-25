@@ -18,7 +18,7 @@
     "mysql2": "^3.11.3"
   },
   "devDependencies": {
-    "nodemon": "^3.1.7",
-    "cli-express": "^1.2.0"
+    "cli-express": "^1.2.0",
+    "nodemon": "^3.1.7"
   }
 }
