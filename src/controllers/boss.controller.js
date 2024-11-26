@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt")
+
 const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserById, selectAllWarehouse, selectWarehouseById, insertWarehouse, updateWarehouseById, deleteWarehouseById } = require("../models/boss.model")
 
 const fs = require('fs')
@@ -59,10 +61,11 @@ const getWarehouseById = async (req, res, next) => {
 }
 
 const createUser = async (req, res, next) => {
+    req.body.password = await bcrypt.hash(req.body.password, 8)
     try {
         const [result] = await insertUser(req.body)
-        const [user] = await selectUserById(result.insertId)
-        res.status(201).json(user[0])
+        const [newUser] = await selectUserById(result.insertId)
+        res.json(newUser)
     } catch (error) {
         next(error)
     }

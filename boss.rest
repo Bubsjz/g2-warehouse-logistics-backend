@@ -1,30 +1,34 @@
-@url = http://localhost:3000/api/boss
+@url = http://localhost:3000/boss
 
 // /api/boss/USERS
 
 GET {{url}}/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
 
 ###
 
-GET {{url}}/users/12
+GET {{url}}/users/11
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
 
 ###
 
-POST {{url}}/users
+POST {{url}}/register
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
 Content-Type: application/json
 
 {
-    "name": "Olga",
+    "name": "Vaya",
     "surname": "Suarez",
-    "email": "olga.suarez@gmail.com",
-    "password": "123456",
-    "role": "manager",
+    "email": "jope@gmail.com",
+    "password": "vaya",
+    "role": "boss",
     "assigned_id_warehouse": 3
 }
 
 ###
 
 PUT {{url}}/users/14
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
 Content-Type: application/json
 
 {
@@ -37,20 +41,24 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{url}}/users/12
+DELETE {{url}}/users/9
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
 
 // /api/boss/WAREHOUSE
 
 ###
 GET {{url}}/warehouse
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
 
 ###
 
 GET {{url}}/warehouse/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
 
 ###
 
 POST {{url}}/warehouse
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
 Content-Type: multipart/form-data
 
 name: Oest Warehouse
@@ -61,6 +69,7 @@ image: < ./path/to/oestwarehouse.jpg
 ###
 
 PUT {{url}}/warehouse/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
 Content-Type: multipart/form-data
 
 name: Oest Warehouse
@@ -71,3 +80,4 @@ image: < ./path/to/oestwarehouse.jpg
 ###
 
 DELETE {{url}}/warehouse/31
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc

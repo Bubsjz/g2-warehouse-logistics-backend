@@ -1,4 +1,4 @@
-@url = http://localhost:3000/dashboard
+@url = http://localhost:3000
 
 
 POST {{url}}/register
@@ -7,9 +7,9 @@ Content-Type: application/json
 {
     "name": "Prueba",
     "surname": "Prueba",
-    "email": "14@hotmail.com",
-    "password": "14",
-    "role": "manager",
+    "email": "jijij@hotmail.com",
+    "password": "jiji",
+    "role": "boss",
     "assigned_id_warehouse": 2
 }
 
@@ -19,8 +19,8 @@ POST {{url}}/login
 Content-Type: application/json
 
 {
-    "email": "14@hotmail.com",
-    "password": "14"
+    "email": "vaya.suarez@gmail.com",
+    "password": "vaya"
 }
 
 ###
