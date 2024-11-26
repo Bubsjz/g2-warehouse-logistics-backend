@@ -1,0 +1,73 @@
+@url = http://localhost:3000/api/boss
+
+// /api/boss/USERS
+
+GET {{url}}/users
+
+###
+
+GET {{url}}/users/8
+
+###
+
+POST {{url}}/users
+Content-Type: application/json
+
+{
+    "name": "Olga",
+    "surname": "Suarez",
+    "email": "olga.suarez@gmail.com",
+    "password": "123456",
+    "role": "manager",
+    "assigned_id_warehouse": 3
+}
+
+###
+
+PUT {{url}}/users/14
+Content-Type: application/json
+
+{
+    "name": "Felipe",
+    "surname": "Duran",
+    "email": "felipeduran@gmail.com",
+    "password": "123456",
+    "role": "manager",
+    "assigned_id_warehouse": 2
+}
+
+###
+DELETE {{url}}/users/12
+
+// /api/boss/WAREHOUSE
+
+###
+GET {{url}}/warehouse
+
+###
+
+GET {{url}}/warehouse/2
+
+###
+
+POST {{url}}/warehouse
+Content-Type: multipart/form-data
+
+name: Oest Warehouse
+locality: Cáceres
+address: Ctra. Malpartida, 7, 10910 Cáceres
+image: < ./path/to/oestwarehouse.jpg
+
+###
+
+PUT {{url}}/warehouse/2
+Content-Type: multipart/form-data
+
+name: Oest Warehouse
+locality: Cáceres
+address: Ctra. Malpartida, 7, 10910 Cáceres
+image: < ./path/to/oestwarehouse.jpg
+
+###
+
+DELETE {{url}}/warehouse/31
