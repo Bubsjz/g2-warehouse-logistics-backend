@@ -5,15 +5,15 @@ const path = require('path')
 const app = express();
 app.use(express.json());
 
-// Route configuration
+
 app.use('/dashboard', require('./routes/api.routes'));
-// Aqui podriamos poner la configuracion de ruta: ej app.use('/api',require('./routes/apiRoutes'));
 app.use("/dashboard", require ("./routes/authorization.routes"))
 
 // Rutas del jefe usuarios
 app.use('/api/boss', require('./routes/boss.routes'))
 
 app.use("/dashboard", require("./routes/api.routes"));
+
 //Servir las imagenes de la carpeta uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 

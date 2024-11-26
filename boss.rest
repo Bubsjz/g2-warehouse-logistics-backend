@@ -6,7 +6,7 @@ GET {{url}}/users
 
 ###
 
-GET {{url}}/users/8
+GET {{url}}/users/12
 
 ###
 

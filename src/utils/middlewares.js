@@ -41,6 +41,12 @@ const authenticateOperator = (req, res, next) => {
 
 }
 
+const authenticateBoss = (req, res, next) => {
+    if(req.user.role !== "boss") return res.status(403).json({ message: "Acces denied: Not a boss"})
+    next()
+
+}
+
 const validateWarehouseId = (req, res, next) => {
     console.log("pasa por middleware")
 
@@ -52,11 +58,6 @@ const validateWarehouseId = (req, res, next) => {
 
     next();
 };
-
-module.exports = {
-    checkToken, authenticateManager, validateWarehouseId, authenticateOperator
-}
-// en esta carpeta iran todos los middlewares que creemos
 
 function validateImage(req, res, next) {
     if (!req.file){
@@ -70,4 +71,6 @@ function validateImage(req, res, next) {
     next()
 }
 
-module.exports = { validateImage }
+module.exports = {
+    checkToken, authenticateManager, validateWarehouseId, authenticateOperator, authenticateBoss, validateImage
+}

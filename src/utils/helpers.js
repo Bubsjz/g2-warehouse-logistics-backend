@@ -10,13 +10,11 @@ const createToken = (user) => {
     return token
 }
 
-module.exports = {
-    createToken
-}
-
 function getImageUrl(imageFilename) {
     const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
     return `${baseUrl}/uplods/${imageFilename}`
 }
 
-module.exports = { getImageUrl }
+module.exports = {
+    createToken, getImageUrl
+}
