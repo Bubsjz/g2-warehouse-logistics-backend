@@ -133,12 +133,6 @@ const updateWarehouse = async (req, res, next) => {
         const [updatedWarehouse] = await selectWarehouseById(id);
         res.json(updatedWarehouse[0]);
     } catch (error) {
-        // Si ocurre un error, eliminar la imagen subida (si existe)
-        if (req.file) {
-            fs.unlink(req.file.path, (err) => {
-                if (err) console.error('Error al eliminar la imagen temporal:', err);
-            });
-        }
         next(error);
     }
 };
