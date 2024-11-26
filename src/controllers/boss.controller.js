@@ -96,6 +96,11 @@ const createWarehouse = async (req, res, next) => {
         const [warehouse] = await selectWarehouseById(warehouseId)
         res.status(201).json(warehouse[0])
     } catch (error) {
+        if (req.file) {
+            fs.unlink(req.file.path, (err) => {
+                if (err) console.error('Error al eliminar la imagen temporal:', err);
+            });
+        }
         next (error)
     }
 }
@@ -133,6 +138,11 @@ const updateWarehouse = async (req, res, next) => {
         const [updatedWarehouse] = await selectWarehouseById(id);
         res.json(updatedWarehouse[0]);
     } catch (error) {
+        if (req.file) {
+            fs.unlink(req.file.path, (err) => {
+                if (err) console.error('Error al eliminar la imagen temporal:', err);
+            });
+        }
         next(error);
     }
 };
