@@ -1,4 +1,7 @@
-const { selectAll, selectById, selectOutgoingOrders, selectIncomingOrders, changeOrderStatus } = require("../models/manager.model")
+const { selectUserById } = require("../models/boss.model")
+const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus } = require("../models/manager.model")
+const { selectById } = require("../models/operator.model")
+const { getDeliveryById } = require("./operator.controller")
 
 // Pedidos de salida
 const getOutgoingOrders = async (req, res, next) => {
@@ -32,8 +35,9 @@ const updateOrderStatus = async (req, res, next) => {
     try {
         const orderId = req.params.id
         const { status, comments } = req.body
-        const result = await changeOrderStatus(orderId, status, comments)
-        res.json({ message: "Order status updated successfully", result })
+        const [result] = await changeOrderStatus(orderId, status, comments)
+        const [updatedOrder] = await selectById(orderId)
+        res.json({ message: "Order status updated successfully", updatedOrder })
 
     } catch (error) {
         next(error)

@@ -1,4 +1,4 @@
-const { selectAll, selectById, postDelivery} = require("../models/apiOperarioModel");
+const { selectAll, selectById, postDelivery} = require("../models/operator.model");
 
 const getAllDeliveryByUser = async (req, res, next) => {
     console.log(req.user)

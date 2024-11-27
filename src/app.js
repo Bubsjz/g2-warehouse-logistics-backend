@@ -7,7 +7,6 @@ app.use(express.json());
 
 
 app.use('/', require('./routes/api.routes'));
-app.use('/', require ("./routes/authorization.routes"))
 
 //Servir las imagenes de la carpeta uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')))

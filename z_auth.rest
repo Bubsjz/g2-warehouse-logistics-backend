@@ -1,0 +1,24 @@
+@url = http://localhost:3000
+
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "email": "16@hotmail.com",
+    "password": "16"
+}
+
+
+
+// Operator
+# "email": "13@hotmail.com",
+# "password": "13"
+
+// Manager
+# "email": "14@hotmail.com",
+# "password": "14"
+
+// Boss
+# "email": "16@hotmail.com",
+# "password": "16"
+

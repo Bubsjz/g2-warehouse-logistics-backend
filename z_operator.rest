@@ -1,15 +1,14 @@
-@url = http://localhost:3000/dashboard
+@url = http://localhost:3000/operator
+
+GET {{url}}/order-list
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI3MDMzNTUsImV4cCI6MTczMjcwNjk1NX0.3aigGKi79y2yCvmldL_ge3v5zLtUHwKsP2521Y7yMMo
 
 ###
-GET {{url}}/operator/order-list
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI1NzAzODAsImV4cCI6MTczMjU3Mzk4MH0.rgs10C4XeGglLJg5Bc4ymy_XH3SGKK_N6TII73ed34w
-
-###
-GET {{url}}/operario/order-form/5
+GET {{url}}/order-form/5
 
 
 ### Crear un nuevo pedido
-POST {{url}}/operator/order-form
+POST {{url}}/order-form
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI1NzE3MTQsImV4cCI6MTczMjU3NTMxNH0.BisDHV2wqjHVgIfd0EYlmeoaq1Rmklvxh8ZZ_gmgX_8
 

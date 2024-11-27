@@ -10,13 +10,13 @@ const login = async (req, res, next) => {
     //User exists?
     const user = await selectByEmail(email)
     if(!user) return res.status(401).json({ error: "Incorrect email or password" })
+        console.log(user)
     
-    //Passwords coincide?
-    console.log(password, user.password)
+    //Passwords match?
     const validPassword = await bcrypt.compare(password, user.password)
-    if(!validPassword) return res.status(401).json({ error: "Incorrect email or password" })
+    if(!validPassword) return res.status(401).json({ error: "Incorrect email or passwords" })
     
-    res.json({message: "Login is correct", token: createToken(user)})
+    res.json({message: `Hello ${user.role}`, token: createToken(user)})
 }
 
 const register = async (req, res, next) => {

@@ -1,0 +1,23 @@
+@url = http://localhost:3000/manager
+
+// Obtener pedidos de salida del manager logado
+GET {{url}}/outgoing-orders
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjcwODQwMywiZXhwIjoxNzMyNzEyMDAzfQ.CPQmFUJJLPeohmDudSKWAoATI-poFzYk2Hjasj8PJqE
+
+###
+
+// Obtener pedidos de entrada del manager logado
+GET {{url}}/incoming-orders
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjcwMzU2NSwiZXhwIjoxNzMyNzA3MTY1fQ.pzvt4plDdHbctZcJVZlstMi7Aiduyf9gieX0MIe_4F8
+
+###
+
+// Actualizar pedidos
+PUT {{url}}/order/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjcwMzU2NSwiZXhwIjoxNzMyNzA3MTY1fQ.pzvt4plDdHbctZcJVZlstMi7Aiduyf9gieX0MIe_4F8
+
+{
+    "status": "review",
+    "comments": "Ajuste cantidad"
+}

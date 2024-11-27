@@ -1,9 +1,7 @@
 @url = http://localhost:3000/boss
 
-// /api/boss/USERS
-
 GET {{url}}/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjcwMzU2NSwiZXhwIjoxNzMyNzA3MTY1fQ.pzvt4plDdHbctZcJVZlstMi7Aiduyf9gieX0MIe_4F8
 
 ###
 
@@ -58,7 +56,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9y
 ###
 
 POST {{url}}/warehouse
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjcwOTQ4NiwiZXhwIjoxNzMyNzEzMDg2fQ.P9bPr4meDUF6mhojvYYBsmoanK2iVa_SjJGOVXhIuIQ
 Content-Type: multipart/form-data
 
 name: Oest Warehouse

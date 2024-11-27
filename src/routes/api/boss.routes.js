@@ -1,8 +1,9 @@
+const router = require('express').Router();
+const upload = require('../../config/multer');
+
 const { getAllUsers, getUsersById, createUser, updateUser, deleteUser, getAllWarehouse, createWarehouse, getWarehouseById, updateWarehouse, deleteWarehouse } = require('../../controllers/boss.controller');
 const { validateImage } = require('../../utils/middlewares');
 
-const router = require('express').Router();
-const upload = require('../../config/multerConfig');
 
 router.get('/users', getAllUsers)
 router.get('/warehouse', getAllWarehouse)
@@ -17,5 +18,6 @@ router.put('/warehouse/:id', upload.single('image'), validateImage, updateWareho
 
 router.delete('/users/:id', deleteUser)
 router.delete('/warehouse/:id', deleteWarehouse)
+
 
 module.exports = router;
