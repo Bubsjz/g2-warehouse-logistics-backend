@@ -16,7 +16,7 @@ const login = async (req, res, next) => {
     const validPassword = await bcrypt.compare(password, user.password)
     if(!validPassword) return res.status(401).json({ error: "Incorrect email or passwords" })
     
-    res.json({message: `Hello ${user.role}`, token: createToken(user)})
+    res.json({message:`Hello ${user.role}!`, role: user.role, token: createToken(user)})
 }
 
 const register = async (req, res, next) => {
