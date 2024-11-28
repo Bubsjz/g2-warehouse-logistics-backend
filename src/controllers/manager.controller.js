@@ -1,13 +1,11 @@
-const { selectUserById } = require("../models/boss.model")
 const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus } = require("../models/manager.model")
 const { selectById } = require("../models/operator.model")
-const { getDeliveryById } = require("./operator.controller")
 
-// Pedidos de salida
+// Outgoing deliveries
 const getOutgoingOrders = async (req, res, next) => {
-    console.log(req.user)
+    // console.log(req.user)
     try {
-        const warehouseId = req.user.assigned_id_warehouse //this comes from middleware
+        const warehouseId = req.user.assigned_id_warehouse
         const [orders] = await selectOutgoingOrders(warehouseId)
         res.json(orders)
         
@@ -16,9 +14,9 @@ const getOutgoingOrders = async (req, res, next) => {
     }
 }
 
-// Pedidos de entrada
+// Incoming deliveries
 const getIncomingOrders = async (req, res, next) => {
-    console.log(req.user)
+    // console.log(req.user)
     try {
       const warehouseId = req.user.assigned_id_warehouse
       const [orders] = await selectIncomingOrders(warehouseId)
@@ -29,7 +27,7 @@ const getIncomingOrders = async (req, res, next) => {
     }
 }
 
-// Actualización status
+// Status update
 const updateOrderStatus = async (req, res, next) => {
 
     try {
