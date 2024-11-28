@@ -1,7 +1,7 @@
-const { login, getAll, register } = require('../../controllers/authorization.controller');
-const { checkToken, authenticateManager } = require('../../utils/middlewares');
-
 const router = require('express').Router();
+
+const { login } = require('../../controllers/authorization.controller');
+
 
 router.post("/", login)
 
