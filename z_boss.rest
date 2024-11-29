@@ -39,7 +39,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{url}}/users/60
+DELETE {{url}}/users/68
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjkxMDQ2OCwiZXhwIjoxNzMyOTE0MDY4fQ.xa5y5XD3D8shMO5kwXrsf2TfbIcDOHJAWzFOYEVtl-I
 
 // /api/boss/WAREHOUSE
@@ -51,7 +51,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9y
 ###
 
 GET {{url}}/warehouse/12
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjg5OTI1MCwiZXhwIjoxNzMyOTAyODUwfQ.PnbOXUB8RlB3FpeTOTrZ_QjlikVFkwrns3dQepencpY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjkxMDQ2OCwiZXhwIjoxNzMyOTE0MDY4fQ.xa5y5XD3D8shMO5kwXrsf2TfbIcDOHJAWzFOYEVtl-I
 
 ###
 
@@ -78,4 +78,4 @@ image: < ./path/to/oestwarehouse.jpg
 ###
 
 DELETE {{url}}/warehouse/12
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjg5OTI1MCwiZXhwIjoxNzMyOTAyODUwfQ.PnbOXUB8RlB3FpeTOTrZ_QjlikVFkwrns3dQepencpY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjkxMDQ2OCwiZXhwIjoxNzMyOTE0MDY4fQ.xa5y5XD3D8shMO5kwXrsf2TfbIcDOHJAWzFOYEVtl-I

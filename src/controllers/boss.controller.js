@@ -196,22 +196,31 @@ const updateWarehouse = async (req, res, next) => {
 }
 
 const deleteUser = async (req, res, next) => {
-    const { id } = req.params
+    const { id } = req.params;
     try {
-        const [user] = await selectUserById(id)
-        if(!user.length){
-            return res.status(404).json({error: 'User not found'})
+        const [user] = await selectUserById(id);
+        if (!user.length) {
+            return res.status(404).json({ error: 'User not found' });
         }
-        const imagePath = path.join(__dirname, '../../uploads', user[0].image)
-        if (user[0].image && fs.existsSync(imagePath)){
-            fs.unlinkSync(imagePath)
+
+        console.log('Usuario a eliminar:', user[0]);
+
+        const imagePath = path.join(__dirname, '../../uploads', user[0].image);
+        console.log('Ruta de la imagen:', imagePath);
+
+        if (user[0].image && fs.existsSync(imagePath)) {
+            console.log('Archivo encontrado, eliminando:', imagePath);
+            fs.unlinkSync(imagePath);
+        } else {
+            console.log('No se encontró la imagen para eliminar:', imagePath);
         }
-        await deleteUserById(id)
-        res.json(user[0])
+
+        await deleteUserById(id);
+        res.json(user[0]);
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 const deleteWarehouse = async (req, res, next) => {
     const { id } = req.params
@@ -226,6 +235,9 @@ const deleteWarehouse = async (req, res, next) => {
         }
         await deleteWarehouseById(id)
         res.json(warehouse[0])
+        console.log('Imagen del usuario:', user[0].image);
+        console.log('Ruta completa de la imagen:', imagePath);
+        console.log('¿Existe la imagen?:', fs.existsSync(imagePath));
     } catch (error) {
         next (error)
     }
