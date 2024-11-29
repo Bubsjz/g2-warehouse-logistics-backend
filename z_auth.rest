@@ -8,3 +8,15 @@ Content-Type: application/json
     "password": "13"
 }
 
+// Laura Operator
+# "email": "operator@hotmail.com",
+# "password": "operator"
+
+// Laura Manager
+# "email": "14@hotmail.com",
+# "password": "14"
+
+// Laura Boss
+# "email": "jijij@hotmail.com",
+# "password": "jiji"
+

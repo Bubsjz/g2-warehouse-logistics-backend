@@ -11,16 +11,16 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9y
 ###
 
 POST {{url}}/register
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjg5OTI1MCwiZXhwIjoxNzMyOTAyODUwfQ.PnbOXUB8RlB3FpeTOTrZ_QjlikVFkwrns3dQepencpY
 Content-Type: application/json
 
 {
-    "name": "Vaya",
+    "name": "Operator",
     "surname": "Suarez",
-    "email": "jope@gmail.com",
-    "password": "vaya",
-    "role": "boss",
-    "assigned_id_warehouse": 3
+    "email": "operator@gmail.com",
+    "password": "operator",
+    "role": "operator",
+    "assigned_id_warehouse": 1
 }
 
 ###
