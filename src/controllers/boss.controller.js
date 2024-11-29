@@ -104,6 +104,8 @@ const createUser = async (req, res, next) => {
     }
 }
 
+
+
 const createWarehouse = async (req, res, next) => {
     try {
         const warehouseData = {
@@ -149,14 +151,14 @@ const updateUser = async (req, res, next) => {
             const extension = path.extname(req.file.originalname)
             newImageName = `user-${id}${extension}`
             const newImagePath = path.join(__dirname, '../../uploads', newImageName)
-            fs.renameSync(req.file.path, newImageName)
+            fs.renameSync(req.file.path, newImagePath)
         }
         const userData = {
             ...req.body,
             image: newImageName
         }
         await updateUserById(id, userData)
-        const [updateUserById] = await selectUserById(id)
+        const [updateUser] = await selectUserById(id)
         res.json(updateUser[0])
     } catch (error) {
         fs.unlink(req.file.path, (err) => {
@@ -197,6 +199,13 @@ const deleteUser = async (req, res, next) => {
     const { id } = req.params
     try {
         const [user] = await selectUserById(id)
+        if(!user.length){
+            return res.status(404).json({error: 'User not found'})
+        }
+        const imagePath = path.join(__dirname, '../../uploads', user[0].image)
+        if (user[0].image && fs.existsSync(imagePath)){
+            fs.unlinkSync(imagePath)
+        }
         await deleteUserById(id)
         res.json(user[0])
     } catch (error) {

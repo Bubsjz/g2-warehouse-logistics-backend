@@ -39,8 +39,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{url}}/users/40
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjkwMzEzMywiZXhwIjoxNzMyOTA2NzMzfQ.U0kn3IWBdj4wjM4Kb02JScyHcadYhYMCD5hVpaJgN1Q
+DELETE {{url}}/users/60
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjkxMDQ2OCwiZXhwIjoxNzMyOTE0MDY4fQ.xa5y5XD3D8shMO5kwXrsf2TfbIcDOHJAWzFOYEVtl-I
 
 // /api/boss/WAREHOUSE
 
