@@ -10,10 +10,10 @@ router.get('/warehouse', getAllWarehouse)
 router.get('/users/:id', getUsersById )
 router.get('/warehouse/:id', getWarehouseById)
 
-router.post('/register', createUser)
+router.post('/register', upload.single('image'), validateImage, createUser)
 router.post('/warehouse', upload.single('image'), validateImage, createWarehouse)
 
-router.put('/users/:id', updateUser)
+router.put('/users/:id', upload.single('image'), validateImage, updateUser)
 router.put('/warehouse/:id', upload.single('image'), validateImage, updateWarehouse)
 
 router.delete('/users/:id', deleteUser)
