@@ -97,7 +97,7 @@ const createUser = async (req, res, next) => {
     } catch (error) {
         if(req.file){
             fs.unlink(req.file.path, (err) => {
-                if (err) console.error('Error al eliminar la imagen temporal:', err)
+                if (err) console.error('Error deleting the temporary image:', err)
             })
         }
         next(error)
@@ -136,7 +136,7 @@ const createWarehouse = async (req, res, next) => {
     } catch (error) {
         if (req.file) {
             fs.unlink(req.file.path, (err) => {
-                if (err) console.error('Error al eliminar la imagen temporal:', err);
+                if (err) console.error('Error deleting the temporary image:', err);
             });
         }
         next (error)
@@ -168,7 +168,7 @@ const updateUser = async (req, res, next) => {
         res.json(updateUser[0])
     } catch (error) {
         fs.unlink(req.file.path, (err) => {
-            if (err) console.error('Error al eliminar la imagen temporal:', err);
+            if (err) console.error('Error deleting the temporary image:', err);
         });
         next(error)
     }
@@ -194,7 +194,7 @@ const updateWarehouse = async (req, res, next) => {
     } catch (error) {
         if (req.file) {
             fs.unlink(req.file.path, (err) => {
-                if (err) console.error('Error al eliminar la imagen temporal:', err)
+                if (err) console.error('Error deleting the temporary image:', err)
             })
         }
         next(error)
@@ -209,16 +209,10 @@ const deleteUser = async (req, res, next) => {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        console.log('Usuario a eliminar:', user[0]);
-
         const imagePath = path.join(__dirname, '../../uploads', user[0].image);
-        console.log('Ruta de la imagen:', imagePath);
 
         if (user[0].image && fs.existsSync(imagePath)) {
-            console.log('Archivo encontrado, eliminando:', imagePath);
             fs.unlinkSync(imagePath);
-        } else {
-            console.log('No se encontró la imagen para eliminar:', imagePath);
         }
 
         await deleteUserById(id);
@@ -241,9 +235,6 @@ const deleteWarehouse = async (req, res, next) => {
         }
         await deleteWarehouseById(id)
         res.json(warehouse[0])
-        console.log('Imagen del usuario:', user[0].image);
-        console.log('Ruta completa de la imagen:', imagePath);
-        console.log('¿Existe la imagen?:', fs.existsSync(imagePath));
     } catch (error) {
         next (error)
     }
