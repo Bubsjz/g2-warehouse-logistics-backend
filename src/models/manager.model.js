@@ -9,7 +9,7 @@ function selectOutgoingOrders(warehouseId) {
          join truck t on d.truck_id_truck = t.id_truck
          join warehouse w on d.destination_warehouse_id = w.id_warehouse
          where d.origin_warehouse_id = ?
-         and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
+         and d.status in ("review", "ready departure", "corrections needed", "in transit", "delivered")`
         , [warehouseId]
     )
 }
@@ -22,7 +22,7 @@ function selectIncomingOrders(warehouseId) {
          join truck t on d.truck_id_truck = t.id_truck
          join warehouse w on d.origin_warehouse_id = w.id_warehouse
          where d.destination_warehouse_id = ?
-         and d.status in ("pending reception", "review")`
+         and d.status in ("delivered", "review", "approved", "not approved")`
         , [warehouseId]
     )
 }
