@@ -146,6 +146,11 @@ const createWarehouse = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
     const { id } = req.params
     try {
+        let updatedPassword = null
+        if (req.body.password){
+        updatedPassword = await bcrypt.hash(req.body.password, 8)
+        }
+
         let newImageName = null;
         if(req.file) {
             const extension = path.extname(req.file.originalname)
@@ -155,7 +160,8 @@ const updateUser = async (req, res, next) => {
         }
         const userData = {
             ...req.body,
-            image: newImageName
+            password: updatedPassword || req.body.password,
+            image: newImageName || req.body.image
         }
         await updateUserById(id, userData)
         const [updateUser] = await selectUserById(id)
