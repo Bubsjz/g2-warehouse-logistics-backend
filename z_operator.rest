@@ -4,20 +4,24 @@ GET {{url}}/order-list
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI3MDMzNTUsImV4cCI6MTczMjcwNjk1NX0.3aigGKi79y2yCvmldL_ge3v5zLtUHwKsP2521Y7yMMo
 
 ###
-GET {{url}}/order-form/5
-
+GET {{url}}/modify-order/4
 
 ### Crear un nuevo pedido
-POST {{url}}/order-form
+POST {{url}}/create-order
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI1NzE3MTQsImV4cCI6MTczMjU3NTMxNH0.BisDHV2wqjHVgIfd0EYlmeoaq1Rmklvxh8ZZ_gmgX_8
-
+//Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI1NzE3MTQsImV4cCI6MTczMjU3NTMxNH0.BisDHV2wqjHVgIfd0EYlmeoaq1Rmklvxh8ZZ_gmgX_8
 {
     "send_date": "2024-11-23T12:00:00",        
     "received_date": "2024-11-25T12:00:00",    
-    "truck_id_truck": 42,                
-    "origin_warehouse_id": 9,             
+    "truck_id_truck": 2,                
+    "origin_warehouse_id": 1,             
     "destination_warehouse_id": 3,         
     "status": "pending",                
-    "comments": "Entrega programada para el lunes." 
+    "comments": "Entrega programada para el lunes.",
+    "products": [
+        {
+            "product_id": 4,
+            "quantity": 28
+        }
+    ]
 }
