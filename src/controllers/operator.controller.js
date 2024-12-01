@@ -15,7 +15,8 @@ const getDeliveryById = async (req, res, next) => {
     console.log (id_delivery)
     try {
         const [result] = await selectById (id_delivery);
-        result.products = await selectProductByDelivery(id_delivery)
+        const [products] = await selectProductByDelivery(id_delivery)
+        result[0].products = products
         res.json(result);
     } catch (error) {
         next(error);
@@ -37,11 +38,12 @@ const createDelivery = async (req, res, next) => {
 };
 const updateDeliveryById = async (req, res, next) => {
     const {id_delivery} = req.params;
+    console.log(req.body)
     try {
-        const [result] = await updateById(req.body, id_delivery);
-        console.log(result)
-        result[0].products = await updateProducts (req.body.products, id_delivery)
-        res.json(result);
+        //const [result] = await updateById(req.body, id_delivery);
+        //console.log(result)
+        //result[0].products = await updateProducts (req.body.products, id_delivery)
+       res.json(result);
     } catch (error) {
         next(error)
     }
