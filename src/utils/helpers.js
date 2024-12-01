@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const fs = require('fs')
+const path = require('path')
 
 const createToken = (user) => {
     const data = {
@@ -12,9 +14,46 @@ const createToken = (user) => {
 
 function getImageUrl(imageFilename) {
     const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
+    if (!imageFilename){
+        return null
+    }
     return `${baseUrl}/uploads/${imageFilename}`
 }
 
+const handleImageFile = {
+    getNewImageName: (entity, id, file) => {
+        if (!file){
+            throw new Error("File is required to generate a new image name.")
+        }
+        const extension = path.extname(file.originalname)
+        return `${entity}-${id}${extension}`
+    },
+    renameImage: (oldPath, newPath) => {
+        try {
+            fs.renameSync(oldPath, newPath)
+        } catch (error) {
+            console.error(`Error renaming image from ${oldPath} to ${newPath}`, error.message)
+        }
+        
+    },
+    deleteImage: (imageName) => {
+        if(!imageName) {
+            console.warn("No image name provided for deletion.")
+            return
+        }
+        const imagePath = path.join(__dirname, "../../uploads", imageName)
+        try {
+            if(fs.existsSync(imagePath)){
+                fs.unlinkSync(imagePath)
+            } else {
+                console.warn(`Image not found at path: ${imagePath}`)
+            }
+        } catch (error) {
+            console.error(`Error deleting image at ${imagePath}:`, error.message)
+        }
+    }
+}
+
 module.exports = {
-    createToken, getImageUrl
+    createToken, getImageUrl, handleImageFile
 }

@@ -1,7 +1,7 @@
 @url = http://localhost:3000/boss
 
 GET {{url}}/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA0NjY2NSwiZXhwIjoxNzMzMDUwMjY1fQ.Aj0px2lP3IpTto-52eeDqKn4yyoe-ZJV6qGyVdQiNjE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA3Nzc5MCwiZXhwIjoxNzMzMDgxMzkwfQ.P7_hebaTtDPeK3qR1wq6eo1-_S3fCeZ8_GA9T1MsDBM
 
 ###
 
@@ -39,8 +39,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{url}}/users/54
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA0NjY2NSwiZXhwIjoxNzMzMDUwMjY1fQ.Aj0px2lP3IpTto-52eeDqKn4yyoe-ZJV6qGyVdQiNjE
+DELETE {{url}}/users/55
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA4NjI4NywiZXhwIjoxNzMzMDg5ODg3fQ.ND_DkW7ro-5zhrStjW_3t0Gh2EorDmMYK5rLXc8v-w8
 
 // /api/boss/WAREHOUSE
 
@@ -78,4 +78,4 @@ image: < ./path/to/oestwarehouse.jpg
 ###
 
 DELETE {{url}}/warehouse/13
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjk3NDM1OSwiZXhwIjoxNzMyOTc3OTU5fQ.bwji5a4A9x-cdQxqtGaCYqNxJIaBi999-ds4braZooI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA4NjI4NywiZXhwIjoxNzMzMDg5ODg3fQ.ND_DkW7ro-5zhrStjW_3t0Gh2EorDmMYK5rLXc8v-w8

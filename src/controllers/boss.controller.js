@@ -4,6 +4,7 @@ const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserBy
 
 const fs = require('fs')
 const path = require('path')
+const { handleImageFile } = require("../utils/helpers")
 
 const getAllUsers = async (req, res, next) => {
     try {
@@ -73,33 +74,19 @@ const createUser = async (req, res, next) => {
         const userId = result.insertId
 
         if (req.file){
-            const extension = path.extname(req.file.originalname)
-            const newImageName = `user-${userId}${extension}`
-            const oldImagePath = path.join(__dirname, '../../uploads', req.file.filename)
+            const newImageName = handleImageFile.getNewImageName("user", userId, req.file)
+            const oldImagePath = req.file.path
             const newImagePath = path.join(__dirname, '../../uploads', newImageName)
 
-            fs.renameSync(oldImagePath, newImagePath)
+            handleImageFile.renameImage(oldImagePath, newImagePath)
 
-            const updateData = {
-                name: req.body.name,
-                surname: req.body.surname,
-                email: req.body.email,
-                password: req.body.password,
-                role: req.body.role,
-                image: newImageName,
-                assigned_id_warehouse: req.body.assigned_id_warehouse,
-                assigned_id_truck: req.body.assigned_id_truck
-            }
-
-            await updateUserById(userId, updateData)
+            await updateUserById(userId, { ...userData, image: newImageName})
         }
         const [user] = await selectUserById(userId)
         res.status(201).json(user[0])
     } catch (error) {
         if(req.file){
-            fs.unlink(req.file.path, (err) => {
-                if (err) console.error('Error deleting the temporary image:', err)
-            })
+            handleImageFile.deleteImage(req.file.filename)
         }
         next(error)
     }
@@ -116,29 +103,19 @@ const createWarehouse = async (req, res, next) => {
         const [result] = await insertWarehouse(warehouseData)
         const warehouseId = result.insertId
         if (req.file){
-            const extension = path.extname(req.file.originalname)
-            const newImageName = `warehouse-${warehouseId}${extension}`
-            const oldImagePath = path.join(__dirname, '../../uploads', req.file.filename)
+            const newImageName = handleImageFile.getNewImageName("warehouse", warehouseId, req.file)
+            const oldImagePath = req.file.path
             const newImagePath = path.join(__dirname, '../../uploads', newImageName)
 
-            fs.renameSync(oldImagePath, newImagePath)
+            handleImageFile.renameImage(oldImagePath, newImagePath)
 
-            const updateData = {
-                name: req.body.name,
-                locality: req.body.locality,
-                address: req.body.address,
-                image: newImageName
-            }
-
-            await updateWarehouseById(warehouseId, updateData)
+            await updateWarehouseById(warehouseId, { ...warehouseData, image: newImageName})
         }
         const [warehouse] = await selectWarehouseById(warehouseId)
         res.status(201).json(warehouse[0])
     } catch (error) {
         if (req.file) {
-            fs.unlink(req.file.path, (err) => {
-                if (err) console.error('Error deleting the temporary image:', err);
-            });
+            handleImageFile.deleteImage(req.file.filename)
         }
         next (error)
     }
@@ -154,10 +131,9 @@ const updateUser = async (req, res, next) => {
 
         let newImageName = null;
         if(req.file) {
-            const extension = path.extname(req.file.originalname)
-            newImageName = `user-${id}${extension}`
+            newImageName = handleImageFile.getNewImageName("user", id, req.file)
             const newImagePath = path.join(__dirname, '../../uploads', newImageName)
-            fs.renameSync(req.file.path, newImagePath)
+            handleImageFile.renameImage(req.file.path, newImagePath)
         }
         const userData = {
             ...req.body,
@@ -168,9 +144,9 @@ const updateUser = async (req, res, next) => {
         const [updateUser] = await selectUserById(id)
         res.json(updateUser[0])
     } catch (error) {
-        fs.unlink(req.file.path, (err) => {
-            if (err) console.error('Error deleting the temporary image:', err);
-        });
+        if (req.file) {
+            handleImageFile.deleteImage(req.file.filename)
+        }
         next(error)
     }
 }
@@ -180,23 +156,20 @@ const updateWarehouse = async (req, res, next) => {
     try {
         let newImageName = null
         if (req.file) {
-            const extension = path.extname(req.file.originalname)
-            newImageName = `warehouse-${id}${extension}`
+            newImageName = handleImageFile.getNewImageName("warehouse", id, req.file)
             const newImagePath = path.join(__dirname, '../../uploads', newImageName)
-            fs.renameSync(req.file.path, newImagePath)
+            handleImageFile.renameImage(req.file.path, newImagePath)
         }
         const warehouseData = {
             ...req.body,
-            image: newImageName
+            image: newImageName || req.body.image
         };
         await updateWarehouseById(id, warehouseData);
         const [updatedWarehouse] = await selectWarehouseById(id)
         res.json(updatedWarehouse[0])
     } catch (error) {
         if (req.file) {
-            fs.unlink(req.file.path, (err) => {
-                if (err) console.error('Error deleting the temporary image:', err)
-            })
+            handleImageFile.deleteImage(req.file.filename)
         }
         next(error)
     }
@@ -210,11 +183,7 @@ const deleteUser = async (req, res, next) => {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        const imagePath = path.join(__dirname, '../../uploads', user[0].image);
-
-        if (user[0].image && fs.existsSync(imagePath)) {
-            fs.unlinkSync(imagePath);
-        }
+        handleImageFile.deleteImage(user[0].image)
 
         await deleteUserById(id);
         res.json(user[0]);
@@ -230,10 +199,7 @@ const deleteWarehouse = async (req, res, next) => {
         if (!warehouse.length){
             return res.status(404).json({error: 'Warehouse not found'})
         }
-        const imagePath = path.join(__dirname, '../../uploads', warehouse[0].image)
-        if (warehouse[0].image && fs.existsSync(imagePath)){
-            fs.unlinkSync(imagePath)
-        }
+        handleImageFile.deleteImage(warehouse[0].image)
         await deleteWarehouseById(id)
         res.json(warehouse[0])
     } catch (error) {
