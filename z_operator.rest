@@ -1,59 +1,16 @@
 @url = http://localhost:3000/operator
 
 GET {{url}}/order-list
-<<<<<<< HEAD
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwMDgxNTksImV4cCI6MTczMzAxMTc1OX0.ccUzNdWEJqJGnJcMw3SaNnEPwltgLtrz2I1lnTtz5eU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzgxOTcsImV4cCI6MTczMzA4MTc5N30.fSheilkMhkhgVQJMJDoWZTgFdfnt3YwyQMri3ONKpGQ
 
 ###
-GET {{url}}/order-form/5
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwMDgxNTksImV4cCI6MTczMzAxMTc1OX0.ccUzNdWEJqJGnJcMw3SaNnEPwltgLtrz2I1lnTtz5eU
-
-
-### Crear un nuevo pedido
-POST {{url}}/order-form
-Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwMDQwNDQsImV4cCI6MTczMzAwNzY0NH0.586dtzwiVbBSquRNX91pkZBuA70KhqACw4uNdkb2QDk
-=======
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzA4NTksImV4cCI6MTczMzA3NDQ1OX0.Vo9k4Dkt_BRRlajp48XdA-oVcGau2unhTav3KckQleI
-###
-GET {{url}}/modify-order/86
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzA4NTksImV4cCI6MTczMzA3NDQ1OX0.Vo9k4Dkt_BRRlajp48XdA-oVcGau2unhTav3KckQleI
-
-###
-PUT {{url}}/modify-order/86
-Content-Type: application/json
-Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzA4NTksImV4cCI6MTczMzA3NDQ1OX0.Vo9k4Dkt_BRRlajp48XdA-oVcGau2unhTav3KckQleI
-
->>>>>>> Feature_Fran_2
-
-{
-    "send_date": "2024-11-23T12:00:00",        
-    "received_date": "2024-11-25T12:00:00",    
-    "truck_id_truck": 42,                
-    "origin_warehouse_id": 1,             
-    "destination_warehouse_id": 3,         
-    "status": "pending",                
-    "comments": "",
-    "products": [
-        {
-            "product_id": 2,
-            "quantity": 79
-        },
-                {
-            "product_id": 1,
-            "quantity": 1
-        },
-                        {
-            "product_id": 1,
-            "quantity": 1
-        }
-    ]
-}
+GET {{url}}/modify-order/22
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzgxOTcsImV4cCI6MTczMzA4MTc5N30.fSheilkMhkhgVQJMJDoWZTgFdfnt3YwyQMri3ONKpGQ
 
 ### Crear un nuevo pedido
 POST {{url}}/create-order
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNDk3NDcsImV4cCI6MTczMzA1MzM0N30.9VMffBLDdpehdOcn6P3exfKX7ZdE0a0QXpW73Gr00Qw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzgxOTcsImV4cCI6MTczMzA4MTc5N30.fSheilkMhkhgVQJMJDoWZTgFdfnt3YwyQMri3ONKpGQ
 
 {
     "send_date": "2024-11-23T12:00:00",        
@@ -78,6 +35,37 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9y
         }
     ]
 }
+
+
+### Modificar pedido
+PUT {{url}}/modify-order/26
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzgxOTcsImV4cCI6MTczMzA4MTc5N30.fSheilkMhkhgVQJMJDoWZTgFdfnt3YwyQMri3ONKpGQ
+
+{
+    "send_date": "2024-11-23T12:00:00",        
+    "received_date": "2024-11-25T12:00:00",    
+    "truck_id_truck": 42,                
+    "origin_warehouse_id": 1,             
+    "destination_warehouse_id": 3,         
+    "status": "pending",                
+    "comments": "",
+    "products": [
+        {
+            "product_id": 4,
+            "quantity": 12
+        },
+                {
+            "product_id": 5,
+            "quantity": 12
+        },
+                {
+            "product_id": 1,
+            "quantity": 12
+        }
+    ]
+}
+
 ###
 DELETE {{url}}/modify-order/87
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzA4NTksImV4cCI6MTczMzA3NDQ1OX0.Vo9k4Dkt_BRRlajp48XdA-oVcGau2unhTav3KckQleI

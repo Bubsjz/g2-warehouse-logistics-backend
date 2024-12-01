@@ -3,7 +3,7 @@ const pool = require('../config/db');
 
 function selectOutgoingOrders(warehouseId) {
     return pool.query(
-        `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
+        `select d.*, t.plate, wo.name as origin_warehouse_name, wo.locality as origin_warehouse_locality, wd.name as destination_warehouse_name, wd.locality as destination_warehouse_locality
          from delivery d
          join truck t on d.truck_id_truck = t.id_truck
          join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
@@ -16,7 +16,7 @@ function selectOutgoingOrders(warehouseId) {
 
 function selectIncomingOrders(warehouseId) {
     return pool.query(
-        `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
+        `select d.*, t.plate, wo.name as origin_warehouse_name, wo.locality as origin_warehouse_locality, wd.name as destination_warehouse_name, wd.locality as destination_warehouse_locality
          from delivery d
          join truck t on d.truck_id_truck = t.id_truck
          join warehouse wo on d.origin_warehouse_id = wo.id_warehouse

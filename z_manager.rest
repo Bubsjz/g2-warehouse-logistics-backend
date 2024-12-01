@@ -8,7 +8,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9y
 
 // Obtener pedidos de entrada
 GET {{url}}/incoming-orders
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzA3MjQ5NywiZXhwIjoxNzMzMDc2MDk3fQ.si2UM6u69wk2RGJfgkiRLd_NL0rb0Fjv5zYQ7tyqDgU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzA3Nzg5NCwiZXhwIjoxNzMzMDgxNDk0fQ.-w7mpCZtZBtX7hKwzi-D5L0twhp7riS1a2mj9qNqep0
 
 ###
 

@@ -108,15 +108,14 @@ const checkDeliveryByUser = async (req, res, next) => {
         [delivery] = await checkDelivery(id_delivery, id_user)
         console.log(delivery)
         if (delivery.length === 0) {
-            return res.status(404).json({ error: "El pedido introducido no pertenece a este usuario"})
+            return res.status(404).json({ error: "Inserted order doesn't belong to this user"})
         } else {
             next();
         }
     } catch (error) {
-        res.status(500).json({error: "Error interno del servidor al verificar el pedido"});
+        res.status(500).json({error: "Internal error"});
     }
 }
 module.exports = {
-    checkToken, authenticateManager, validateWarehouseId, authenticateOperator, authenticateBoss, validateImage, cleanImages
-    checkToken, authenticateManager, validateWarehouseId, authenticateOperator, authenticateBoss, validateImage, checkDeliveryByUser
+    checkToken, authenticateManager, validateWarehouseId, authenticateOperator, authenticateBoss, validateImage, cleanImages, checkDeliveryByUser
 }
