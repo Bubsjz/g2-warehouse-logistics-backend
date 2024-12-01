@@ -1,12 +1,11 @@
 @url = http://localhost:3000/operator
 
 GET {{url}}/order-list
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI5ODU5NjAsImV4cCI6MTczMjk4OTU2MH0.7Uh7daCLm6nqWC5Ea18ZpaDFT8P3gDFsaCdqbPD1bX0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNDk3NDcsImV4cCI6MTczMzA1MzM0N30.9VMffBLDdpehdOcn6P3exfKX7ZdE0a0QXpW73Gr00Qw
 
 ###
 GET {{url}}/modify-order/57
-Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI5ODU5NjAsImV4cCI6MTczMjk4OTU2MH0.7Uh7daCLm6nqWC5Ea18ZpaDFT8P3gDFsaCdqbPD1bX0
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNDk3NDcsImV4cCI6MTczMzA1MzM0N30.9VMffBLDdpehdOcn6P3exfKX7ZdE0a0QXpW73Gr00Qw
 
 ###
 PUT {{url}}/modify-order/1
@@ -39,7 +38,7 @@ Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9
 ### Crear un nuevo pedido
 POST {{url}}/create-order
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI5ODU5NjAsImV4cCI6MTczMjk4OTU2MH0.7Uh7daCLm6nqWC5Ea18ZpaDFT8P3gDFsaCdqbPD1bX0
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNDk3NDcsImV4cCI6MTczMzA1MzM0N30.9VMffBLDdpehdOcn6P3exfKX7ZdE0a0QXpW73Gr00Qw
 
 {
     "send_date": "2024-11-23T12:00:00",        

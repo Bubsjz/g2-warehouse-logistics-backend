@@ -29,7 +29,7 @@ const createDelivery = async (req, res, next) => {
             await postProducts(producto, newDelivery.insertId);
           }
         const [productos] = await selectProductByDelivery(newDelivery.insertId)
-        result[0].productos = productos
+        result[0].products = productos
         res.json(result);
     } catch (error) {
         next(error)
