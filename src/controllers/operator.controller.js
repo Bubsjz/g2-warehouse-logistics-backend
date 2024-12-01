@@ -1,4 +1,4 @@
-const { selectAll, selectById, postDelivery, postProducts, selectProductByDelivery, updateById, updateProductsById, removeProductsById} = require("../models/operator.model");
+const { selectAll, selectById, postDelivery, postProducts, selectProductByDelivery, updateById, updateProductsById, removeProductsById, removeDeliveryById} = require("../models/operator.model");
 
 const getAllDeliveryByUser = async (req, res, next) => {
     console.log(req.user)
@@ -52,6 +52,19 @@ const updateDeliveryById = async (req, res, next) => {
         next(error)
     }
 };
+const deleteDeliveryById = async (req, res, next) => {
+    const {id_delivery} = req.params;
+    try {
+        const [result] = await selectById (id_delivery);
+        const [products] = await selectProductByDelivery(id_delivery)
+        result[0].products = products
+        await removeProductsById(id_delivery)
+        await removeDeliveryById(id_delivery)
+        res.json(result)
+    } catch (error) {
+        next(error)
+    }
+}
 module.exports = {
-    getAllDeliveryByUser, getDeliveryById, createDelivery, updateDeliveryById
+    getAllDeliveryByUser, getDeliveryById, createDelivery, updateDeliveryById, deleteDeliveryById
 }

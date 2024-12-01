@@ -1,15 +1,16 @@
 @url = http://localhost:3000/operator
 
 GET {{url}}/order-list
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNTY2MzMsImV4cCI6MTczMzA2MDIzM30.DTED4drimULYp464ryb96pNLwJEtZxKrlqbihOoe6a8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzA4NTksImV4cCI6MTczMzA3NDQ1OX0.Vo9k4Dkt_BRRlajp48XdA-oVcGau2unhTav3KckQleI
 ###
-GET {{url}}/modify-order/42
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNTY2MzMsImV4cCI6MTczMzA2MDIzM30.DTED4drimULYp464ryb96pNLwJEtZxKrlqbihOoe6a8
+GET {{url}}/modify-order/86
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzA4NTksImV4cCI6MTczMzA3NDQ1OX0.Vo9k4Dkt_BRRlajp48XdA-oVcGau2unhTav3KckQleI
 
 ###
-PUT {{url}}/modify-order/42
+PUT {{url}}/modify-order/86
 Content-Type: application/json
-Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNTY2MzMsImV4cCI6MTczMzA2MDIzM30.DTED4drimULYp464ryb96pNLwJEtZxKrlqbihOoe6a8
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzA4NTksImV4cCI6MTczMzA3NDQ1OX0.Vo9k4Dkt_BRRlajp48XdA-oVcGau2unhTav3KckQleI
+
 
 {
     "send_date": "2024-11-23T12:00:00",        
@@ -63,3 +64,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9y
         }
     ]
 }
+###
+DELETE {{url}}/modify-order/87
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzA4NTksImV4cCI6MTczMzA3NDQ1OX0.Vo9k4Dkt_BRRlajp48XdA-oVcGau2unhTav3KckQleI

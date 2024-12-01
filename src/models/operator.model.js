@@ -33,6 +33,12 @@ function updateProductsById(products_info, id_delivery){
 function removeProductsById(id_delivery){
     return pool.query('DELETE FROM delivery_products WHERE delivery_id_delivery = ?', [id_delivery])
 }
+function removeDeliveryById(id_delivery){
+    return pool.query('DELETE FROM delivery WHERE id_delivery = ?', [id_delivery])
+}
+function checkDelivery(id_delivery, id_user){
+    return pool.query('SELECT * FROM delivery WHERE truck_id_truck = ? AND id_delivery = ?;', [id_user, id_delivery])
+}
 module.exports = {
-    selectAll, selectById, postDelivery, postProducts, updateById, updateProductsById, selectProductByDelivery, removeProductsById
+    selectAll, selectById, postDelivery, postProducts, updateById, updateProductsById, selectProductByDelivery, removeProductsById, removeDeliveryById, checkDelivery
 }
