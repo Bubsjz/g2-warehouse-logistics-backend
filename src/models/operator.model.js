@@ -42,12 +42,12 @@ function checkDelivery(id_delivery, id_user){
 function selectTrucks() {
     return pool.query('SELECT * FROM truck')
 }
-function selectWarehaouse() {
+function selectWarehouse() {
     return pool.query('SELECT * FROM warehouse')
 }
 function selectProducts() {
     return pool.query('SELECT * FROM product')
 }
 module.exports = {
-    selectAll, selectById, postDelivery, postProducts, updateById, updateProductsById, selectProductByDelivery, removeProductsById, removeDeliveryById, checkDelivery, selectProducts, selectTrucks, selectWarehaouse
+    selectAll, selectById, postDelivery, postProducts, updateById, updateProductsById, selectProductByDelivery, removeProductsById, removeDeliveryById, checkDelivery, selectProducts, selectTrucks, selectWarehouse
 }

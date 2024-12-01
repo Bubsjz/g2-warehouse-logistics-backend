@@ -1,9 +1,8 @@
 @url = http://localhost:3000/operator
 
 GET {{url}}/order-list
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzgxOTcsImV4cCI6MTczMzA4MTc5N30.fSheilkMhkhgVQJMJDoWZTgFdfnt3YwyQMri3ONKpGQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwODM1NTYsImV4cCI6MTczMzA4NzE1Nn0.m8atdlFrYq5urvhl5ytqJkdApsFzuhvgJ_Z5lYF8I3o
 
-###
 GET {{url}}/modify-order/95
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwODIxNTcsImV4cCI6MTczMzA4NTc1N30.dYMPVByFa43pCtjxx_ZrENnYvkuJR-RBdYBwzwvRcAg
 ### Crear un nuevo pedido

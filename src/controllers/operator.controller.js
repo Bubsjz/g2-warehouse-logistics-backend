@@ -1,4 +1,4 @@
-const { selectAll, selectById, postDelivery, postProducts, selectProductByDelivery, updateById, updateProductsById, removeProductsById, removeDeliveryById, selectProducts, selectWarehaouse, selectTrucks} = require("../models/operator.model");
+const { selectAll, selectById, postDelivery, postProducts, selectProductByDelivery, updateById, updateProductsById, removeProductsById, removeDeliveryById, selectProducts, selectWarehouse, selectTrucks} = require("../models/operator.model");
 
 const getAllDeliveryByUser = async (req, res, next) => {
     console.log(req.user)
@@ -16,7 +16,7 @@ const getDeliveryById = async (req, res, next) => {
     try {
         const [result] = await selectById (id_delivery);
         const [products] = await selectProductByDelivery(id_delivery)
-        const [warehouse] = await selectWarehaouse();
+        const [warehouse] = await selectWarehouse();
         const [truck] = await selectTrucks();
         const [productNames] = await selectProducts();
         result[0].products = products
@@ -36,7 +36,7 @@ const createDelivery = async (req, res, next) => {
             await postProducts(producto, newDelivery.insertId);
           }
         const [productos] = await selectProductByDelivery(newDelivery.insertId)
-        const [warehouse] = await selectWarehaouse();
+        const [warehouse] = await selectWarehouse();
         const [truck] = await selectTrucks();
         const [productNames] = await selectProducts();
         result[0].products = productos
