@@ -1,16 +1,17 @@
 @url = http://localhost:3000/operator
 
 GET {{url}}/order-list
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI3MDMzNTUsImV4cCI6MTczMjcwNjk1NX0.3aigGKi79y2yCvmldL_ge3v5zLtUHwKsP2521Y7yMMo
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwMDgxNTksImV4cCI6MTczMzAxMTc1OX0.ccUzNdWEJqJGnJcMw3SaNnEPwltgLtrz2I1lnTtz5eU
 
 ###
 GET {{url}}/order-form/5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwMDgxNTksImV4cCI6MTczMzAxMTc1OX0.ccUzNdWEJqJGnJcMw3SaNnEPwltgLtrz2I1lnTtz5eU
 
 
 ### Crear un nuevo pedido
 POST {{url}}/order-form
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzI1NzE3MTQsImV4cCI6MTczMjU3NTMxNH0.BisDHV2wqjHVgIfd0EYlmeoaq1Rmklvxh8ZZ_gmgX_8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwMDQwNDQsImV4cCI6MTczMzAwNzY0NH0.586dtzwiVbBSquRNX91pkZBuA70KhqACw4uNdkb2QDk
 
 {
     "send_date": "2024-11-23T12:00:00",        

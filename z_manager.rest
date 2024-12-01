@@ -2,22 +2,27 @@
 
 // Obtener pedidos de salida
 GET {{url}}/outgoing-orders
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjcwODQwMywiZXhwIjoxNzMyNzEyMDAzfQ.CPQmFUJJLPeohmDudSKWAoATI-poFzYk2Hjasj8PJqE
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzAwODExOSwiZXhwIjoxNzMzMDExNzE5fQ.F8W7HVpwuiMMENG3yRX3bWcptTcFRem2A30OSeLpVU4
 
 ###
 
 // Obtener pedidos de entrada
 GET {{url}}/incoming-orders
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjcwMzU2NSwiZXhwIjoxNzMyNzA3MTY1fQ.pzvt4plDdHbctZcJVZlstMi7Aiduyf9gieX0MIe_4F8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzA3MjQ5NywiZXhwIjoxNzMzMDc2MDk3fQ.si2UM6u69wk2RGJfgkiRLd_NL0rb0Fjv5zYQ7tyqDgU
+
+###
+
+GET {{url}}/review-order/5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzA3MTc5NCwiZXhwIjoxNzMzMDc1Mzk0fQ.dYaP74MsYj-ffJ2j3_iYG_2_gJAWd19ZxJq3weE2TBQ
 
 ###
 
 // Actualizar pedidos
-PUT {{url}}/order/2
+PUT {{url}}/order/4
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjcwMzU2NSwiZXhwIjoxNzMyNzA3MTY1fQ.pzvt4plDdHbctZcJVZlstMi7Aiduyf9gieX0MIe_4F8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjk3NTM4MCwiZXhwIjoxNzMyOTc4OTgwfQ.jf6GRXLDTu5WIrHTAqmTqdlrrQNOUGHHJWi-GCQPB04
 
 {
-    "status": "review",
-    "comments": "Ajuste cantidad"
+    "action": "approve",
+    "comments": ""
 }
