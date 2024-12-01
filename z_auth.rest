@@ -5,6 +5,7 @@ Content-Type: application/json
 
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "email": "16@hotmail.com",
     "password": "16"
 =======
@@ -25,3 +26,9 @@ Content-Type: application/json
 # "email": "jijij@hotmail.com",
 # "password": "jiji"
 
+=======
+    "email": "13@hotmail.com",
+    "password": "13"
+}
+
+>>>>>>> Feature_Fran_2

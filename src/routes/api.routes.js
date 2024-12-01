@@ -9,5 +9,4 @@ router.use("/operator", checkToken, authenticateOperator, require ("./api/operat
 router.use("/boss", checkToken, authenticateBoss, require ("./api/boss.routes"))
 
 
-
 module.exports = router

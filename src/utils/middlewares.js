@@ -3,6 +3,8 @@ const { selectById } = require("../models/authorization.model")
 const fs = require('fs')
 const path = require('path')
 const { selectAllUsers, selectAllWarehouse } = require("../models/boss.model")
+const {checkDelivery} = require("../models/operator.model")
+
 const checkToken = async (req, res, next) => {
 
     // Token exists?
@@ -57,7 +59,6 @@ const validateWarehouseId = (req, res, next) => {
     if (isNaN(warehouseId)) {
         return res.status(400).json({ message: "Invalid warehouseId. It must be a number." });
     }
-
     next();
 };
 
@@ -100,6 +101,22 @@ const cleanImages = async (req, res, next) => {
     }
 }
 
+const checkDeliveryByUser = async (req, res, next) => {
+    const id_user = req.user.id_user;
+    const {id_delivery} = req.params
+    try {
+        [delivery] = await checkDelivery(id_delivery, id_user)
+        console.log(delivery)
+        if (delivery.length === 0) {
+            return res.status(404).json({ error: "El pedido introducido no pertenece a este usuario"})
+        } else {
+            next();
+        }
+    } catch (error) {
+        res.status(500).json({error: "Error interno del servidor al verificar el pedido"});
+    }
+}
 module.exports = {
     checkToken, authenticateManager, validateWarehouseId, authenticateOperator, authenticateBoss, validateImage, cleanImages
+    checkToken, authenticateManager, validateWarehouseId, authenticateOperator, authenticateBoss, validateImage, checkDeliveryByUser
 }
