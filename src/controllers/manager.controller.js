@@ -1,4 +1,4 @@
-const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById } = require("../models/manager.model")
+const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById } = require("../models/manager.model")
 const { selectById } = require("../models/operator.model")
 
 // Outgoing deliveries
@@ -40,8 +40,15 @@ const getIncomingOrders = async (req, res, next) => {
 // Individual delivery
 const getOrderById = async (req, res, next) => {
     const orderId = req.params.id
-    const [order] = await selectOrderById(orderId)
-    res.json(order)
+    try {
+        const [order] = await selectOrderById(orderId)
+        const [products] = await selectProductsById(orderId)
+        console.log(products)
+        order[0].products = products
+        res.json(order)
+    } catch (error) {
+        next(error)
+    }
 }
 
 // Status update

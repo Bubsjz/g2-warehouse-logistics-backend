@@ -31,14 +31,21 @@ function selectOrderById(orderId){
     return pool.query(
         `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
         from delivery d
-        join delivery_products dp on d.id_delivery = dp.delivery_id_delivery
-        join product p on dp.product_id_product = p.id_product
         join truck t on d.truck_id_truck = t.id_truck
         join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
         join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
         where d.id_delivery = ?
         and d.status in ("delivered", "review", "approved", "not approved")`
         , [orderId])
+}
+
+function selectProductsById(id) {
+    return pool.query(
+        `select product_id_product as product_id, quantity as product_quantity
+        from delivery_products
+        where delivery_id_delivery = ?`
+        , [id]
+    )
 }
 
 // Actualización status
@@ -53,5 +60,5 @@ function changeOrderStatus(orderId, status, comments) {
 
 
 module.exports = {
-    selectOutgoingOrders, selectIncomingOrders, selectOrderById, changeOrderStatus
+    selectOutgoingOrders, selectIncomingOrders, selectOrderById, changeOrderStatus, selectProductsById
 };
