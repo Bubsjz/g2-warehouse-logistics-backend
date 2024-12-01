@@ -1,81 +1,45 @@
 @url = http://localhost:3000/boss
 
+// /api/boss/USERS (el post y el put se debe hacer con postman para adjuntar imagen)
+
+// Mostrar todos los usuarios
+
 GET {{url}}/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA3Nzc5MCwiZXhwIjoxNzMzMDgxMzkwfQ.P7_hebaTtDPeK3qR1wq6eo1-_S3fCeZ8_GA9T1MsDBM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA5MTE1OCwiZXhwIjoxNzMzMDk0NzU4fQ.35vNVDbcUCLeR8mP7kUMkIRbP2S1UOsuYwKeXT9s_IY
 
 ###
 
-GET {{url}}/users/11
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA0NjY2NSwiZXhwIjoxNzMzMDUwMjY1fQ.Aj0px2lP3IpTto-52eeDqKn4yyoe-ZJV6qGyVdQiNjE
+// Mostrar un usuario con su almacen asociado
+
+GET {{url}}/users/60
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA5MTE1OCwiZXhwIjoxNzMzMDk0NzU4fQ.35vNVDbcUCLeR8mP7kUMkIRbP2S1UOsuYwKeXT9s_IY
 
 ###
 
-POST {{url}}/register
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjg5OTI1MCwiZXhwIjoxNzMyOTAyODUwfQ.PnbOXUB8RlB3FpeTOTrZ_QjlikVFkwrns3dQepencpY
-Content-Type: application/json
+// Borrar un usuario
 
-{
-    "name": "Operator",
-    "surname": "Suarez",
-    "email": "operator@gmail.com",
-    "password": "operator",
-    "role": "operator",
-    "assigned_id_warehouse": 1
-}
+DELETE {{url}}/users/61
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA5MTE1OCwiZXhwIjoxNzMzMDk0NzU4fQ.35vNVDbcUCLeR8mP7kUMkIRbP2S1UOsuYwKeXT9s_IY
+
+// /api/boss/WAREHOUSE (el post y el put se debe hacer con postman para adjuntar imagen)
 
 ###
 
-PUT {{url}}/users/14
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
-Content-Type: application/json
+// Mostrar todos los almacenes
 
-{
-    "name": "Felipe",
-    "surname": "Duran",
-    "email": "felipeduran@gmail.com",
-    "password": "123456",
-    "role": "manager",
-    "assigned_id_warehouse": 2
-}
-
-###
-DELETE {{url}}/users/55
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA4NjI4NywiZXhwIjoxNzMzMDg5ODg3fQ.ND_DkW7ro-5zhrStjW_3t0Gh2EorDmMYK5rLXc8v-w8
-
-// /api/boss/WAREHOUSE
-
-###
 GET {{url}}/warehouse
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA5MTE1OCwiZXhwIjoxNzMzMDk0NzU4fQ.35vNVDbcUCLeR8mP7kUMkIRbP2S1UOsuYwKeXT9s_IY
 
 ###
 
-GET {{url}}/warehouse/12
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjkxMDQ2OCwiZXhwIjoxNzMyOTE0MDY4fQ.xa5y5XD3D8shMO5kwXrsf2TfbIcDOHJAWzFOYEVtl-I
+// Mostrar un almacen con sus usuarios asociados
+
+GET {{url}}/warehouse/14
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA5MTE1OCwiZXhwIjoxNzMzMDk0NzU4fQ.35vNVDbcUCLeR8mP7kUMkIRbP2S1UOsuYwKeXT9s_IY
 
 ###
 
-POST {{url}}/warehouse
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjcwOTQ4NiwiZXhwIjoxNzMyNzEzMDg2fQ.P9bPr4meDUF6mhojvYYBsmoanK2iVa_SjJGOVXhIuIQ
-Content-Type: multipart/form-data
+// Borrar un almacen
 
-name: Oest Warehouse
-locality: Cáceres
-address: Ctra. Malpartida, 7, 10910 Cáceres
-image: < ./path/to/oestwarehouse.jpg
-
-###
-
-PUT {{url}}/warehouse/2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjY0OTIxMSwiZXhwIjoxNzMyNjUyODExfQ.K3lsxCuGXHh3ODkRvZGSOU-fdTzZ8cOILJT3lfxtDXc
-Content-Type: multipart/form-data
-
-name: Oest Warehouse
-locality: Cáceres
-address: Ctra. Malpartida, 7, 10910 Cáceres
-image: < ./path/to/oestwarehouse.jpg
-
-###
-
-DELETE {{url}}/warehouse/13
+DELETE {{url}}/warehouse/14
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA4NjI4NywiZXhwIjoxNzMzMDg5ODg3fQ.ND_DkW7ro-5zhrStjW_3t0Gh2EorDmMYK5rLXc8v-w8

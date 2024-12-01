@@ -4,12 +4,16 @@ const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserBy
 
 const fs = require('fs')
 const path = require('path')
-const { handleImageFile } = require("../utils/helpers")
+const { handleImageFile, getImageUrl } = require("../utils/helpers")
 
 const getAllUsers = async (req, res, next) => {
     try {
-        const [result] = await selectAllUsers()
-        res.json(result)
+        const [users] = await selectAllUsers()
+        const usersImageUrls = users.map(user => ({
+            ...user,
+            image: getImageUrl(user.image)
+        }))
+        res.json(usersImageUrls)
     } catch (error) {
         next(error)
     };
@@ -17,8 +21,12 @@ const getAllUsers = async (req, res, next) => {
 
 const getAllWarehouse = async (req, res, next) => {
     try {
-        const [result] = await selectAllWarehouse()
-        res.json(result)
+        const [warehouse] = await selectAllWarehouse()
+        const warehousesImageUrls = warehouse.map((warehouse) => ({
+            ...warehouse,
+            image: getImageUrl(warehouse.image)
+        }))
+        res.json(warehousesImageUrls)
     } catch (error) {
         next(error)
     }
@@ -31,7 +39,9 @@ const getUsersById = async (req, res, next) => {
         if (result.length === 0) {
             return res.status(404).json({ error: 'User not found' })
         }
-        res.json (result[0])
+        const user = result[0]
+        user.image = user.image ? getImageUrl(user.image) : null
+        res.json(user)
     } catch (error) {
         next(error)
     }
@@ -44,8 +54,9 @@ const getWarehouseById = async (req, res, next) => {
         if (result.length === 0) {
             return res.status(404).json({ error: 'Warehouse not found' })
         }
-        res.json({
+        const warehouse = ({
             ...result[0],
+            image: result[0].image ? getImageUrl(result[0].image) : null,
             users: result
             .filter(row => row.id_user)
             .map(({ id_user, user_name, surname, email, role}) => ({
@@ -56,6 +67,7 @@ const getWarehouseById = async (req, res, next) => {
                 role
             }))
     })
+    res.json(warehouse)
     } catch (error) {
         next (error)
     }
@@ -83,6 +95,7 @@ const createUser = async (req, res, next) => {
             await updateUserById(userId, { ...userData, image: newImageName})
         }
         const [user] = await selectUserById(userId)
+        user[0].image = user[0].image ? getImageUrl(user[0].image) : null
         res.status(201).json(user[0])
     } catch (error) {
         if(req.file){
@@ -112,6 +125,7 @@ const createWarehouse = async (req, res, next) => {
             await updateWarehouseById(warehouseId, { ...warehouseData, image: newImageName})
         }
         const [warehouse] = await selectWarehouseById(warehouseId)
+        warehouse[0].image = warehouse[0].image ? getImageUrl(warehouse[0].image) : null
         res.status(201).json(warehouse[0])
     } catch (error) {
         if (req.file) {
@@ -142,6 +156,7 @@ const updateUser = async (req, res, next) => {
         }
         await updateUserById(id, userData)
         const [updateUser] = await selectUserById(id)
+        updateUser[0].image = updateUser[0].image ? getImageUrl(updateUser[0].image) : null
         res.json(updateUser[0])
     } catch (error) {
         if (req.file) {
@@ -166,6 +181,7 @@ const updateWarehouse = async (req, res, next) => {
         };
         await updateWarehouseById(id, warehouseData);
         const [updatedWarehouse] = await selectWarehouseById(id)
+        updateWarehouse[0].image = updateWarehouse[0].image ? getImageUrl(updateWarehouse[0].image) : null
         res.json(updatedWarehouse[0])
     } catch (error) {
         if (req.file) {
