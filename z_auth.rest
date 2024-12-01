@@ -4,8 +4,8 @@ POST {{url}}/login
 Content-Type: application/json
 
 {
-    "email": "jijij@hotmail.com",
-    "password": "jiji"
+    "email": "16@hotmail.com",
+    "password": "16"
 }
 
 // Laura Operator

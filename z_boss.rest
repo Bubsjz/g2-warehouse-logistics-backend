@@ -1,12 +1,12 @@
 @url = http://localhost:3000/boss
 
 GET {{url}}/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjcwMzU2NSwiZXhwIjoxNzMyNzA3MTY1fQ.pzvt4plDdHbctZcJVZlstMi7Aiduyf9gieX0MIe_4F8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA0NjY2NSwiZXhwIjoxNzMzMDUwMjY1fQ.Aj0px2lP3IpTto-52eeDqKn4yyoe-ZJV6qGyVdQiNjE
 
 ###
 
 GET {{url}}/users/11
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjg5OTI1MCwiZXhwIjoxNzMyOTAyODUwfQ.PnbOXUB8RlB3FpeTOTrZ_QjlikVFkwrns3dQepencpY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA0NjY2NSwiZXhwIjoxNzMzMDUwMjY1fQ.Aj0px2lP3IpTto-52eeDqKn4yyoe-ZJV6qGyVdQiNjE
 
 ###
 
@@ -39,8 +39,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{url}}/users/75
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNCwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMjk4MTMzNSwiZXhwIjoxNzMyOTg0OTM1fQ.UItk22nGPsE1XiKq-5fSn3L6XcAh_6cJ42z8XrEfkks
+DELETE {{url}}/users/54
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA0NjY2NSwiZXhwIjoxNzMzMDUwMjY1fQ.Aj0px2lP3IpTto-52eeDqKn4yyoe-ZJV6qGyVdQiNjE
 
 // /api/boss/WAREHOUSE
 

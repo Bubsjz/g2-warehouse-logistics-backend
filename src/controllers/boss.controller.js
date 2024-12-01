@@ -87,7 +87,8 @@ const createUser = async (req, res, next) => {
                 password: req.body.password,
                 role: req.body.role,
                 image: newImageName,
-                assigned_id_warehouse: req.body.assigned_id_warehouse
+                assigned_id_warehouse: req.body.assigned_id_warehouse,
+                assigned_id_truck: req.body.assigned_id_truck
             }
 
             await updateUserById(userId, updateData)

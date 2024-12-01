@@ -18,10 +18,10 @@ function selectWarehouseById(id) {
         select warehouse.*, user.id_user, user.name AS user_name, user.surname, user.email, user.role, user.image AS user_image from warehouse left join user on warehouse.id_warehouse = user.assigned_id_warehouse where warehouse.id_warehouse = ?`, [id])
 }
 
-function insertUser({ name, surname, email, password, role, assigned_id_warehouse, image }){
+function insertUser({ name, surname, email, password, role, assigned_id_warehouse, image, assigned_id_truck }){
     const finalRole = role || "operator"
     return pool.query(
-        'insert into user (name, surname, email, password, role, assigned_id_warehouse, image) values (?, ?, ?, ?, ?, ?, ?)', [name, surname, email, password, finalRole, assigned_id_warehouse, image]
+        'insert into user (name, surname, email, password, role, assigned_id_warehouse, image, assigned_id_truck) values (?, ?, ?, ?, ?, ?, ?, ?)', [name, surname, email, password, finalRole, assigned_id_warehouse, image, assigned_id_truck]
     )
 }
 
@@ -31,9 +31,9 @@ function insertWarehouse({ name, locality, address, image }) {
     )
 }
 
-function updateUserById(id, {name, surname, email, password, role, assigned_id_warehouse, image}){
+function updateUserById(id, {name, surname, email, password, role, assigned_id_warehouse, image, assigned_id_truck}){
     return pool.query(
-        'update user set name = ?, surname = ?, email = ?, password = ?, role = ?, assigned_id_warehouse = ?, image = ? where id_user = ?', [name, surname, email, password, role, assigned_id_warehouse, image, id] 
+        'update user set name = ?, surname = ?, email = ?, password = ?, role = ?, assigned_id_warehouse = ?, image = ?, assigned_id_truck = ? where id_user = ?', [name, surname, email, password, role, assigned_id_warehouse, image, assigned_id_truck, id] 
     )
 }
 
