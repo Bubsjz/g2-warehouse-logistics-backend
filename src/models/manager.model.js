@@ -22,9 +22,23 @@ function selectIncomingOrders(warehouseId) {
          join truck t on d.truck_id_truck = t.id_truck
          join warehouse w on d.origin_warehouse_id = w.id_warehouse
          where d.destination_warehouse_id = ?
-         and d.status in ("delivered", "review", "approved", "not approved")`
+         and d.status in ("delivered", "pending reception", "approved", "not approved")`
         , [warehouseId]
     )
+}
+
+function selectOrderById(orderId){
+    return pool.query(
+        `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
+        from delivery d
+        join delivery_products dp on d.id_delivery = dp.delivery_id_delivery
+        join product p on dp.product_id_product = p.id_product
+        join truck t on d.truck_id_truck = t.id_truck
+        join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
+        join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
+        where d.id_delivery = ?
+        and d.status in ("delivered", "review", "approved", "not approved")`
+        , [orderId])
 }
 
 // Actualización status
@@ -39,5 +53,5 @@ function changeOrderStatus(orderId, status, comments) {
 
 
 module.exports = {
-    selectOutgoingOrders, selectIncomingOrders, changeOrderStatus
+    selectOutgoingOrders, selectIncomingOrders, selectOrderById, changeOrderStatus
 };
