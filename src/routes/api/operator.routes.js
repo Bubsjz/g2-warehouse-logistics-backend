@@ -6,9 +6,7 @@ const { getAllDeliveryByUser, getDeliveryById, createDelivery, updateDeliveryByI
 
 router.get('/order-list', getAllDeliveryByUser);
 router.get('/modify-order/:id_delivery', getDeliveryById);
-
 router.put('/modify-order/:id_delivery', updateDeliveryById);
-
 router.post('/create-order', createDelivery);
 
 

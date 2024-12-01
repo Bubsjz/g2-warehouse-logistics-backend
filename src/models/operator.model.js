@@ -27,12 +27,12 @@ function updateById(delivery_info, id_delivery){
         [delivery_info.send_date, delivery_info.recive_date, delivery_info.truck_id_truck, delivery_info.origin_warehouse_id, delivery_info.destination_warehouse_id, delivery_info.status, delivery_info.comments, id_delivery])
 }
 function updateProductsById(products_info, id_delivery){
-    const [products] = pool.query('DELETE delivery_products WHERE id_delivery = ?', [id_delivery])
-    products_info.forEach(product => {
-        pool.query('INSERT INTO delivery_products (product_id_product, quantity, delivery_id_delivery) VALUES (?, ?, ?)', [product.product_id, product.quantity, id_delivery])
-    })
-    return pool.query('SELECT * FROM delivery_produts WHERE delivery_id_delivery = ?', [id_delivery])
+    return pool.query('INSERT INTO delivery_products (product_id_product, quantity, delivery_id_delivery) VALUES (?, ?, ?)',
+            [products_info.product_id, products_info.quantity, id_delivery]);
+}
+function removeProductsById(id_delivery){
+    return pool.query('DELETE FROM delivery_products WHERE delivery_id_delivery = ?', [id_delivery])
 }
 module.exports = {
-    selectAll, selectById, postDelivery, postProducts, updateById, updateProductsById, selectProductByDelivery
+    selectAll, selectById, postDelivery, postProducts, updateById, updateProductsById, selectProductByDelivery, removeProductsById
 }

@@ -1,4 +1,4 @@
-const { selectAll, selectById, postDelivery, postProducts, selectProductByDelivery, updateById} = require("../models/operator.model");
+const { selectAll, selectById, postDelivery, postProducts, selectProductByDelivery, updateById, updateProductsById, removeProductsById} = require("../models/operator.model");
 
 const getAllDeliveryByUser = async (req, res, next) => {
     console.log(req.user)
@@ -38,16 +38,20 @@ const createDelivery = async (req, res, next) => {
 };
 const updateDeliveryById = async (req, res, next) => {
     const {id_delivery} = req.params;
-    console.log(req.body)
     try {
-        //const [result] = await updateById(req.body, id_delivery);
-        //console.log(result)
-        //result[0].products = await updateProducts (req.body.products, id_delivery)
-       res.json(result);
+        await updateById(req.body, id_delivery)
+        const [result] = await selectById(id_delivery)
+        await removeProductsById(id_delivery)
+        for (const producto of req.body.products) {
+            await postProducts(producto, id_delivery);
+          }
+        const [products] = await selectProductByDelivery(id_delivery)
+        result[0].products = products
+        res.json(result);
     } catch (error) {
         next(error)
     }
-}
+};
 module.exports = {
     getAllDeliveryByUser, getDeliveryById, createDelivery, updateDeliveryById
 }
