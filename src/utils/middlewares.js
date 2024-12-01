@@ -1,6 +1,8 @@
 const jwt =  require("jsonwebtoken")
 const { selectById } = require("../models/authorization.model")
-
+const fs = require('fs')
+const path = require('path')
+const { selectAllUsers, selectAllWarehouse } = require("../models/boss.model")
 const checkToken = async (req, res, next) => {
 
     // Token exists?
@@ -63,14 +65,41 @@ function validateImage(req, res, next) {
     if (!req.file){
         return res.status(400).json({ error: 'No image was provided'})
     }
-    const allowedTypes = ['image/jpeg', 'image/png']
-    
-    if (!allowedTypes.includes(req.file.mimetype)){
-        return res.status(400).json({ error: 'File type not allowed'})
-    }
     next()
 }
 
+const cleanImages = async (req, res, next) => {
+    try {
+        const [users] = await selectAllUsers()
+        const [warehouses] = await selectAllWarehouse()
+
+        const dbImages = [
+            ...users.map((users) => user.image),
+            ...warehouses.map((warehouse) => warehouse.image),
+        ].filter((image) => image !== null)
+
+        const uploadDir = path.join(__dirname, '../../uploads')
+        const uploadFiles = fs.readdirSync(uploadDir)
+
+        uploadFiles.forEach((file) => {
+            if(!dbImages.includes(file)) {
+                const filePath = path.join(uploadDir, file)
+                fs.unlink(filePath), (err) => {
+                    if (err) {
+                        console.error(`Error deleting image ${file}:`, err)
+                    } else {
+                        console.log(`Image deleted: ${file}`)
+                    }
+                }
+            }
+        })
+        next()
+    } catch (error) {
+        console.log('Error during the cleaning images', error)
+        next(error)
+    }
+}
+
 module.exports = {
-    checkToken, authenticateManager, validateWarehouseId, authenticateOperator, authenticateBoss, validateImage
+    checkToken, authenticateManager, validateWarehouseId, authenticateOperator, authenticateBoss, validateImage, cleanImages
 }

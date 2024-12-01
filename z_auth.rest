@@ -4,7 +4,19 @@ POST {{url}}/login
 Content-Type: application/json
 
 {
-    "email": "13@hotmail.com",
-    "password": "13"
+    "email": "16@hotmail.com",
+    "password": "16"
 }
+
+// Laura Operator
+# "email": "operator@hotmail.com",
+# "password": "operator"
+
+// Laura Manager
+# "email": "14@hotmail.com",
+# "password": "14"
+
+// Laura Boss
+# "email": "jijij@hotmail.com",
+# "password": "jiji"
 
