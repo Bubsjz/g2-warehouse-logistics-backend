@@ -37,7 +37,7 @@ const getIncomingOrders = async (req, res, next) => {
     }
 }
 
-// Individual delivery
+// Delivery details
 const getOrderById = async (req, res, next) => {
     const orderId = req.params.id
     try {
