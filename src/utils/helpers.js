@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken')
 const createToken = (user) => {
     const data = {
         user_id: user.id_user,
+        user_name: user.name,
+        user_surname: user.surname,
         user_role: user.role,
     }
 
