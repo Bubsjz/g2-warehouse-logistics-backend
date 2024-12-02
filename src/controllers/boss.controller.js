@@ -180,9 +180,9 @@ const updateWarehouse = async (req, res, next) => {
             image: newImageName || req.body.image
         };
         await updateWarehouseById(id, warehouseData);
-        const [updatedWarehouse] = await selectWarehouseById(id)
+        const [updateWarehouse] = await selectWarehouseById(id)
         updateWarehouse[0].image = updateWarehouse[0].image ? getImageUrl(updateWarehouse[0].image) : null
-        res.json(updatedWarehouse[0])
+        res.json(updateWarehouse[0])
     } catch (error) {
         if (req.file) {
             handleImageFile.deleteImage(req.file.filename)
