@@ -1,4 +1,4 @@
-const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById } = require("../models/manager.model")
+const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById } = require("../models/manager.model")
 const { selectById } = require("../models/operator.model")
 
 // Outgoing deliveries
@@ -27,9 +27,6 @@ const getIncomingOrders = async (req, res, next) => {
         }
         return order
       })
-
-
-
       res.json(transformedOrders)
 
     } catch (error) {
@@ -43,36 +40,32 @@ const getOrderById = async (req, res, next) => {
     try {
         const [order] = await selectOrderById(orderId)
         const [products] = await selectProductsById(orderId)
-        console.log(products)
+        // console.log(products)
         order[0].products = products
         res.json(order)
+
     } catch (error) {
         next(error)
     }
 }
 
-// Status update
-const updateOrderStatus = async (req, res, next) => {
+// Status update outgoing deliveries
+const updateOutgoingOrder = async (req, res, next) => {
+    const orderId = req.params.id
+    const { status, comments = null } = req.body
 
     try {
-        const orderId = req.params.id
-        const { action, comments = null } = req.body
+        if (!["ready for departure", "corrections needed"].includes(status)) {
+            return res.status(400).json({ message: "Invalid status" })
+        }
 
-        let status
-        if (action === "approve") {
-            status = "ready departure"
-        } else if (action === "reject") {
-            if (!comments) {
-                return res.json(400).json({ message: "Comments are required when rejecting an order" })
-            }
-            status = "corrections needed"
-        } else {
-            return res.status(400).json({ message: "Invalid action provided" })
+        if (status === "corrections needed" && !comments) {
+            return res.status(400).json({ message: "Comments are required to request changes" })
         }
 
         await changeOrderStatus(orderId, status, comments)
 
-        const [updatedOrder] = await selectById(orderId)
+        const [updatedOrder] = await selectOutgoingOrderById(orderId)
         res.json({ message: "Order status updated successfully", updatedOrder })
 
     } catch (error) {
@@ -80,6 +73,25 @@ const updateOrderStatus = async (req, res, next) => {
     }
 }
 
+// Incoming order verification
+const verifyIncomingOrder = async (req, res, next) => {
+    const orderId = req.params.id
+    const { status, comments } = req.body
+    console.log(status)
+    try {
+        if (!["approved", "not approved"].includes(status)) {
+            return res.status(400).json({ message: "Invalid status" })
+        }
+        await changeOrderStatus(orderId, status, comments)
+
+        const [verifiedOrder] = await selectIncomingOrderById(orderId)
+        res.json({ message: "Order status updated successfully", verifiedOrder })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
 module.exports = {
-    getOutgoingOrders, getIncomingOrders, updateOrderStatus, getOrderById
+    getOutgoingOrders, getIncomingOrders, updateOutgoingOrder, getOrderById, verifyIncomingOrder
 }

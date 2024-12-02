@@ -4,12 +4,12 @@ const pool = require('../config/db');
 function selectOutgoingOrders(warehouseId) {
     return pool.query(
         `select d.*, t.plate, wo.name as origin_warehouse_name, wo.locality as origin_warehouse_locality, wd.name as destination_warehouse_name, wd.locality as destination_warehouse_locality
-         from delivery d
-         join truck t on d.truck_id_truck = t.id_truck
-         join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
-         join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
-         where d.origin_warehouse_id = ?
-         and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
+        from delivery d
+        join truck t on d.truck_id_truck = t.id_truck
+        join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
+        join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
+        where d.origin_warehouse_id = ?
+        and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
         , [warehouseId]
     )
 }
@@ -27,6 +27,30 @@ function selectIncomingOrders(warehouseId) {
     )
 }
 
+function selectOutgoingOrderById(orderId){
+    return pool.query(
+        `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
+        from delivery d
+        join truck t on d.truck_id_truck = t.id_truck
+        join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
+        join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
+        where d.id_delivery = ?
+        and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
+        , [orderId])
+}
+
+function selectIncomingOrderById(orderId){
+    return pool.query(
+        `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
+        from delivery d
+        join truck t on d.truck_id_truck = t.id_truck
+        join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
+        join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
+        where d.id_delivery = ?
+        and d.status in ("delivered", "pending reception", "approved", "not approved")`
+        , [orderId])
+}
+
 function selectOrderById(orderId){
     return pool.query(
         `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
@@ -35,7 +59,7 @@ function selectOrderById(orderId){
         join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
         join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
         where d.id_delivery = ?
-        and d.status in ("delivered", "review", "approved", "not approved")`
+        and d.status in ("delivered", "pending reception", "approved", "not approved")`
         , [orderId])
 }
 
@@ -59,5 +83,5 @@ function changeOrderStatus(orderId, status, comments) {
 
 
 module.exports = {
-    selectOutgoingOrders, selectIncomingOrders, selectOrderById, changeOrderStatus, selectProductsById
+    selectOutgoingOrders, selectIncomingOrders, selectOutgoingOrderById, selectIncomingOrderById, changeOrderStatus, selectProductsById, selectOrderById
 };
