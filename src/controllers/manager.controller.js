@@ -53,27 +53,20 @@ const getOrderById = async (req, res, next) => {
 
 // Status update
 const updateOrderStatus = async (req, res, next) => {
+    const orderId = req.params.id
+    const { status, comments = null } = req.body
 
     try {
-        const orderId = req.params.id
-        const { action, comments = null } = req.body
+        if (!["ready for departure", "corrections needed"].includes(status)) {
+            return res.status(400).json({ message: "Invalid status" })
+        }
 
-        let status
-        if (action === "approve") {
-            status = "ready departure"
-        } else if (action === "reject") {
-            if (!comments) {
-                return res.json(400).json({ message: "Comments are required when rejecting an order" })
-            }
-            status = "corrections needed"
-        } else {
-            return res.status(400).json({ message: "Invalid action provided" })
+        if (status === "corrections needed" && !comments) {
+            return res.status(400).json({ message: "Comments are required to request changes" })
         }
 
         await changeOrderStatus(orderId, status, comments)
-
-        const [updatedOrder] = await selectById(orderId)
-        res.json({ message: "Order status updated successfully", updatedOrder })
+        res.json({ message: "Order status updated successfully", status })
 
     } catch (error) {
         next(error)

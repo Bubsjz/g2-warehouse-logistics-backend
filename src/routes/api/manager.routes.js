@@ -7,7 +7,7 @@ router.get("/outgoing-orders", getOutgoingOrders);
 router.get("/incoming-orders", getIncomingOrders)
 router.get("/review-order/:id", getOrderById)
 
-router.put("/order/:id", updateOrderStatus)
+router.put("/review-order/:id", updateOrderStatus)
 
 
 module.exports = router;
