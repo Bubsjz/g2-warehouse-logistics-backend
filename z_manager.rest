@@ -1,28 +1,41 @@
 @url = http://localhost:3000/manager
 
-// Obtener pedidos de salida
+// Get outgoing order
 GET {{url}}/outgoing-orders
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE0MDk4MCwiZXhwIjoxNzMzMTQ0NTgwfQ.zSYUV9LWDas7NNvDrFzNyn75sL4Dwm30WEKf1K2kdAc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
 
 ###
 
-// Obtener pedidos de entrada
+// Get incoming orders
 GET {{url}}/incoming-orders
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE0MDk4MCwiZXhwIjoxNzMzMTQ0NTgwfQ.zSYUV9LWDas7NNvDrFzNyn75sL4Dwm30WEKf1K2kdAc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
 
 ###
 
-GET {{url}}/review-order/5
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE0MDk4MCwiZXhwIjoxNzMzMTQ0NTgwfQ.zSYUV9LWDas7NNvDrFzNyn75sL4Dwm30WEKf1K2kdAc
+// Get order details
+GET {{url}}/review-order/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
 
 ###
 
-// Actualizar pedidos
-PUT {{url}}/review-order/1
+// Review outgoing orders
+PUT {{url}}/review-order/2
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMjk3NTM4MCwiZXhwIjoxNzMyOTc4OTgwfQ.jf6GRXLDTu5WIrHTAqmTqdlrrQNOUGHHJWi-GCQPB04
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
 
 {
-    "status": "ready for departure",
-    "comments": ""
+    "status": "corrections needed",
+    "comments": "Falta 1 palé"
+}
+
+###
+
+// Verify incoming orders
+PUT {{url}}/verify-order/26
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
+
+{
+    "status": "approved",
+    "comments": "hola"
 }
