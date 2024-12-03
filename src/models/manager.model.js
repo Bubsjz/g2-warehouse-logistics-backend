@@ -29,7 +29,7 @@ function selectIncomingOrders(warehouseId) {
 
 function selectOutgoingOrderById(orderId){
     return pool.query(
-        `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
+        `select d.status, d.comments
         from delivery d
         where d.id_delivery = ?
         and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
@@ -38,11 +38,8 @@ function selectOutgoingOrderById(orderId){
 
 function selectIncomingOrderById(orderId){
     return pool.query(
-        `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
+        `select d.status, d.comments
         from delivery d
-        join truck t on d.truck_id_truck = t.id_truck
-        join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
-        join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
         where d.id_delivery = ?
         and d.status in ("delivered", "pending reception", "approved", "not approved")`
         , [orderId])
