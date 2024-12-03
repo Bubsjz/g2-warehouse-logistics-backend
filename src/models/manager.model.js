@@ -31,9 +31,6 @@ function selectOutgoingOrderById(orderId){
     return pool.query(
         `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
         from delivery d
-        join truck t on d.truck_id_truck = t.id_truck
-        join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
-        join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
         where d.id_delivery = ?
         and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
         , [orderId])
@@ -53,7 +50,7 @@ function selectIncomingOrderById(orderId){
 
 function selectOrderById(orderId){
     return pool.query(
-        `select d.*, t.plate, wo.name as origin_warehouse, wd.name as destination_warehouse
+        `select d.*, t.plate, wo.name as origin_warehouse_name, wd.name as destination_warehouse_name
         from delivery d
         join truck t on d.truck_id_truck = t.id_truck
         join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
@@ -65,8 +62,9 @@ function selectOrderById(orderId){
 
 function selectProductsById(id) {
     return pool.query(
-        `select product_id_product as product_id, quantity as product_quantity
-        from delivery_products
+        `select p.name as product_name, quantity as product_quantity
+        from delivery_products dp
+        join product p on dp.product_id_product = p.id_product
         where delivery_id_delivery = ?`
         , [id]
     )
