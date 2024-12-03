@@ -53,7 +53,7 @@ function selectOrderById(orderId){
         join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
         join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
         where d.id_delivery = ?
-        and d.status in ("delivered", "pending reception", "approved", "not approved")`
+        and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered", "pending reception", "approved", "not approved")`
         , [orderId])
 }
 
