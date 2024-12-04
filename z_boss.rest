@@ -11,8 +11,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9y
 
 // Mostrar un usuario con su almacen asociado
 
-GET {{url}}/users/60
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzA5MTE1OCwiZXhwIjoxNzMzMDk0NzU4fQ.35vNVDbcUCLeR8mP7kUMkIRbP2S1UOsuYwKeXT9s_IY
+GET {{url}}/users/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzMzODY1MCwiZXhwIjoxNzMzMzQyMjUwfQ.OaoVdndg38xc8dP4IPTrsCzBkAOL7nYOyshtGmkt1vY
 
 ###
 
@@ -26,7 +26,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9y
 //Mostrar los camiones que hay disponibles
 ###
 
-GET {{url}}/trucks
+GET {{url}}/available-trucks
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzMzODY1MCwiZXhwIjoxNzMzMzQyMjUwfQ.OaoVdndg38xc8dP4IPTrsCzBkAOL7nYOyshtGmkt1vY
 
 // /api/boss/WAREHOUSE (el post y el put se debe hacer con postman para adjuntar imagen)
@@ -42,8 +42,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9y
 
 // Mostrar un almacen con sus usuarios asociados
 
-GET {{url}}/warehouse/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzE1Njg1MCwiZXhwIjoxNzMzMTYwNDUwfQ.ihE2Z_9Yr2NpmGn7N1IotQgg__TLj0tUlLb_sdOfeGk
+GET {{url}}/warehouse/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzMzODY1MCwiZXhwIjoxNzMzMzQyMjUwfQ.OaoVdndg38xc8dP4IPTrsCzBkAOL7nYOyshtGmkt1vY
 
 ###
 

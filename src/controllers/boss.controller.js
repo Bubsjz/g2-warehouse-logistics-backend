@@ -63,9 +63,11 @@ const getWarehouseById = async (req, res, next) => {
         if (result.length === 0) {
             return res.status(404).json({ error: 'Warehouse not found' })
         }
-        const warehouse = ({
-            ...result[0],
-            image: result[0].image ? getImageUrl(result[0].image) : null,
+        const { id_user, user_name, surname, email, role, user_image, ...warehouseData} = result[0]
+
+        const warehouse = {
+            ...warehouseData,
+            image: warehouseData.image ? getImageUrl(warehouseData.image) : null,
             users: result
             .filter(row => row.id_user)
             .map(({ id_user, user_name, surname, email, role}) => ({
@@ -75,7 +77,7 @@ const getWarehouseById = async (req, res, next) => {
                 email,
                 role
             }))
-    })
+    }
     res.json(warehouse)
     } catch (error) {
         next (error)
