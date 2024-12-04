@@ -18,6 +18,10 @@ function selectWarehouseById(id) {
         select warehouse.*, user.id_user, user.name AS user_name, user.surname, user.email, user.role, user.image AS user_image from warehouse left join user on warehouse.id_warehouse = user.assigned_id_warehouse where warehouse.id_warehouse = ?`, [id])
 }
 
+function selectAvailabeTrucks() {
+    return pool.query(`select plate from truck where id_truck not in (select assigned_id_truck from logistics.user where assigned_id_truck is not null)`)
+}
+
 function insertUser({ name, surname, email, password, role, assigned_id_warehouse, image, assigned_id_truck }){
     const finalRole = role || "operator"
     return pool.query(
@@ -53,5 +57,5 @@ function deleteWarehouseById(id) {
 }
 
 module.exports = {
-    selectAllUsers, selectAllWarehouse, selectUserById, selectWarehouseById, insertUser, insertWarehouse, updateUserById, updateWarehouseById, deleteUserById, deleteWarehouseById
+    selectAllUsers, selectAllWarehouse, selectUserById, selectWarehouseById, selectAvailabeTrucks, insertUser, insertWarehouse, updateUserById, updateWarehouseById, deleteUserById, deleteWarehouseById
 }

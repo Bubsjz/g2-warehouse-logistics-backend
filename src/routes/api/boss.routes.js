@@ -1,12 +1,13 @@
 const router = require('express').Router();
 const upload = require('../../config/multer');
 
-const { getAllUsers, getUsersById, createUser, updateUser, deleteUser, getAllWarehouse, createWarehouse, getWarehouseById, updateWarehouse, deleteWarehouse } = require('../../controllers/boss.controller');
+const { getAllUsers, getUsersById, createUser, updateUser, deleteUser, getAllWarehouse, createWarehouse, getWarehouseById, updateWarehouse, deleteWarehouse, getAvailableTrucks } = require('../../controllers/boss.controller');
 const { validateImage, cleanImages } = require('../../utils/middlewares');
 
 
 router.get('/users', getAllUsers)
 router.get('/warehouse', getAllWarehouse)
+router.get('/available-trucks', getAvailableTrucks)
 router.get('/users/:id', getUsersById )
 router.get('/warehouse/:id', getWarehouseById)
 
