@@ -16,16 +16,25 @@ const getDeliveryById = async (req, res, next) => {
     try {
         const [result] = await selectById (id_delivery);
         const [products] = await selectProductByDelivery(id_delivery)
-        const [warehouse] = await selectWarehouse();
-        const [truck] = await selectTrucks();
-        const [productNames] = await selectProducts();
         result[0].products = products
-        result[0].warehouse = warehouse
-        result[0].truck = truck
-        result[0].productNames = productNames 
         res.json(result);
     } catch (error) {
         next(error);
+    }
+};
+const getDeliveryInfo = async (req, res, next) => {
+    try {
+        const result = [{}];
+        const [warehouse] = await selectWarehouse();
+        const [truck] = await selectTrucks();
+        const [productNames] = await selectProducts();
+        result[0].warehouse = warehouse
+        result[0].truck = truck
+        result[0].productNames = productNames 
+        
+        res.json(result);
+    } catch (error) {
+        next(error)
     }
 };
 const createDelivery = async (req, res, next) => {
@@ -36,13 +45,7 @@ const createDelivery = async (req, res, next) => {
             await postProducts(producto, newDelivery.insertId);
           }
         const [productos] = await selectProductByDelivery(newDelivery.insertId)
-        const [warehouse] = await selectWarehouse();
-        const [truck] = await selectTrucks();
-        const [productNames] = await selectProducts();
         result[0].products = productos
-        result[0].warehouse = warehouse
-        result[0].truck = truck
-        result[0].productNames = productNames 
         res.json(result);
     } catch (error) {
         next(error)
@@ -78,5 +81,5 @@ const deleteDeliveryById = async (req, res, next) => {
     }
 }
 module.exports = {
-    getAllDeliveryByUser, getDeliveryById, createDelivery, updateDeliveryById, deleteDeliveryById
+    getAllDeliveryByUser, getDeliveryById, createDelivery, updateDeliveryById, deleteDeliveryById, getDeliveryInfo
 }
