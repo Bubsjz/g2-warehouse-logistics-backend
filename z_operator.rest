@@ -1,24 +1,24 @@
 @url = http://localhost:3000/operator
 
+###
+
 GET {{url}}/order-list
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjQxNDgsImV4cCI6MTczMzQyNzc0OH0.FHvtn3icSKQc-Qy0f6J74ZL1d7OeXDGkZbU5enWFngk
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
 
 ###
 GET {{url}}/create-order
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjA3MDEsImV4cCI6MTczMzQyNDMwMX0.Qg9mSdTqVSzSCBDuaymcXh3WBu41s00TlH58i3bUvAM
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
 
 ###
-GET {{url}}/modify-order/84
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjA3MDEsImV4cCI6MTczMzQyNDMwMX0.Qg9mSdTqVSzSCBDuaymcXh3WBu41s00TlH58i3bUvAM
+GET {{url}}/modify-order/99
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
 
-
-
-GET {{url}}/modify-order/95
+GET {{url}}/modify-order/98
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwODIxNTcsImV4cCI6MTczMzA4NTc1N30.dYMPVByFa43pCtjxx_ZrENnYvkuJR-RBdYBwzwvRcAg
 ### Crear un nuevo pedido
 POST {{url}}/create-order
 Content-Type: application/json
-Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjQxNDgsImV4cCI6MTczMzQyNzc0OH0.FHvtn3icSKQc-Qy0f6J74ZL1d7OeXDGkZbU5enWFngk
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
 
 {
     "send_date": "2024-11-23T12:00:00",        
@@ -46,22 +46,22 @@ Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9
 
 
 ### Modificar pedido
-PUT {{url}}/modify-order/96
+PUT {{url}}/modify-order/99
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjQxNDgsImV4cCI6MTczMzQyNzc0OH0.FHvtn3icSKQc-Qy0f6J74ZL1d7OeXDGkZbU5enWFngk
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
 
 {
     "send_date": "2024-11-23T12:00:00",        
     "received_date": "2024-11-25T12:00:00",    
     "plate": "4586-BTP",                
     "origin_warehouse_name": "North Warehouse",             
-    "destination_warehouse_name": "North Warehouse",         
+    "destination_warehouse_name": "Central Warehouse",         
     "status": "pending",                
     "comments": "",
     "products": [
         {
-            "product_name": "Saco de cemento",
-            "product_quantity": 12
+            "product_name": "pale de tablones",
+            "product_quantity": 9
         },
                 {
             "product_name": "Saco de cemento",
