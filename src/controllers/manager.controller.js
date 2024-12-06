@@ -87,25 +87,32 @@ const verifyIncomingOrder = async (req, res, next) => {
 
         const [managerEmail] = await selectOriginManagerEmail(orderId)
         if(!managerEmail) return res.status(404).json({ message: "Manager email not found" })
+            console.log(managerEmail)
 
+
+        
         const subject = status === "not approved" ? 
         `Rejected order: ${orderId}` : 
         `Approved order: ${orderId}`
 
         const emailMessage = status === "not approved" ? 
+
+        
         `<h1>Rejected order</h1>
         <p>Order ${orderId} has been rejected.</p>
-        <p>Reason: ${comments}<p>` : 
+        <p>Reason: ${comments}</p>` : 
+
+
         `<h1>Approved order</h1>
         <p>Order ${orderId} has been approved.</p>
-        <p>Reason: ${comments}<p>`
+        <p>Reason: ${comments}</p>`
 
         if(status === "not approved") {
-            sendEmail(managerEmail, subject, emailMessage)
+            sendEmail(managerEmail[0].email, subject, emailMessage)
         }
 
         if(status === "approved") {
-            sendEmail(managerEmail, subject, emailMessage)
+            sendEmail(managerEmail[0].email, subject, emailMessage)
         }
 
         const [verifiedOrder] = await selectIncomingOrderById(orderId)
