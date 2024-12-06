@@ -33,9 +33,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9u
 // Verify incoming orders
 PUT {{url}}/verify-order/26
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzQ4ODA2OCwiZXhwIjoxNzMzNDkxNjY4fQ.Cx9jQCVJx6ZOvc7-jidMgQM7veqH0Ocwwr2vsJQ4C1o
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzQ5MTc2NCwiZXhwIjoxNzMzNDk1MzY0fQ.5S3u1-fXHaEX6S7jgm_WwFH_j8pEOIJjRBvgksvytMo
 
 {
     "status": "not approved",
-    "comments": "a"
+    "comments": ""
 }

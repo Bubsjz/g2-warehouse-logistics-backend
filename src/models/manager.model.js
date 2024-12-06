@@ -76,7 +76,17 @@ function changeOrderStatus(orderId, status, comments) {
     )
 }
 
+function selectOriginManagerEmail(orderId) {
+    return pool.query(
+        `select u.email
+        from user u
+        where assigned_id_warehouse = (select d.origin_warehouse_id from delivery d where id_delivery = ?) 
+        and role ="manager"`
+        , [orderId]
+    )
+}
+
 
 module.exports = {
-    selectOutgoingOrders, selectIncomingOrders, selectOutgoingOrderById, selectIncomingOrderById, changeOrderStatus, selectProductsById, selectOrderById
+    selectOutgoingOrders, selectIncomingOrders, selectOutgoingOrderById, selectIncomingOrderById, changeOrderStatus, selectProductsById, selectOrderById, selectOriginManagerEmail
 };

@@ -1,5 +1,5 @@
 const { sendEmail } = require("../config/emailService")
-const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById } = require("../models/manager.model")
+const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById, selectOriginManagerEmail } = require("../models/manager.model")
 const { selectById } = require("../models/operator.model")
 
 // Outgoing deliveries
@@ -85,28 +85,27 @@ const verifyIncomingOrder = async (req, res, next) => {
         }
         await changeOrderStatus(orderId, status, comments)
 
-        if(status === "not approved") {
-            const managerEmail = "manager.origin@rountravel.com"
-            const emailMessage = `
-                <h1>Rejected order</h1>
-                <p>Order #${orderId} has been rejected.</p>
-                <p>Reason: #${comments}<p>
-                `
-            sendEmail(managerEmail, `Rejected order: ${orderId}`, emailMessage)
-            console.log("Email sent to origin warehouse")
+        const [managerEmail] = await selectOriginManagerEmail(orderId)
+        if(!managerEmail) return res.status(404).json({ message: "Manager email not found" })
 
+        const subject = status === "not approved" ? 
+        `Rejected order: ${orderId}` : 
+        `Approved order: ${orderId}`
+
+        const emailMessage = status === "not approved" ? 
+        `<h1>Rejected order</h1>
+        <p>Order ${orderId} has been rejected.</p>
+        <p>Reason: ${comments}<p>` : 
+        `<h1>Approved order</h1>
+        <p>Order ${orderId} has been approved.</p>
+        <p>Reason: ${comments}<p>`
+
+        if(status === "not approved") {
+            sendEmail(managerEmail, subject, emailMessage)
         }
 
         if(status === "approved") {
-            const managerEmail = "manager.origin@rountravel.com"
-            const emailMessage = `
-                <h1>Approved order</h1>
-                <p>Order #${orderId} has been approved.</p>
-                <p>Reason: #${comments}<p>
-                `
-            sendEmail(managerEmail, `Approved order: ${orderId}`, emailMessage)
-            console.log("Email sent to origin warehouse")
-
+            sendEmail(managerEmail, subject, emailMessage)
         }
 
         const [verifiedOrder] = await selectIncomingOrderById(orderId)
