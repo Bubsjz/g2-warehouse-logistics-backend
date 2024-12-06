@@ -122,7 +122,9 @@ const createWarehouse = async (req, res, next) => {
     try {
         const warehouseData = {
             ...req.body,
-            image: req.file ? req.file.filename : null
+            image: req.file ? req.file.filename : null,
+            latitude: parseFloat(req.body.latitude),
+            longitude: parseFloat(req.body.longitude)
         }
         const [result] = await insertWarehouse(warehouseData)
         const warehouseId = result.insertId
@@ -188,7 +190,9 @@ const updateWarehouse = async (req, res, next) => {
         }
         const warehouseData = {
             ...req.body,
-            image: newImageName || req.body.image
+            image: newImageName || req.body.image,
+            latitude: parseFloat(req.body.latitude),
+            longitude: parseFloat(req.body.longitude)
         };
         await updateWarehouseById(id, warehouseData);
         const [updateWarehouse] = await selectWarehouseById(id)
