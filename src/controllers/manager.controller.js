@@ -116,24 +116,7 @@ const verifyIncomingOrder = async (req, res, next) => {
     }
 }
 
-const rejectOrder = async (req, res) => {
-    const orderId = req.params.id
-    const { reason } = req.body
-
-    const managerEmail = "manager.origin@rountravel.com"
-
-    const emailMessage = `
-    <h1>Rejected order</h1>
-    <p>Order #${orderId} has been rejected.</p>
-    <p>Reason: #${comments}<p>
-    `
-
-    await sendEmail(managerEmail, `Pedido rechazado: ${orderId}`, emailMessage)
-    res.json({ message: "Pedido rechazado y correo simulado." })
-}
-
-
 
 module.exports = {
-    getOutgoingOrders, getIncomingOrders, updateOutgoingOrder, getOrderById, verifyIncomingOrder, rejectOrder
+    getOutgoingOrders, getIncomingOrders, updateOutgoingOrder, getOrderById, verifyIncomingOrder
 }
