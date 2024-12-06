@@ -1,5 +1,5 @@
 const { sendEmail } = require("../config/emailService")
-const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById, selectOriginManagerEmail } = require("../models/manager.model")
+const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById, selectOriginManagerEmail, selectDestinationManagerEmail } = require("../models/manager.model")
 const { selectById } = require("../models/operator.model")
 
 // Outgoing deliveries
@@ -78,6 +78,7 @@ const updateOutgoingOrder = async (req, res, next) => {
 // Incoming order verification
 const verifyIncomingOrder = async (req, res, next) => {
     const orderId = req.params.id
+    const userId = req.user.id_user
     const { status, comments } = req.body
     try {
         if (!["approved", "not approved"].includes(status)) {
@@ -85,27 +86,22 @@ const verifyIncomingOrder = async (req, res, next) => {
         }
         await changeOrderStatus(orderId, status, comments)
 
+        const [recipientInfo] = await selectDestinationManagerEmail(userId)
         const [managerEmail] = await selectOriginManagerEmail(orderId)
         if(!managerEmail) return res.status(404).json({ message: "Manager email not found" })
-            console.log(managerEmail)
-
-
         
         const subject = status === "not approved" ? 
         `Rejected order: ${orderId}` : 
         `Approved order: ${orderId}`
 
         const emailMessage = status === "not approved" ? 
-
-        
-        `<h1>Rejected order</h1>
-        <p>Order ${orderId} has been rejected.</p>
-        <p>Reason: ${comments}</p>` : 
-
-
-        `<h1>Approved order</h1>
-        <p>Order ${orderId} has been approved.</p>
-        <p>Reason: ${comments}</p>`
+        `Order ${orderId} has been rejected.
+        Reason: ${comments}
+        Contact details: ${recipientInfo[0].name}, ${recipientInfo[0].surname}, ${recipientInfo[0].email}`
+        : 
+        `Order ${orderId} has been approved.
+        Reason: ${comments}
+        Contact details: ${recipientInfo[0].name}, ${recipientInfo[0].surname}, ${recipientInfo[0].email}`
 
         if(status === "not approved") {
             sendEmail(managerEmail[0].email, subject, emailMessage)

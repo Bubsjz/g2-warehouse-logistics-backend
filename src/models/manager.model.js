@@ -86,7 +86,16 @@ function selectOriginManagerEmail(orderId) {
     )
 }
 
+function selectDestinationManagerEmail(userId) {
+    return pool.query(
+        `select u.name, u.surname, u.email
+        from user u
+        where id_user = ?`
+        , [userId]
+    )
+}
+
 
 module.exports = {
-    selectOutgoingOrders, selectIncomingOrders, selectOutgoingOrderById, selectIncomingOrderById, changeOrderStatus, selectProductsById, selectOrderById, selectOriginManagerEmail
+    selectOutgoingOrders, selectIncomingOrders, selectOutgoingOrderById, selectIncomingOrderById, changeOrderStatus, selectProductsById, selectOrderById, selectOriginManagerEmail, selectDestinationManagerEmail
 };

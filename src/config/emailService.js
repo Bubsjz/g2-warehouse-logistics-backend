@@ -25,7 +25,7 @@ const sendEmail = async (to, subject, message) => {
     console.log("////////////////////////////////////////////////////////////////")
     // console.log(info.messageId)
     // console.log("Contenido del correo:");
-    console.log(JSON.stringify(info, null, 2));
+    // console.log(JSON.stringify(info, null, 2));
   } catch (error) {
     console.log(error)
   }
