@@ -10,12 +10,16 @@ function selectAllWarehouse() {
 
 function selectUserById(id) {
     return pool.query(`
-        select user.*, warehouse.name AS warehouse_name, warehouse.locality, warehouse.address, warehouse.image AS warehouse_image from user left join warehouse on user.assigned_id_warehouse = warehouse.id_warehouse where user.id_user = ?`, [id])
+        select user.*, warehouse.name AS warehouse_name, warehouse.locality, warehouse.address, warehouse.latitude, warehouse.longitude, warehouse.image AS warehouse_image from user left join warehouse on user.assigned_id_warehouse = warehouse.id_warehouse where user.id_user = ?`, [id])
 }
 
 function selectWarehouseById(id) {
     return pool.query(`
         select warehouse.*, user.id_user, user.name AS user_name, user.surname, user.email, user.role, user.image AS user_image from warehouse left join user on warehouse.id_warehouse = user.assigned_id_warehouse where warehouse.id_warehouse = ?`, [id])
+}
+
+function selectAvailabeTrucks() {
+    return pool.query(`select plate from truck where id_truck not in (select assigned_id_truck from logistics.user where assigned_id_truck is not null)`)
 }
 
 function insertUser({ name, surname, email, password, role, assigned_id_warehouse, image, assigned_id_truck }){
@@ -25,9 +29,9 @@ function insertUser({ name, surname, email, password, role, assigned_id_warehous
     )
 }
 
-function insertWarehouse({ name, locality, address, image }) {
+function insertWarehouse({ name, locality, address, latitude, longitude, image }) {
     return pool.query(
-        'insert into warehouse (name, locality, address, image) values (?, ?, ?, ?)', [name, locality, address, image]
+        'insert into warehouse (name, locality, address, latitude, longitude, image) values (?, ?, ?, ?, ?, ?)', [name, locality, address, latitude, longitude, image]
     )
 }
 
@@ -37,9 +41,9 @@ function updateUserById(id, {name, surname, email, password, role, assigned_id_w
     )
 }
 
-function updateWarehouseById(id, { name, locality, address, image}) {
+function updateWarehouseById(id, { name, locality, address, latitude, longitude, image}) {
     return pool.query(
-        'update warehouse set name = ?, locality = ?, address = ?, image = ? where id_warehouse = ?', [name, locality, address, image, id]
+        'update warehouse set name = ?, locality = ?, address = ?, latitude = ?, longitude = ?, image = ? where id_warehouse = ?', [name, locality, address, latitude, longitude, image, id]
     )
 }
 
@@ -53,5 +57,5 @@ function deleteWarehouseById(id) {
 }
 
 module.exports = {
-    selectAllUsers, selectAllWarehouse, selectUserById, selectWarehouseById, insertUser, insertWarehouse, updateUserById, updateWarehouseById, deleteUserById, deleteWarehouseById
+    selectAllUsers, selectAllWarehouse, selectUserById, selectWarehouseById, selectAvailabeTrucks, insertUser, insertWarehouse, updateUserById, updateWarehouseById, deleteUserById, deleteWarehouseById
 }

@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt")
 
-const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserById, selectAllWarehouse, selectWarehouseById, insertWarehouse, updateWarehouseById, deleteWarehouseById } = require("../models/boss.model")
+const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserById, selectAllWarehouse, selectWarehouseById, insertWarehouse, updateWarehouseById, deleteWarehouseById, selectAvailabeTrucks } = require("../models/boss.model")
 
 const fs = require('fs')
 const path = require('path')
@@ -32,6 +32,15 @@ const getAllWarehouse = async (req, res, next) => {
     }
 }
 
+const getAvailableTrucks = async (req, res, next) => {
+    try {
+        const [trucks] = await selectAvailabeTrucks()
+        res.json(trucks)
+    } catch (error) {
+        next(error)
+    }
+}
+
 const getUsersById = async (req, res, next) => {
     try {
         const { id } = req.params
@@ -54,9 +63,11 @@ const getWarehouseById = async (req, res, next) => {
         if (result.length === 0) {
             return res.status(404).json({ error: 'Warehouse not found' })
         }
-        const warehouse = ({
-            ...result[0],
-            image: result[0].image ? getImageUrl(result[0].image) : null,
+        const { id_user, user_name, surname, email, role, user_image, ...warehouseData} = result[0]
+
+        const warehouse = {
+            ...warehouseData,
+            image: warehouseData.image ? getImageUrl(warehouseData.image) : null,
             users: result
             .filter(row => row.id_user)
             .map(({ id_user, user_name, surname, email, role}) => ({
@@ -66,7 +77,7 @@ const getWarehouseById = async (req, res, next) => {
                 email,
                 role
             }))
-    })
+    }
     res.json(warehouse)
     } catch (error) {
         next (error)
@@ -111,7 +122,9 @@ const createWarehouse = async (req, res, next) => {
     try {
         const warehouseData = {
             ...req.body,
-            image: req.file ? req.file.filename : null
+            image: req.file ? req.file.filename : null,
+            latitude: parseFloat(req.body.latitude),
+            longitude: parseFloat(req.body.longitude)
         }
         const [result] = await insertWarehouse(warehouseData)
         const warehouseId = result.insertId
@@ -177,7 +190,9 @@ const updateWarehouse = async (req, res, next) => {
         }
         const warehouseData = {
             ...req.body,
-            image: newImageName || req.body.image
+            image: newImageName || req.body.image,
+            latitude: parseFloat(req.body.latitude),
+            longitude: parseFloat(req.body.longitude)
         };
         await updateWarehouseById(id, warehouseData);
         const [updateWarehouse] = await selectWarehouseById(id)
@@ -224,5 +239,5 @@ const deleteWarehouse = async (req, res, next) => {
 }
 
 module.exports = {
-    getAllUsers, getUsersById, getAllWarehouse, getWarehouseById, createUser, createWarehouse, updateUser, updateWarehouse, deleteUser, deleteWarehouse
+    getAllUsers, getUsersById, getAllWarehouse, getWarehouseById, getAvailableTrucks, createUser, createWarehouse, updateUser, updateWarehouse, deleteUser, deleteWarehouse
 }
