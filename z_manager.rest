@@ -2,7 +2,7 @@
 
 // Get outgoing order
 GET {{url}}/outgoing-orders
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzQ4ODA2OCwiZXhwIjoxNzMzNDkxNjY4fQ.Cx9jQCVJx6ZOvc7-jidMgQM7veqH0Ocwwr2vsJQ4C1o
 
 ###
 
@@ -33,9 +33,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9u
 // Verify incoming orders
 PUT {{url}}/verify-order/26
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzQ4ODA2OCwiZXhwIjoxNzMzNDkxNjY4fQ.Cx9jQCVJx6ZOvc7-jidMgQM7veqH0Ocwwr2vsJQ4C1o
 
 {
-    "status": "approved",
-    "comments": "hola"
+    "status": "not approved",
+    "comments": "a"
 }

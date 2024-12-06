@@ -97,6 +97,18 @@ const verifyIncomingOrder = async (req, res, next) => {
 
         }
 
+        if(status === "approved") {
+            const managerEmail = "manager.origin@rountravel.com"
+            const emailMessage = `
+                <h1>Approved order</h1>
+                <p>Order #${orderId} has been approved.</p>
+                <p>Reason: #${comments}<p>
+                `
+            sendEmail(managerEmail, `Approved order: ${orderId}`, emailMessage)
+            console.log("Email sent to origin warehouse")
+
+        }
+
         const [verifiedOrder] = await selectIncomingOrderById(orderId)
         res.json({ message: "Order status updated successfully", verifiedOrder })
 
