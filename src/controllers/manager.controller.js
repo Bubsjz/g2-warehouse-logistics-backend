@@ -1,3 +1,4 @@
+const { sendEmail } = require("../config/emailService")
 const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById } = require("../models/manager.model")
 const { selectById } = require("../models/operator.model")
 
@@ -78,12 +79,23 @@ const updateOutgoingOrder = async (req, res, next) => {
 const verifyIncomingOrder = async (req, res, next) => {
     const orderId = req.params.id
     const { status, comments } = req.body
-    console.log(status)
     try {
         if (!["approved", "not approved"].includes(status)) {
             return res.status(400).json({ message: "Invalid status" })
         }
         await changeOrderStatus(orderId, status, comments)
+
+        if(status === "not approved") {
+            const managerEmail = "manager.origin@rountravel.com"
+            const emailMessage = `
+                <h1>Rejected order</h1>
+                <p>Order #${orderId} has been rejected.</p>
+                <p>Reason: #${comments}<p>
+                `
+            sendEmail(managerEmail, `Rejected order: ${orderId}`, emailMessage)
+            console.log("Email sent to origin warehouse")
+
+        }
 
         const [verifiedOrder] = await selectIncomingOrderById(orderId)
         res.json({ message: "Order status updated successfully", verifiedOrder })
@@ -93,6 +105,24 @@ const verifyIncomingOrder = async (req, res, next) => {
     }
 }
 
+const rejectOrder = async (req, res) => {
+    const orderId = req.params.id
+    const { reason } = req.body
+
+    const managerEmail = "manager.origin@rountravel.com"
+
+    const emailMessage = `
+    <h1>Rejected order</h1>
+    <p>Order #${orderId} has been rejected.</p>
+    <p>Reason: #${comments}<p>
+    `
+
+    await sendEmail(managerEmail, `Pedido rechazado: ${orderId}`, emailMessage)
+    res.json({ message: "Pedido rechazado y correo simulado." })
+}
+
+
+
 module.exports = {
-    getOutgoingOrders, getIncomingOrders, updateOutgoingOrder, getOrderById, verifyIncomingOrder
+    getOutgoingOrders, getIncomingOrders, updateOutgoingOrder, getOrderById, verifyIncomingOrder, rejectOrder
 }
