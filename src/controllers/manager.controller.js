@@ -1,4 +1,7 @@
-const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById } = require("../models/manager.model")
+const { orderMessage } = require("../../templates/email")
+const { sendEmail } = require("../config/emailService")
+const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById, selectOriginManagerEmail, selectDestinationManagerEmail, selectDestinationManagerInfo, selectOriginManagerInfo } = require("../models/manager.model")
+const { selectById } = require("../models/operator.model")
 
 // Outgoing deliveries
 const getOutgoingOrders = async (req, res, next) => {
@@ -14,6 +17,7 @@ const getOutgoingOrders = async (req, res, next) => {
 
 // Incoming deliveries
 const getIncomingOrders = async (req, res, next) => {
+    //  console.log(req.user)
     try {
       const warehouseId = req.user.assigned_id_warehouse
       const [orders] = await selectIncomingOrders(warehouseId)
@@ -64,7 +68,8 @@ const updateOutgoingOrder = async (req, res, next) => {
 
         await changeOrderStatus(orderId, status, comments)
 
-        const [updatedOrder] = await selectOrderById(orderId, warehouseId, warehouseId)
+        const [updatedOrder] = await selectOutgoingOrderById(orderId)
+        // console.log(updatedOrder)
         res.json({ message: "Order status updated successfully", updatedOrder })
 
     } catch (error) {
@@ -75,22 +80,32 @@ const updateOutgoingOrder = async (req, res, next) => {
 // Incoming order verification
 const verifyIncomingOrder = async (req, res, next) => {
     const orderId = req.params.id
-    const warehouseId = req.user.assigned_id_warehouse
+    const userId = req.user.id_user
     const { status, comments } = req.body
-
     try {
         if (!["approved", "not approved"].includes(status)) {
             return res.status(400).json({ message: "Invalid status" })
         }
         await changeOrderStatus(orderId, status, comments)
 
-        const [verifiedOrder] = await selectOrderById(orderId, warehouseId, warehouseId)
-        res.json({ message: "Order status updated successfully", verifiedOrder })
+        const [senderInfo] = await selectDestinationManagerInfo(userId)
 
+        const [recipientInfo] = await selectOriginManagerInfo(orderId)
+        if(recipientInfo.length === 0) return res.status(404).json({ message: "Manaer email not found" })
+
+        const subject = status === "not approved" ? `Rejected Order #${orderId}` : `Approved Order #${orderId}`
+        const emailMessage = orderMessage(orderId, recipientInfo, senderInfo, status, comments)
+
+        sendEmail(recipientInfo.recipient_email, subject, emailMessage)
+
+        const [verifiedOrder] = await selectIncomingOrderById(orderId)
+        res.json({ message: "Order status updated successfully", verifiedOrder })
+        
     } catch (error) {
         next(error)
     }
 }
+
 
 module.exports = {
     getOutgoingOrders, getIncomingOrders, updateOutgoingOrder, getOrderById, verifyIncomingOrder

@@ -2,29 +2,29 @@
 
 // Get outgoing order
 GET {{url}}/outgoing-orders
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiSnVhbiIsInVzZXJfc3VybmFtZSI6IkfDs21leiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3MzM2MTc3OTgsImV4cCI6MTczMzYyMTM5OH0.q-yIWUKFg3aqnpHrbzsOaS-ZzuB9vj_UfY9UwrY0NGs
 
 ###
 
 // Get incoming orders
 GET {{url}}/incoming-orders
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiSnVhbiIsInVzZXJfc3VybmFtZSI6IkfDs21leiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3MzM2MTc3OTgsImV4cCI6MTczMzYyMTM5OH0.q-yIWUKFg3aqnpHrbzsOaS-ZzuB9vj_UfY9UwrY0NGs
 
 ###
 
 // Get order details
-GET {{url}}/review-order/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
+GET {{url}}/review-order/22
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiSnVhbiIsInVzZXJfc3VybmFtZSI6IkfDs21leiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3MzM2MTc3OTgsImV4cCI6MTczMzYyMTM5OH0.q-yIWUKFg3aqnpHrbzsOaS-ZzuB9vj_UfY9UwrY0NGs
 
 ###
 
 // Review outgoing orders
 PUT {{url}}/review-order/2
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiSnVhbiIsInVzZXJfc3VybmFtZSI6IkfDs21leiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3MzM2MTc3OTgsImV4cCI6MTczMzYyMTM5OH0.q-yIWUKFg3aqnpHrbzsOaS-ZzuB9vj_UfY9UwrY0NGs
 
 {
-    "status": "corrections needed",
+    "status": "ready for departure",
     "comments": "Falta 1 palé"
 }
 
@@ -33,9 +33,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9u
 // Verify incoming orders
 PUT {{url}}/verify-order/26
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsImlhdCI6MTczMzE1NjUxNywiZXhwIjoxNzMzMTYwMTE3fQ.LagZzsiWjvymccSfnRk22GC5Eg2HwCgvJINF9wpTR88
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiSnVhbiIsInVzZXJfc3VybmFtZSI6IkfDs21leiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJpYXQiOjE3MzM2MTc3OTgsImV4cCI6MTczMzYyMTM5OH0.q-yIWUKFg3aqnpHrbzsOaS-ZzuB9vj_UfY9UwrY0NGs
 
 {
-    "status": "approved",
-    "comments": "hola"
+    "status": "not approved",
+    "comments": "Falta documentación en el pedido. No podemos comprobar que cumple las cantidades."
 }

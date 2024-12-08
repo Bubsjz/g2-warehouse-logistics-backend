@@ -13,6 +13,7 @@ app.use('/', require('./routes/api.routes'));
 //Servir las imagenes de la carpeta uploads
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')))
 
+
 // Error handler
 app.use((err, req, res, next) => {
     console.error(err.stack)

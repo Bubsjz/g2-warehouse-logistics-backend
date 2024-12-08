@@ -83,7 +83,30 @@ function changeOrderStatus(orderId, status, comments) {
     )
 }
 
+async function selectOriginManagerInfo(orderId) {
+    const recipientInfo = await pool.query(
+        `select u.name as recipient_name, u.surname as recipient_surname, u.email as recipient_email, w.name as recipient_warehouse_name, w.locality as recipient_warehouse_locality, w.address as recipient_warehouse_address
+        from user u
+        join warehouse w on w.id_warehouse = u.assigned_id_warehouse
+        where assigned_id_warehouse = (select d.origin_warehouse_id from delivery d where id_delivery = ?) 
+        and role = "manager"`
+        , [orderId]
+    )
+    return recipientInfo[0]
+}
+
+async function selectDestinationManagerInfo(userId) {
+    const senderInfo = await pool.query(
+        `select u.name as sender_name, u.surname as sender_surname, u.email as sender_email, w.name as sender_warehouse_name, w.locality as sender_warehouse_locality, w.address as sender_warehouse_address
+        from user u
+        join warehouse w on w.id_warehouse = u.assigned_id_warehouse
+        where id_user = ?`
+        , [userId]
+    )
+    return senderInfo[0]
+}
+
 
 module.exports = {
-    selectOutgoingOrders, selectIncomingOrders, checkDeliveryOwnership, changeOrderStatus, selectProductsById, selectOrderById
+    selectOutgoingOrders, selectIncomingOrders, selectOutgoingOrderById, selectIncomingOrderById, changeOrderStatus, selectProductsById, selectOrderById, selectOriginManagerInfo, selectDestinationManagerInfo
 };
