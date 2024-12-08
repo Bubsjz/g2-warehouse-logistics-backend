@@ -21,8 +21,7 @@
             <li><strong>Destination:</strong> {{sender_warehouse_name}}</li>
             <li><strong>Products:</strong>
                 <ul style="list-style-type: disc; padding-left: 20px; color: #555;">
-                    {{#each products}}
-                    <li>{{product_name}} - Quantity: {{product_quantity}}</li>
+                    {{product_list}}
                 </ul>
             </li>
         </ul>

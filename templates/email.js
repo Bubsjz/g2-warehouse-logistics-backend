@@ -5,6 +5,9 @@ const path = require('path')
 const orderMessage = (orderId, recipientInfo, senderInfo, status, comments, verifiedOrder, products) => {
     const title = status === "not approved" ? "Rejected Order" : "Accepted Order"
     const reasonText = status === "not approved" ? "has been rejected" : "has been approved"
+    const productList = products.map(product => {
+        return `<li>${product.product_name} - Quantity: ${product.product_quantity}</li>`
+    }).join("")
 
     const data = {
         title: title,
@@ -33,8 +36,7 @@ const orderMessage = (orderId, recipientInfo, senderInfo, status, comments, veri
         ? "<p>To address this issue, please review the order details in our platform and make the necessary corrections before resending it.</p>"
         : "",
         send_date: verifiedOrder.send_date || "No date provided",
-        product_name: products.product_name,
-        product_quantity: products.product_quantity
+        product_list: productList
     };
 
     // console.log(recipientInfo)
