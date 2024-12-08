@@ -1,5 +1,5 @@
 const express = require('express')
-const { checkToken, authenticateManager, authenticateOperator, authenticateBoss } = require('../utils/middlewares')
+const { checkToken, authenticateManager, authenticateOperator, authenticateBoss, validateDeliveryOwnership } = require('../utils/middlewares')
 const router = express.Router()
 
 router.use("/login", require ("./api/authorization.routes"))

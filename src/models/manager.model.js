@@ -27,34 +27,41 @@ function selectIncomingOrders(warehouseId) {
     )
 }
 
-function selectOutgoingOrderById(orderId){
+// function selectOutgoingOrderById(orderId){
+//     return pool.query(
+//         `select d.status, d.comments
+//         from delivery d
+//         where d.id_delivery = ?
+//         and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
+//         , [orderId])
+// }
+
+// function selectIncomingOrderById(orderId){
+//     return pool.query(
+//         `select d.status, d.comments
+//         from delivery d
+//         where d.id_delivery = ?
+//         and d.status in ("delivered", "pending reception", "approved", "not approved")`
+//         , [orderId])
+// }
+
+function checkDeliveryOwnership(orderId, warehouseId, warehouseId) {
     return pool.query(
-        `select d.status, d.comments
+        `select d.id_delivery
         from delivery d
-        where d.id_delivery = ?
-        and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
-        , [orderId])
+        where id_delivery = ? and (origin_warehouse_id = ? or destination_warehouse_id = ?)`
+        , [orderId, warehouseId, warehouseId])
 }
 
-function selectIncomingOrderById(orderId){
-    return pool.query(
-        `select d.status, d.comments
-        from delivery d
-        where d.id_delivery = ?
-        and d.status in ("delivered", "pending reception", "approved", "not approved")`
-        , [orderId])
-}
-
-function selectOrderById(orderId){
+function selectOrderById(orderId, warehouseId, warehouseId){
     return pool.query(
         `select d.*, t.plate, wo.name as origin_warehouse_name, wd.name as destination_warehouse_name
         from delivery d
         join truck t on d.truck_id_truck = t.id_truck
         join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
         join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
-        where d.id_delivery = ?
-        and d.status in ("delivered", "pending reception", "approved", "not approved")`
-        , [orderId])
+        where d.id_delivery = ? and (d.origin_warehouse_id = ? or d.destination_warehouse_id = ?)`
+        , [orderId, warehouseId, warehouseId])
 }
 
 function selectProductsById(id) {
@@ -78,5 +85,5 @@ function changeOrderStatus(orderId, status, comments) {
 
 
 module.exports = {
-    selectOutgoingOrders, selectIncomingOrders, selectOutgoingOrderById, selectIncomingOrderById, changeOrderStatus, selectProductsById, selectOrderById
+    selectOutgoingOrders, selectIncomingOrders, checkDeliveryOwnership, changeOrderStatus, selectProductsById, selectOrderById
 };

@@ -1,9 +1,12 @@
 const jwt =  require("jsonwebtoken")
-const { selectById } = require("../models/authorization.model")
 const fs = require('fs')
 const path = require('path')
+
+const { selectById } = require("../models/authorization.model")
 const { selectAllUsers, selectAllWarehouse } = require("../models/boss.model")
 const {checkDelivery} = require("../models/operator.model")
+const { checkDeliveryOwnership } = require("../models/manager.model")
+
 
 const checkToken = async (req, res, next) => {
 
@@ -16,8 +19,6 @@ const checkToken = async (req, res, next) => {
     try {
         // Verify if token is correct
         let data = jwt.verify(authHeaders, process.env.PRIVATEKEY)
-        // console.log("middleware")
-        // console.log(data)
 
         // Check if user exists
         const [user] = await selectById(data.user_id)
@@ -28,8 +29,6 @@ const checkToken = async (req, res, next) => {
         return res.status(403).json({ message: "Incorrect authorization"})
     }
 
-
-    // console.log(req.user)
     next()
 }
 
@@ -52,15 +51,28 @@ const authenticateBoss = (req, res, next) => {
 }
 
 const validateWarehouseId = (req, res, next) => {
-    console.log("pasa por middleware")
-
-    const warehouseId = req.query.warehouseId;
+    const warehouseId = req.user.assigned_id_warehouse;
 
     if (isNaN(warehouseId)) {
         return res.status(400).json({ message: "Invalid warehouseId. It must be a number." });
     }
     next();
 };
+
+const validateDeliveryOwnership = async (req, res, next) => {
+    const orderId = req.params.id
+    const warehouseId = req.user.assigned_id_warehouse
+
+    try {
+        const [order] = await checkDeliveryOwnership(orderId, warehouseId, warehouseId)
+        if(order.length === 0) return res.status(403).json({ message: "Access denied: Order doesn't belong to your warehouse" })
+        next()
+
+    } catch (error) {
+        next(error)
+    }
+
+}
 
 function validateImage(req, res, next) {
     if (!req.file){
@@ -117,5 +129,5 @@ const checkDeliveryByUser = async (req, res, next) => {
     }
 }
 module.exports = {
-    checkToken, authenticateManager, validateWarehouseId, authenticateOperator, authenticateBoss, validateImage, cleanImages, checkDeliveryByUser
+    checkToken, authenticateManager, validateWarehouseId,  validateDeliveryOwnership,authenticateOperator, authenticateBoss, validateImage, cleanImages, checkDeliveryByUser
 }
