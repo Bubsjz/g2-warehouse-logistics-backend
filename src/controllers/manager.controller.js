@@ -68,7 +68,7 @@ const updateOutgoingOrder = async (req, res, next) => {
 
         await changeOrderStatus(orderId, status, comments)
 
-        const [updatedOrder] = await selectOutgoingOrderById(orderId)
+        const [updatedOrder] = await selectOrderById(orderId, warehouseId, warehouseId)
         // console.log(updatedOrder)
         res.json({ message: "Order status updated successfully", updatedOrder })
 
@@ -81,24 +81,24 @@ const updateOutgoingOrder = async (req, res, next) => {
 const verifyIncomingOrder = async (req, res, next) => {
     const orderId = req.params.id
     const userId = req.user.id_user
+    const warehouseId = req.user.assigned_id_warehouse
     const { status, comments } = req.body
     try {
         if (!["approved", "not approved"].includes(status)) {
             return res.status(400).json({ message: "Invalid status" })
         }
         await changeOrderStatus(orderId, status, comments)
+        const [verifiedOrder] = await selectOrderById(orderId, warehouseId, warehouseId)
+        const [products] = await selectProductsById(orderId)
 
         const [senderInfo] = await selectDestinationManagerInfo(userId)
-
         const [recipientInfo] = await selectOriginManagerInfo(orderId)
-        if(recipientInfo.length === 0) return res.status(404).json({ message: "Manaer email not found" })
+        if(recipientInfo.length === 0) return res.status(404).json({ message: "Manager email not found" })
 
         const subject = status === "not approved" ? `Rejected Order #${orderId}` : `Approved Order #${orderId}`
-        const emailMessage = orderMessage(orderId, recipientInfo, senderInfo, status, comments)
-
+        const emailMessage = orderMessage(orderId, recipientInfo, senderInfo, status, comments, verifiedOrder[0], products[0])
         sendEmail(recipientInfo.recipient_email, subject, emailMessage)
 
-        const [verifiedOrder] = await selectIncomingOrderById(orderId)
         res.json({ message: "Order status updated successfully", verifiedOrder })
         
     } catch (error) {

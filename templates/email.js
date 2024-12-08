@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 
-const orderMessage = (orderId, recipientInfo, senderInfo, status, comments) => {
+const orderMessage = (orderId, recipientInfo, senderInfo, status, comments, verifiedOrder, products) => {
     const title = status === "not approved" ? "Rejected Order" : "Accepted Order"
     const reasonText = status === "not approved" ? "has been rejected" : "has been approved"
 
@@ -31,7 +31,10 @@ const orderMessage = (orderId, recipientInfo, senderInfo, status, comments) => {
         : "<p>This message is to inform you about the state of the order you recently sent to our warehouse.</p>",
         issueAddress: status === "not approced"
         ? "<p>To address this issue, please review the order details in our platform and make the necessary corrections before resending it.</p>"
-        : ""
+        : "",
+        send_date: verifiedOrder.send_date || "No date provided",
+        product_name: products.product_name,
+        product_quantity: products.product_quantity
     };
 
     // console.log(recipientInfo)

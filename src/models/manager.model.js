@@ -108,5 +108,5 @@ async function selectDestinationManagerInfo(userId) {
 
 
 module.exports = {
-    selectOutgoingOrders, selectIncomingOrders, selectOutgoingOrderById, selectIncomingOrderById, changeOrderStatus, selectProductsById, selectOrderById, selectOriginManagerInfo, selectDestinationManagerInfo
+    selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectProductsById, selectOrderById, selectOriginManagerInfo, selectDestinationManagerInfo, checkDeliveryOwnership
 };
