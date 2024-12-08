@@ -15,12 +15,12 @@
 
         <h3 style="padding-top: 10px">Order details:</h3>
         <ul style="list-style-type: disc; padding-left: 20px; color: #555;">
-            <li><strong>Order ID:</strong> {{orderId}}</li>
-            <li><strong>Creation Date:</strong> {{send_date}}</li>
-            <li><strong>Origin:</strong> {{recipient_warehouse_name}}</li>
-            <li><strong>Destination:</strong> {{sender_warehouse_name}}</li>
-            <li><strong>Products:</strong>
-                <ul style="list-style-type: disc; padding-left: 20px; color: #555;">
+            <li style="padding-bottom: 3px"><strong>Order ID:</strong> {{orderId}}</li>
+            <li style="padding-bottom: 3px"><strong>Creation Date:</strong> {{send_date}}</li>
+            <li style="padding-bottom: 3px"><strong>Origin:</strong> {{recipient_warehouse_name}}</li>
+            <li style="padding-bottom: 3px"><strong>Destination:</strong> {{sender_warehouse_name}}</li>
+            <li style="padding-bottom: 3px"><strong>Products:</strong>
+                <ul style="list-style-type: disc; padding-top: 3px; padding-left: 20px; color: #555;">
                     {{product_list}}
                 </ul>
             </li>
@@ -40,6 +40,10 @@
         <p style="padding-top: 20px">Regards,</p>
         <p style="margin: 0">{{sender_warehouse_name}}</p>
         <p style="margin: 0">{{sender_warehouse_address}}</p>
+    </div>
+
+    <div style="border-top: 1px solid #ccc; margin-top: 30px; padding-top: 10px; color: #666; text-align: center;">
+        © Rountravel Logistics 2024. This message was auto-generated. Please do not reply to this email.
     </div>
 
 </div>  

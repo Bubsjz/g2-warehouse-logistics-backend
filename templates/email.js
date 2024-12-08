@@ -26,7 +26,7 @@ const orderMessage = (orderId, recipientInfo, senderInfo, status, comments, veri
         rejectionSection: status === "not approved" 
         ? `<div style="padding-top: 2px">
         <h3>Rejection Reason:</h3>
-        <p>${comments}</p>
+        <p style="color: #d9534f; font-style: italic">${comments}</p>
         <div>` 
         : "",
         introMessage: status === "not approved"
