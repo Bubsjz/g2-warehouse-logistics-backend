@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt")
 
-const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserById, selectAllWarehouse, selectWarehouseById, insertWarehouse, updateWarehouseById, deleteWarehouseById, selectAvailabeTrucks } = require("../models/boss.model")
+const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserById, selectAllWarehouse, selectWarehouseById, insertWarehouse, updateWarehouseById, deleteWarehouseById, selectAvailabeTrucks, selectTruckById } = require("../models/boss.model")
 
 const fs = require('fs')
 const path = require('path')
@@ -27,6 +27,16 @@ const getAllWarehouse = async (req, res, next) => {
             image: getImageUrl(warehouse.image)
         }))
         res.json(warehousesImageUrls)
+    } catch (error) {
+        next(error)
+    }
+}
+
+const getTruckById = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const [plate] = await selectTruckById(id)
+        res.json(plate[0])
     } catch (error) {
         next(error)
     }
@@ -239,5 +249,5 @@ const deleteWarehouse = async (req, res, next) => {
 }
 
 module.exports = {
-    getAllUsers, getUsersById, getAllWarehouse, getWarehouseById, getAvailableTrucks, createUser, createWarehouse, updateUser, updateWarehouse, deleteUser, deleteWarehouse
+    getAllUsers, getUsersById, getAllWarehouse, getWarehouseById, getTruckById, getAvailableTrucks, createUser, createWarehouse, updateUser, updateWarehouse, deleteUser, deleteWarehouse
 }
