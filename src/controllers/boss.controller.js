@@ -4,7 +4,7 @@ const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserBy
 
 const fs = require('fs')
 const path = require('path')
-const { handleImageFile, getImageUrl } = require("../utils/helpers")
+const { handleImageFile, getImageUrl, getCoordinatesFromAddress } = require("../utils/helpers")
 
 const getAllUsers = async (req, res, next) => {
     try {
@@ -130,11 +130,14 @@ const createUser = async (req, res, next) => {
 
 const createWarehouse = async (req, res, next) => {
     try {
+
+        const { latitude, longitude } = await getCoordinatesFromAddress(req.body.address)
+
         const warehouseData = {
             ...req.body,
             image: req.file ? req.file.filename : null,
-            latitude: parseFloat(req.body.latitude),
-            longitude: parseFloat(req.body.longitude)
+            latitude,
+            longitude
         }
         const [result] = await insertWarehouse(warehouseData)
         const warehouseId = result.insertId

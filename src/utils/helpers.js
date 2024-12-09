@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const path = require('path')
+const geocoder = require('../config/geocoder')
 
 const createToken = (user) => {
     const data = {
@@ -56,6 +57,21 @@ const handleImageFile = {
     }
 }
 
+const getCoordinatesFromAddress = async (address) => {
+    try {
+        const geocodeResult = await geocoder.geocode(address)
+        if(!geocodeResult.length) {
+            throw new Error('No coordinates were found for the address provided')
+        }
+        const { latitude, longitude } = geocodeResult[0]
+        return { latitude, longitude}
+    } catch (error) {
+        console.error('Error obtaining coordinates:', error.message)
+        throw new Error('Geolocation failure.')
+    }
+}
+
+
 module.exports = {
-    createToken, getImageUrl, handleImageFile
+    createToken, getImageUrl, handleImageFile, getCoordinatesFromAddress
 }
