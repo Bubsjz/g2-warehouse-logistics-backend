@@ -18,7 +18,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9u
 
 // Borrar un usuario
 
-DELETE {{url}}/users/5
+DELETE {{url}}/users/63
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzc3NTQxOCwiZXhwIjoxNzMzNzc5MDE4fQ.E3DTsbHa1Gd0Gi2JaQr3HhoUoU9K0SGIol3A7hXtkOs
 
 // / api/boss/TRUCKS
@@ -57,5 +57,5 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9u
 
 // Borrar un almacen
 
-DELETE {{url}}/warehouse/25
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzQ4MTQxOSwiZXhwIjoxNzMzNDg1MDE5fQ.RbkQs_wR2W2m7pzVNn9nVlEFCaS0me2Ztc7TYM_uh6k
+DELETE {{url}}/warehouse/26
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzc3NTQxOCwiZXhwIjoxNzMzNzc5MDE4fQ.E3DTsbHa1Gd0Gi2JaQr3HhoUoU9K0SGIol3A7hXtkOs

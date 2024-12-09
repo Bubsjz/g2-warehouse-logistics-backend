@@ -201,12 +201,17 @@ const updateWarehouse = async (req, res, next) => {
             const newImagePath = path.join(__dirname, '../../uploads', newImageName)
             handleImageFile.renameImage(req.file.path, newImagePath)
         }
-        const warehouseData = {
-            ...req.body,
-            image: newImageName || req.body.image,
-            latitude: parseFloat(req.body.latitude),
-            longitude: parseFloat(req.body.longitude)
-        };
+        const warehouseData = { ...req.body }
+        if(req.body.address) {
+            const { latitude, longitude } = await getCoordinatesFromAddress(req.body.address)
+            Object.assign(warehouseData, { latitude, longitude })
+        }
+        if (newImageName) warehouseData.image = newImageName
+
+        if (!Object.keys(warehouseData).length) {
+            return res.status(400).json({ error: 'No data sent for update.'  })
+        }
+
         await updateWarehouseById(id, warehouseData);
         const [updateWarehouse] = await selectWarehouseById(id)
         updateWarehouse[0].image = updateWarehouse[0].image ? getImageUrl(updateWarehouse[0].image) : null
