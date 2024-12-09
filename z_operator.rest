@@ -1,67 +1,75 @@
 @url = http://localhost:3000/operator
 
+###
+
 GET {{url}}/order-list
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzgxOTcsImV4cCI6MTczMzA4MTc5N30.fSheilkMhkhgVQJMJDoWZTgFdfnt3YwyQMri3ONKpGQ
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
 
 ###
-GET {{url}}/modify-order/22
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzgxOTcsImV4cCI6MTczMzA4MTc5N30.fSheilkMhkhgVQJMJDoWZTgFdfnt3YwyQMri3ONKpGQ
+GET {{url}}/create-order
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
 
+###
+GET {{url}}/modify-order/99
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
+
+GET {{url}}/modify-order/98
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwODIxNTcsImV4cCI6MTczMzA4NTc1N30.dYMPVByFa43pCtjxx_ZrENnYvkuJR-RBdYBwzwvRcAg
 ### Crear un nuevo pedido
 POST {{url}}/create-order
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzgxOTcsImV4cCI6MTczMzA4MTc5N30.fSheilkMhkhgVQJMJDoWZTgFdfnt3YwyQMri3ONKpGQ
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
 
 {
     "send_date": "2024-11-23T12:00:00",        
     "received_date": "2024-11-25T12:00:00",    
-    "truck_id_truck": 42,                
-    "origin_warehouse_id": 1,             
-    "destination_warehouse_id": 3,         
+    "plate": "4586-BTP",                
+    "origin_warehouse_name": "North Warehouse",             
+    "destination_warehouse_name": "North Warehouse",         
     "status": "pending",                
     "comments": "",
     "products": [
         {
-            "product_id": 4,
-            "quantity": 12
+            "product_name": "Saco de cemento",
+            "product_quantity": 12
         },
                 {
-            "product_id": 5,
-            "quantity": 12
+            "product_name": "Saco de cemento",
+            "product_quantity": 12
         },
                 {
-            "product_id": 1,
-            "quantity": 12
+            "product_name": "Saco de cemento",
+            "product_quantity": 12
         }
     ]
 }
 
 
 ### Modificar pedido
-PUT {{url}}/modify-order/26
+PUT {{url}}/modify-order/99
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzMwNzgxOTcsImV4cCI6MTczMzA4MTc5N30.fSheilkMhkhgVQJMJDoWZTgFdfnt3YwyQMri3ONKpGQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0MiwidXNlcl9yb2xlIjoib3BlcmF0b3IiLCJpYXQiOjE3MzM0MjczNzMsImV4cCI6MTczMzQzMDk3M30.1UekJfjr6sKlWjnL7-_kmSZ9Zp9ZNmhHA3dQ9cDA31Y
 
 {
     "send_date": "2024-11-23T12:00:00",        
     "received_date": "2024-11-25T12:00:00",    
-    "truck_id_truck": 42,                
-    "origin_warehouse_id": 1,             
-    "destination_warehouse_id": 3,         
+    "plate": "4586-BTP",                
+    "origin_warehouse_name": "North Warehouse",             
+    "destination_warehouse_name": "Central Warehouse",         
     "status": "pending",                
     "comments": "",
     "products": [
         {
-            "product_id": 4,
-            "quantity": 12
+            "product_name": "pale de tablones",
+            "product_quantity": 9
         },
                 {
-            "product_id": 5,
-            "quantity": 12
+            "product_name": "Saco de cemento",
+            "product_quantity": 12
         },
                 {
-            "product_id": 1,
-            "quantity": 12
+            "product_name": "Saco de cemento",
+            "product_quantity": 12
         }
     ]
 }
