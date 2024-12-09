@@ -8,8 +8,9 @@ const createToken = (user) => {
         user_name: user.name,
         user_surname: user.surname,
         user_role: user.role,
+        user_plate: user.plate
     }
-
+    console.log(data)
     const token =  jwt.sign(data, process.env.PRIVATEKEY, { expiresIn: "1h" })
     return token
 }
