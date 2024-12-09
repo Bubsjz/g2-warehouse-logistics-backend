@@ -5,7 +5,7 @@
 // Mostrar todos los usuarios
 
 GET {{url}}/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzQ4MTQxOSwiZXhwIjoxNzMzNDg1MDE5fQ.RbkQs_wR2W2m7pzVNn9nVlEFCaS0me2Ztc7TYM_uh6k
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzc2NDI2OSwiZXhwIjoxNzMzNzY3ODY5fQ.lbXESNogsIsQGxbl-ecBKQKHCJsEZN-5BMc5Al_anZU
 
 ###
 
@@ -27,9 +27,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9u
 ###
 
 GET {{url}}/available-trucks
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzQ4MTQxOSwiZXhwIjoxNzMzNDg1MDE5fQ.RbkQs_wR2W2m7pzVNn9nVlEFCaS0me2Ztc7TYM_uh6k
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzc2NDI2OSwiZXhwIjoxNzMzNzY3ODY5fQ.lbXESNogsIsQGxbl-ecBKQKHCJsEZN-5BMc5Al_anZU
+
+// Mostrar la matricula del camion
+
+###
+
+GET {{url}}/truck/11
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzc2NDI2OSwiZXhwIjoxNzMzNzY3ODY5fQ.lbXESNogsIsQGxbl-ecBKQKHCJsEZN-5BMc5Al_anZU
 
 // /api/boss/WAREHOUSE (el post y el put se debe hacer con postman para adjuntar imagen)
+
 
 ###
 
