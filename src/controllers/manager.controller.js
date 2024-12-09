@@ -1,9 +1,10 @@
-const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById } = require("../models/manager.model")
+const { orderMessage } = require("../../templates/email")
+const { sendEmail } = require("../config/emailService")
+const { selectOutgoingOrders, selectIncomingOrders, changeOrderStatus, selectOrderById, selectProductsById, selectOutgoingOrderById, selectIncomingOrderById, selectOriginManagerEmail, selectDestinationManagerEmail, selectDestinationManagerInfo, selectOriginManagerInfo } = require("../models/manager.model")
 const { selectById } = require("../models/operator.model")
 
 // Outgoing deliveries
 const getOutgoingOrders = async (req, res, next) => {
-    // console.log(req.user)
     try {
         const warehouseId = req.user.assigned_id_warehouse
         const [orders] = await selectOutgoingOrders(warehouseId)
@@ -16,7 +17,7 @@ const getOutgoingOrders = async (req, res, next) => {
 
 // Incoming deliveries
 const getIncomingOrders = async (req, res, next) => {
-     console.log(req.user)
+    //  console.log(req.user)
     try {
       const warehouseId = req.user.assigned_id_warehouse
       const [orders] = await selectIncomingOrders(warehouseId)
@@ -37,10 +38,11 @@ const getIncomingOrders = async (req, res, next) => {
 // Delivery details
 const getOrderById = async (req, res, next) => {
     const orderId = req.params.id
+    const warehouseId = req.user.assigned_id_warehouse
+
     try {
-        const [order] = await selectOrderById(orderId)
+        const [order] = await selectOrderById(orderId, warehouseId, warehouseId)
         const [products] = await selectProductsById(orderId)
-        // console.log(products)
         order[0].products = products
         res.json(order)
 
@@ -52,6 +54,7 @@ const getOrderById = async (req, res, next) => {
 // Status update outgoing deliveries
 const updateOutgoingOrder = async (req, res, next) => {
     const orderId = req.params.id
+    const warehouseId = req.user.assigned_id_warehouse
     const { status, comments = null } = req.body
 
     try {
@@ -65,8 +68,8 @@ const updateOutgoingOrder = async (req, res, next) => {
 
         await changeOrderStatus(orderId, status, comments)
 
-        const [updatedOrder] = await selectOutgoingOrderById(orderId)
-        console.log(updatedOrder)
+        const [updatedOrder] = await selectOrderById(orderId, warehouseId, warehouseId)
+        // console.log(updatedOrder)
         res.json({ message: "Order status updated successfully", updatedOrder })
 
     } catch (error) {
@@ -77,21 +80,33 @@ const updateOutgoingOrder = async (req, res, next) => {
 // Incoming order verification
 const verifyIncomingOrder = async (req, res, next) => {
     const orderId = req.params.id
+    const userId = req.user.id_user
+    const warehouseId = req.user.assigned_id_warehouse
     const { status, comments } = req.body
-    console.log(status)
     try {
         if (!["approved", "not approved"].includes(status)) {
             return res.status(400).json({ message: "Invalid status" })
         }
         await changeOrderStatus(orderId, status, comments)
+        const [verifiedOrder] = await selectOrderById(orderId, warehouseId, warehouseId)
+        const [products] = await selectProductsById(orderId)
 
-        const [verifiedOrder] = await selectIncomingOrderById(orderId)
+        const [senderInfo] = await selectDestinationManagerInfo(userId)
+        const [recipientInfo] = await selectOriginManagerInfo(orderId)
+        if(recipientInfo.length === 0) return res.status(404).json({ message: "Manager email not found" })
+
+        const subject = status === "not approved" ? `Important: Rejected Order #${orderId}` : `Approved Order #${orderId}`
+        const emailMessage = orderMessage(orderId, recipientInfo, senderInfo, status, comments, verifiedOrder[0], products)
+
+        sendEmail(recipientInfo.recipient_email, subject, emailMessage)
+
         res.json({ message: "Order status updated successfully", verifiedOrder })
-
+        
     } catch (error) {
         next(error)
     }
 }
+
 
 module.exports = {
     getOutgoingOrders, getIncomingOrders, updateOutgoingOrder, getOrderById, verifyIncomingOrder
