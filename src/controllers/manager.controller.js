@@ -69,7 +69,6 @@ const updateOutgoingOrder = async (req, res, next) => {
         await changeOrderStatus(orderId, status, comments)
 
         const [updatedOrder] = await selectOrderById(orderId, warehouseId, warehouseId)
-        // console.log(updatedOrder)
         res.json({ message: "Order status updated successfully", updatedOrder })
 
     } catch (error) {

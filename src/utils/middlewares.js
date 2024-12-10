@@ -5,7 +5,7 @@ const path = require('path')
 const { selectById } = require("../models/authorization.model")
 const { selectAllUsers, selectAllWarehouse } = require("../models/boss.model")
 const {checkDelivery} = require("../models/operator.model")
-const { checkDeliveryOwnership } = require("../models/manager.model")
+const { checkDeliveryOwnership, selectOrderById } = require("../models/manager.model")
 
 
 const checkToken = async (req, res, next) => {
@@ -74,6 +74,20 @@ const validateDeliveryOwnership = async (req, res, next) => {
 
 }
 
+const validateNewStatus = async (req, res, next) => {
+    const status = req.body.status
+    const orderId = req.params.id
+    const warehouseId = req.user.assigned_id_warehouse
+
+    const [currentOrder] = await selectOrderById(orderId, warehouseId, warehouseId)
+    if(currentOrder[0].status === status) return res.status(400).json({ message: "Order is already in the requested status." })
+
+    next()
+}
+
+
+
+
 function validateImage(req, res, next) {
     if (!req.file){
         return res.status(400).json({ error: 'No image was provided'})
@@ -129,5 +143,5 @@ const checkDeliveryByUser = async (req, res, next) => {
     }
 }
 module.exports = {
-    checkToken, authenticateManager, validateWarehouseId,  validateDeliveryOwnership,authenticateOperator, authenticateBoss, validateImage, cleanImages, checkDeliveryByUser
+    checkToken, authenticateManager, validateWarehouseId,  validateDeliveryOwnership,authenticateOperator, authenticateBoss, validateImage, cleanImages, checkDeliveryByUser, validateNewStatus
 }
