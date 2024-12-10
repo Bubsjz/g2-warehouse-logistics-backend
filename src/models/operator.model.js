@@ -37,7 +37,7 @@ function removeDeliveryById(id_delivery){
     return pool.query('DELETE FROM delivery WHERE id_delivery = ?', [id_delivery])
 }
 function checkDelivery(id_delivery, id_user){
-    return pool.query('SELECT * FROM delivery WHERE truck_id_truck = ? AND id_delivery = ?;', [id_user, id_delivery])
+    return pool.query('SELECT * FROM delivery WHERE (SELECT assigned_id_truck FROM user WHERE id_user = ?) AND id_delivery = ?;', [id_user, id_delivery])
 }
 function selectTrucks() {
     return pool.query('SELECT id_truck, plate FROM truck')
