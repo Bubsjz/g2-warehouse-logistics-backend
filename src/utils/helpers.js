@@ -11,7 +11,7 @@ const createToken = (user) => {
         user_plate: user.plate,
         user_image: user.image
     }
-    console.log(data)
+
     const token =  jwt.sign(data, process.env.PRIVATEKEY, { expiresIn: "1h" })
     return token
 }
