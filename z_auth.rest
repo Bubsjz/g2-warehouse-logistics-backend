@@ -4,8 +4,8 @@ POST {{url}}/login
 Content-Type: application/json
 
 {
-    "email": "jesica.ruiz@gmail.com",
-    "password": "jesicaruiz"
+    "email": "ana.ramirez@gmail.com",
+    "password": "anaramirez"
 }
 
 # Operator
@@ -13,9 +13,9 @@ Content-Type: application/json
 #     "password": "16"
 
 # Manager
-#     "email": "14@hotmail.com",
-#     "password": "14"
+#     "email": "ana.ramirez@gmail.com",
+#     "password": "anaramirez"
 
 # Boss
-#     "email": "16@hotmail.com",
-#     "password": "16"
+#     "email": "carlos.lopez@gmail.com",
+#     "password": "carloslopez"
