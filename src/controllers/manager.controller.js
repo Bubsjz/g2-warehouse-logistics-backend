@@ -43,6 +43,12 @@ const getOrderById = async (req, res, next) => {
     try {
         const [order] = await selectOrderById(orderId, warehouseId, warehouseId)
         const [products] = await selectProductsById(orderId)
+
+        if(warehouseId === order[0].destination_warehouse_id) {
+            if(order[0].status === "delivered") order[0].status = "pending reception"
+        }
+        console.log(order)
+
         order[0].products = products
         res.json(order)
 
