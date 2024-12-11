@@ -26,6 +26,10 @@ function selectAvailabeTrucks() {
     return pool.query(`select id_truck, plate from truck where id_truck not in (select assigned_id_truck from logistics.user where assigned_id_truck is not null)`)
 }
 
+function selectAvailableWarehouse() {
+    return pool.query(`select w.id_warehouse, w.name, w.locality, w.address from warehouse w left join user u on w.id_warehouse = u.assigned_id_warehouse and u.role = 'manager' where u.id_user is null`)
+}
+
 function insertUser({ name, surname, email, password, role, assigned_id_warehouse, image, assigned_id_truck }){
     const finalRole = role || "operator"
     return pool.query(
@@ -61,5 +65,5 @@ function deleteWarehouseById(id) {
 }
 
 module.exports = {
-    selectAllUsers, selectAllWarehouse, selectUserById, selectWarehouseById, selectTruckById, selectAvailabeTrucks, insertUser, insertWarehouse, updateUserById, updateWarehouseById, deleteUserById, deleteWarehouseById
+    selectAllUsers, selectAllWarehouse, selectUserById, selectWarehouseById, selectTruckById, selectAvailabeTrucks, selectAvailableWarehouse, insertUser, insertWarehouse, updateUserById, updateWarehouseById, deleteUserById, deleteWarehouseById
 }

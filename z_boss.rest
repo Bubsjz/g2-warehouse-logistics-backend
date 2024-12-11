@@ -38,6 +38,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9u
 
 // /api/boss/WAREHOUSE (el post y el put se debe hacer con postman para adjuntar imagen)
 
+###
+
+// Mostrar los almacenes disponibles para el manager
+GET {{url}}/available-warehouse
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNTYsInVzZXJfbmFtZSI6Ikplc2ljYSIsInVzZXJfc3VybmFtZSI6IlJ1aXoiLCJ1c2VyX3JvbGUiOiJib3NzIiwidXNlcl9wbGF0ZSI6bnVsbCwidXNlcl9pbWFnZSI6InVzZXItMTU2LmpwZyIsImlhdCI6MTczMzk0MTk4NCwiZXhwIjoxNzMzOTQ1NTg0fQ.7gSBQqqkGzl6aK_uHE_zvkD7Bm-f_ctnnwBXV-Laz7A
+
 
 ###
 
