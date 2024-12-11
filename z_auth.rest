@@ -5,8 +5,13 @@ Content-Type: application/json
 
 {
 
+<<<<<<< HEAD
     "email": "16@hotmail.com",
     "password": "16"
+=======
+    "email": "14@hotmail.com",
+    "password": "14"
+>>>>>>> feature_berard_v6
 }
 
 # Operator
