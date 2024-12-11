@@ -3,7 +3,7 @@ const pool = require("../config/db");
 function selectAll(userId){
     console.log(userId);
     return pool.query(
-        'SELECT d.id_delivery AS id_delivery, d.send_date AS send_date, wS.name AS origin_warehouse_name, wS.locality AS origin_warehouse_locality, wD.name AS destination_warehouse_name, wD.locality AS destination_warehouse_locality, d.status AS status, t.plate AS plate, d.comments AS comments FROM delivery d INNER JOIN warehouse wS ON d.origin_warehouse_id = wS.id_warehouse INNER JOIN warehouse wD ON d.destination_warehouse_id = wD.id_warehouse INNER JOIN truck t ON t.id_truck = d.truck_id_truck WHERE truck_id_truck = ?;' ,
+        'SELECT  d.id_delivery AS id_delivery,  d.send_date AS send_date,  wS.name AS origin_warehouse_name,  wS.locality AS origin_warehouse_locality,  wD.name AS destination_warehouse_name,  wD.locality AS destination_warehouse_locality,  d.status AS status,  t.plate AS plate,  d.comments AS comments  FROM user u INNER JOIN  truck t ON u.assigned_id_truck = t.id_truck INNER JOIN delivery d ON t.id_truck = d.truck_id_truck INNER JOIN  warehouse wS ON d.origin_warehouse_id = wS.id_warehouse INNER JOIN  warehouse wD ON d.destination_warehouse_id = wD.id_warehouse WHERE  u.id_user = ?' ,
         [userId]
     );
 }
@@ -37,7 +37,7 @@ function removeDeliveryById(id_delivery){
     return pool.query('DELETE FROM delivery WHERE id_delivery = ?', [id_delivery])
 }
 function checkDelivery(id_delivery, id_user){
-    return pool.query('SELECT * FROM delivery WHERE truck_id_truck = ? AND id_delivery = ?;', [id_user, id_delivery])
+    return pool.query('SELECT * FROM delivery WHERE (SELECT assigned_id_truck FROM user WHERE id_user = ?) AND id_delivery = ?;', [id_user, id_delivery])
 }
 function selectTrucks() {
     return pool.query('SELECT id_truck, plate FROM truck')
