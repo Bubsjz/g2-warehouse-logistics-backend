@@ -15,8 +15,8 @@ router.get('/warehouse/:id', getWarehouseById)
 router.post('/register', upload.single('image'), validateImage, createUser, cleanImages)
 router.post('/warehouse', upload.single('image'), validateImage, createWarehouse), cleanImages
 
-router.put('/users/:id', upload.single('image'), validateImage, updateUser, cleanImages)
-router.put('/warehouse/:id', upload.single('image'), validateImage, updateWarehouse, cleanImages)
+router.put('/users/:id', upload.single('image'), updateUser, cleanImages)
+router.put('/warehouse/:id', upload.single('image'), updateWarehouse, cleanImages)
 
 router.delete('/users/:id', deleteUser)
 router.delete('/warehouse/:id', deleteWarehouse)

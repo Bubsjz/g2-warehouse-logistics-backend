@@ -4,7 +4,7 @@ const { selectAllUsers, selectUserById, insertUser, updateUserById, deleteUserBy
 
 const fs = require('fs')
 const path = require('path')
-const { handleImageFile, getImageUrl } = require("../utils/helpers")
+const { handleImageFile, getImageUrl, getCoordinatesFromAddress } = require("../utils/helpers")
 
 const getAllUsers = async (req, res, next) => {
     try {
@@ -130,11 +130,14 @@ const createUser = async (req, res, next) => {
 
 const createWarehouse = async (req, res, next) => {
     try {
+
+        const { latitude, longitude } = await getCoordinatesFromAddress(req.body.address)
+
         const warehouseData = {
             ...req.body,
             image: req.file ? req.file.filename : null,
-            latitude: parseFloat(req.body.latitude),
-            longitude: parseFloat(req.body.longitude)
+            latitude,
+            longitude
         }
         const [result] = await insertWarehouse(warehouseData)
         const warehouseId = result.insertId
@@ -161,23 +164,27 @@ const createWarehouse = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
     const { id } = req.params
     try {
-        let updatedPassword = null
-        if (req.body.password){
-        updatedPassword = await bcrypt.hash(req.body.password, 8)
+        const [existingUser] = await selectUserById(id)
+        if(!existingUser.length){
+            return res.status(404).json({error: 'User not found'})
         }
 
-        let newImageName = null;
+        const userData = { ...existingUser[0], ...req.body}
+
+        if (req.body.password){
+            userData.password = await bcrypt.hash(req.body.password, 8)
+        } 
+
         if(req.file) {
-            newImageName = handleImageFile.getNewImageName("user", id, req.file)
-            const newImagePath = path.join(__dirname, '../../uploads', newImageName)
-            handleImageFile.renameImage(req.file.path, newImagePath)
+            const newImageName = handleImageFile.getNewImageName("user", id, req.file)
+            handleImageFile.renameImage(req.file.path, path.join(__dirname, '../../uploads', newImageName))
+            userData.image = newImageName
+        } else {
+            userData.image = existingUser[0].image
         }
-        const userData = {
-            ...req.body,
-            password: updatedPassword || req.body.password,
-            image: newImageName || req.body.image
-        }
+        
         await updateUserById(id, userData)
+
         const [updateUser] = await selectUserById(id)
         updateUser[0].image = updateUser[0].image ? getImageUrl(updateUser[0].image) : null
         res.json(updateUser[0])
@@ -192,21 +199,28 @@ const updateUser = async (req, res, next) => {
 const updateWarehouse = async (req, res, next) => {
     const { id } = req.params
     try {
-        let newImageName = null
-        if (req.file) {
-            newImageName = handleImageFile.getNewImageName("warehouse", id, req.file)
-            const newImagePath = path.join(__dirname, '../../uploads', newImageName)
-            handleImageFile.renameImage(req.file.path, newImagePath)
+        const [existingWarehouse] = await selectWarehouseById(id)
+        if(!existingWarehouse.length){
+            return res.status(404).json({error: 'Warehouse not found'})
         }
-        const warehouseData = {
-            ...req.body,
-            image: newImageName || req.body.image,
-            latitude: parseFloat(req.body.latitude),
-            longitude: parseFloat(req.body.longitude)
-        };
+
+        const warehouseData = { ...existingWarehouse[0], ...req.body }
+
+        if(req.body.address) {
+            const { latitude, longitude } = await getCoordinatesFromAddress(req.body.address)
+            Object.assign(warehouseData, { latitude, longitude })
+        }
+
+        if (req.file) {
+            const newImageName = handleImageFile.getNewImageName("warehouse", id, req.file) 
+            handleImageFile.renameImage(req.file.path, path.join(__dirname, '../../uploads', newImageName))
+            warehouseData.image = newImageName
+        }
+
         await updateWarehouseById(id, warehouseData);
+
         const [updateWarehouse] = await selectWarehouseById(id)
-        updateWarehouse[0].image = updateWarehouse[0].image ? getImageUrl(updateWarehouse[0].image) : null
+        updateWarehouse[0].image = getImageUrl(updateWarehouse[0].image)
         res.json(updateWarehouse[0])
     } catch (error) {
         if (req.file) {
