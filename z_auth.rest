@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 # Operator
-#     "email": "pedro.gomez@hotmail.com"",
+#     "email": "pedro.gomez@gmail.com",
 #     "password": "pedrogomez"
 
 # Manager
