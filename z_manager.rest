@@ -1,0 +1,41 @@
+@url = http://localhost:3000/manager
+
+// Get outgoing order
+GET {{url}}/outgoing-orders
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX25hbWUiOiJBbmEiLCJ1c2VyX3N1cm5hbWUiOiJSYW3DrXJleiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJ1c2VyX3BsYXRlIjpudWxsLCJ1c2VyX2ltYWdlIjoidXNlci0zLmpwZyIsImlhdCI6MTczNDEwODQ2MiwiZXhwIjoxNzM0MTEyMDYyfQ.b4OXVpmO_ufQhqdUC131CJH0pbyfRJMMZkwCy49S1Rw
+
+###
+
+// Get incoming orders
+GET {{url}}/incoming-orders
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX25hbWUiOiJBbmEiLCJ1c2VyX3N1cm5hbWUiOiJSYW3DrXJleiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJ1c2VyX3BsYXRlIjpudWxsLCJ1c2VyX2ltYWdlIjoidXNlci0zLmpwZyIsImlhdCI6MTczNDEwODQ2MiwiZXhwIjoxNzM0MTEyMDYyfQ.b4OXVpmO_ufQhqdUC131CJH0pbyfRJMMZkwCy49S1Rw
+
+###
+
+// Get order details
+GET {{url}}/review-order/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX25hbWUiOiJBbmEiLCJ1c2VyX3N1cm5hbWUiOiJSYW3DrXJleiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJ1c2VyX3BsYXRlIjpudWxsLCJ1c2VyX2ltYWdlIjoidXNlci0zLmpwZyIsImlhdCI6MTczNDEwODQ2MiwiZXhwIjoxNzM0MTEyMDYyfQ.b4OXVpmO_ufQhqdUC131CJH0pbyfRJMMZkwCy49S1Rw
+
+###
+
+// Review outgoing orders
+PUT {{url}}/review-order/1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX25hbWUiOiJBbmEiLCJ1c2VyX3N1cm5hbWUiOiJSYW3DrXJleiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJ1c2VyX3BsYXRlIjpudWxsLCJ1c2VyX2ltYWdlIjoidXNlci0zLmpwZyIsImlhdCI6MTczNDEwODQ2MiwiZXhwIjoxNzM0MTEyMDYyfQ.b4OXVpmO_ufQhqdUC131CJH0pbyfRJMMZkwCy49S1Rw
+
+{
+    "status": "corrections needed",
+    "comments": "Falta 1 palé"
+}
+
+###
+
+// Verify incoming orders
+PUT {{url}}/verify-order/1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX25hbWUiOiJBbmEiLCJ1c2VyX3N1cm5hbWUiOiJSYW3DrXJleiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJ1c2VyX3BsYXRlIjpudWxsLCJ1c2VyX2ltYWdlIjoidXNlci0zLmpwZyIsImlhdCI6MTczNDEwODQ2MiwiZXhwIjoxNzM0MTEyMDYyfQ.b4OXVpmO_ufQhqdUC131CJH0pbyfRJMMZkwCy49S1Rw
+
+{
+    "status": "not approved",
+    "comments": "Falta documentación en el pedido. No podemos comprobar que cumple las cantidades."
+}

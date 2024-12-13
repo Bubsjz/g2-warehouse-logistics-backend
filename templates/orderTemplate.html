@@ -1,0 +1,48 @@
+    
+<div class="email-container">  
+
+    <div style="text-align: center; border-bottom: 1px solid gray; padding-bottom: 10px">
+        <img src="https://i.imgur.com/OqZAbNo.png" alt="Rountravel logo" style="max-width: 150px; height: auto;">
+    </div>
+
+    <div class="email-body" style="padding-top: 25px">
+        <p>Hi <strong>{{recipient_name}} {{recipient_surname}}</strong>,</p>
+        {{introMessage}}
+        
+        <p>The order with the id <strong>#{{orderId}}</strong> {{reasonText}}.</p>
+
+        {{rejectionSection}}
+
+        <h3 style="padding-top: 10px">Order details:</h3>
+        <ul style="list-style-type: disc; padding-left: 20px; color: #555;">
+            <li style="padding-bottom: 3px"><strong>Order ID:</strong> {{orderId}}</li>
+            <li style="padding-bottom: 3px"><strong>Creation Date:</strong> {{send_date}}</li>
+            <li style="padding-bottom: 3px"><strong>Origin:</strong> {{recipient_warehouse_name}}</li>
+            <li style="padding-bottom: 3px"><strong>Destination:</strong> {{sender_warehouse_name}}</li>
+            <li style="padding-bottom: 3px"><strong>Products:</strong>
+                <ul style="list-style-type: disc; padding-top: 3px; padding-left: 20px; color: #555;">
+                    {{product_list}}
+                </ul>
+            </li>
+        </ul>
+
+        {{addressIssue}}
+
+
+        <h3 style="padding-top: 10px">Contact Information:</h3>
+        <p>If you have any questions, or require assistance, please contact:</p>
+        <ul style="list-style-type: disc; padding-left: 20px; color: #555;">
+            <li><strong>Name: </strong>{{sender_name}} {{sender_surname}}</li>
+            <li><strong>Email: </strong>{{sender_email}}</li>
+        </ul>
+
+        <p style="padding-top: 20px">Regards,</p>
+        <p style="margin: 0">{{sender_warehouse_name}}</p>
+        <p style="margin: 0">{{sender_warehouse_address}}</p>
+    </div>
+
+    <div style="border-top: 1px solid #ccc; margin-top: 30px; padding-top: 10px; color: #666; text-align: center;">
+        © Rountravel Logistics 2024. This message was auto-generated. Please do not reply to this email.
+    </div>
+
+</div>  
