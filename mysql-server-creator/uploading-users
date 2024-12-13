@@ -1,0 +1,17 @@
+USE `wharehouse`;
+
+INSERT INTO `user` (`name`, `surname`, `email`, `password`, `rol`, `asigned_id_warehouse`)
+VALUES 
+  ('Jaime', 'Agüero', 'jaguero@gmail.com', 'A6aK2=n9x(#;', 'driver', 1),
+  ('María', 'Nieves', 'marinieves@hotmail.com', '2FM:;tDi>1A4', 'driver', 1),
+  ('Lucía', 'Martinez', 'luciamar@gmail.com', 'm\i5]36WK^0m', 'driver', 2),
+  ('Iván', 'Campos', 'icamp@hotmail.com', 'ZvEI43A8>`P(', 'driver', 2),
+  ('Miguel', 'Hernandez', 'miguelhernan@hotmail.com', 'G/;dP.5yr8f1', 'driver', 3),
+  ('Mónica', 'Sánchez', 'monsan@hotmail.com', '"1E50,}Ib>b|', 'driver', 3),
+  ('Antonio', 'Muñiz', 'amuniz@hotmail.com', '38\|`Lk3ON)t', 'driver', 4),
+  ('Cristina', 'Alastra', 'crisa@hotmail.com', '>^xJzJ957Pob', 'driver', 4),
+  ('Daniel', 'Frutos', 'dafrut@gmail.com', 'OH6[<u9G0Na^', 'manager', 3),
+  ('Eugenia', 'Rodríguez', 'eugeniarod@gmail.com', 'vDl[1_4Uqd6-', 'manager', 2),
+  ('Pedro', 'Garcia', 'pegarcia@gmail.com', '1DbNr5[2t]5s', 'manager', 1),
+  ('Roberto', 'Marín', 'roberin@gmail.com', '£H(d2%A33+51', 'manager', 4),
+  ('María', 'Domínguez', 'mardomin@gmail.com', '29OtH8"v2"h)', 'administrator', 1);

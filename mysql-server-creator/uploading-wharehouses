@@ -1,0 +1,8 @@
+USE `wharehouse`;
+
+INSERT INTO `warehouse` (`name`, `locality`, `adress`)
+VALUES 
+  ('Central Warehouse', 'Madrid', 'C. de Arboleda, 10, Puente de Vallecas, 28031 Madrid'),
+  ('North Warehouse', 'Burgos', 'Ctra. Burgos, 32, 09001 Burgos'),
+  ('South Warehouse', 'Sevilla', 'C. Automoción, 38, Norte, 41007 Sevilla'),
+  ('East Warehouse', 'Girona', 'Carrer de la Indústria, 14, 17005 Girona');

@@ -1,0 +1,21 @@
+@url = http://localhost:3000
+
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "email": "pedro.gomez@gmail.com",
+    "password": "pedrogomez"
+}
+
+# Operator
+#     "email": "pedro.gomez@gmail.com",
+#     "password": "pedrogomez"
+
+# Manager
+#     "email": "ana.ramirez@gmail.com",
+#     "password": "anaramirez"
+
+# Boss
+#     "email": "carlos.lopez@gmail.com",
+#     "password": "carloslopez"
