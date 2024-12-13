@@ -13,6 +13,7 @@ router.get('/truck/:id', getTruckById)
 router.get('/users/:id', getUsersById )
 router.get('/warehouse/:id', getWarehouseById)
 
+
 router.post('/register', upload.single('image'), validateImage, createUser, cleanImages)
 router.post('/warehouse', upload.single('image'), validateImage, createWarehouse), cleanImages
 

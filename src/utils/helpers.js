@@ -17,6 +17,7 @@ const createToken = (user) => {
     return token
 }
 
+// Generar url accesible de la imagen (para el front)
 function getImageUrl(imageFilename) {
     const baseUrl = process.env.BASE_URL || 'http://localhost:3000'
     if (!imageFilename){
@@ -25,6 +26,7 @@ function getImageUrl(imageFilename) {
     return `${baseUrl}/uploads/${imageFilename}`
 }
 
+// Manejador de imagenes
 const handleImageFile = {
     getNewImageName: (entity, id, file) => {
         if (!file){

@@ -95,6 +95,7 @@ function validateImage(req, res, next) {
     next()
 }
 
+// Limpiar imágenes no utilizadas en la carpeta uploads
 const cleanImages = async (req, res, next) => {
     try {
         const [users] = await selectAllUsers()
