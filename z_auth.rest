@@ -4,8 +4,8 @@ POST {{url}}/login
 Content-Type: application/json
 
 {
-    "email": "carlos.lopez@gmail.com",
-    "password": "carloslopez"
+    "email": "pedro.gomez@gmail.com",
+    "password": "pedrogomez"
 }
 
 # Operator

@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt") 
 
-const { selectByEmail, selectAll, selectById, insertUser } = require("../models/authorization.model")
+const { selectByEmail, selectById, insertUser } = require("../models/authorization.model")
 const { createToken } = require("../utils/helpers")
 
 
@@ -29,12 +29,7 @@ const register = async (req, res, next) => {
     }
 }
 
-const getAll = async (req, res, next) => {
-     const [user] = await selectAll()
-     res.json(user)
-}
-
 
 module.exports = {
-    login, getAll, register
+    login, register
 }
