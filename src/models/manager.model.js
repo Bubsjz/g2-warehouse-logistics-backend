@@ -9,7 +9,7 @@ function selectOutgoingOrders(warehouseId) {
         join warehouse wo on d.origin_warehouse_id = wo.id_warehouse
         join warehouse wd on d.destination_warehouse_id = wd.id_warehouse
         where d.origin_warehouse_id = ?
-        and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered")`
+        and d.status in ("review", "ready for departure", "corrections needed", "in transit", "delivered", "approved", "not approved")`
         , [warehouseId]
     )
 }

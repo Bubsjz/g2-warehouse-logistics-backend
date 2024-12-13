@@ -132,7 +132,6 @@ const checkDeliveryByUser = async (req, res, next) => {
     const {id_delivery} = req.params
     try {
         [delivery] = await checkDelivery(id_delivery, id_user)
-        console.log(delivery)
         if (delivery.length === 0) {
             return res.status(404).json({ error: "Inserted order doesn't belong to this user"})
         } else {

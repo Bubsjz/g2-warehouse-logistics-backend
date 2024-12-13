@@ -39,9 +39,6 @@ const orderMessage = (orderId, recipientInfo, senderInfo, status, comments, veri
         product_list: productList
     };
 
-    // console.log(recipientInfo)
-    // console.log("//////////////////////////")
-    // console.log(senderInfo)
     
     const templatePath = path.join(__dirname, "orderTemplate.html");
     let template = fs.readFileSync(templatePath, 'utf-8')

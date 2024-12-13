@@ -1,7 +1,6 @@
 const { selectAll, selectById, postDelivery, postProducts, selectProductByDelivery, updateById, updateProductsById, removeProductsById, removeDeliveryById, selectProducts, selectWarehouse, selectTrucks} = require("../models/operator.model");
 
 const getAllDeliveryByUser = async (req, res, next) => {
-    console.log(req.user)
     const id = req.user.id_user;
     try {
         const [result] = await selectAll(id);
@@ -12,7 +11,6 @@ const getAllDeliveryByUser = async (req, res, next) => {
 };
 const getDeliveryById = async (req, res, next) => {
     const {id_delivery} = req.params;
-    console.log (id_delivery)
     try {
         const [result] = await selectById (id_delivery);
         const [productos] = await selectProductByDelivery(id_delivery)

@@ -19,23 +19,23 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9u
 ###
 
 // Review outgoing orders
-PUT {{url}}/review-order/38
+PUT {{url}}/review-order/71
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsInVzZXJfcGxhdGUiOm51bGwsInVzZXJfaW1hZ2UiOm51bGwsImlhdCI6MTczMzgzMzYwNywiZXhwIjoxNzMzODM3MjA3fQ.FVQdBMl0hBMRRXysJQ35TO80iLikD4ISfK-UZgO-AYs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX25hbWUiOiJBbmEiLCJ1c2VyX3N1cm5hbWUiOiJSYW3DrXJleiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJ1c2VyX3BsYXRlIjpudWxsLCJ1c2VyX2ltYWdlIjoidXNlci0zLmpwZyIsImlhdCI6MTczNDEwMzIwNCwiZXhwIjoxNzM0MTA2ODA0fQ.n40xEdelYR3EVDWD-syfyqf7KrmMqe1ZzUtUQjj7jNM
 
 {
-    "status": "ready for departure",
+    "status": "approved",
     "comments": "Falta 1 palé"
 }
 
 ###
 
 // Verify incoming orders
-PUT {{url}}/verify-order/38
+PUT {{url}}/verify-order/71
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NCwidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoibWFuYWdlciIsInVzZXJfcGxhdGUiOm51bGwsInVzZXJfaW1hZ2UiOm51bGwsImlhdCI6MTczMzgzMzYwNywiZXhwIjoxNzMzODM3MjA3fQ.FVQdBMl0hBMRRXysJQ35TO80iLikD4ISfK-UZgO-AYs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJ1c2VyX25hbWUiOiJBbmEiLCJ1c2VyX3N1cm5hbWUiOiJSYW3DrXJleiIsInVzZXJfcm9sZSI6Im1hbmFnZXIiLCJ1c2VyX3BsYXRlIjpudWxsLCJ1c2VyX2ltYWdlIjoidXNlci0zLmpwZyIsImlhdCI6MTczNDEwMzIwNCwiZXhwIjoxNzM0MTA2ODA0fQ.n40xEdelYR3EVDWD-syfyqf7KrmMqe1ZzUtUQjj7jNM
 
 {
-    "status": "approved",
+    "status": "not approved",
     "comments": "Falta documentación en el pedido. No podemos comprobar que cumple las cantidades."
 }

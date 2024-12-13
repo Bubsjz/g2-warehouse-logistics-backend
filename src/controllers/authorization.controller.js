@@ -30,7 +30,6 @@ const register = async (req, res, next) => {
 }
 
 const getAll = async (req, res, next) => {
-     console.log(req.user)
      const [user] = await selectAll()
      res.json(user)
 }
