@@ -1,9 +1,0 @@
-USE `wharehouse`;
-
-INSERT INTO `product` (`name`)
-VALUES 
-  ('Saco de cemento'),
-  ('Saco de arena'),
-  ('Pale de ladrillos'),
-  ('Pale de tablones'),
-  ('Pale bloques de hormigón');
