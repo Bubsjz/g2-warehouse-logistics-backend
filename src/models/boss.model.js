@@ -31,7 +31,7 @@ function selectAvailableWarehouse() {
 }
 
 function insertUser({ name, surname, email, password, role, assigned_id_warehouse, image, assigned_id_truck }){
-    const finalRole = role || "operator"
+    const finalRole = role
     return pool.query(
         'insert into user (name, surname, email, password, role, assigned_id_warehouse, image, assigned_id_truck) values (?, ?, ?, ?, ?, ?, ?, ?)', [name, surname, email, password, finalRole, assigned_id_warehouse, image, assigned_id_truck]
     )
