@@ -173,14 +173,7 @@ Documentación API Proyecto Logística
     Instalación
         1.	Clona el repositorio.
         2.	Instala las dependencias con npm install.
-        3.	Configura las variables de entorno en un archivo .env:
-            DB_HOST=host
-            DB_USER=user
-            DB_PASS=password
-            DB_NAME=logistics
-            PRIVATEKEY=logistics
-            AUTH_USER= rountravellogistics@gmail.com
-            AUTH_PASS= pnaj fyug yatu tljw
+        3.	Configura las variables de entorno en un archivo .env.
 
     Ejecución
         •	Desarrollo: npm run dev
