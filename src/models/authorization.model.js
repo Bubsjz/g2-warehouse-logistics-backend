@@ -6,10 +6,6 @@ async function selectByEmail(email) {
     return user[0]
 }
 
-async function selectAll() {
-    return pool.query(`select * from user`)
-}
-
 function selectById(id) {
     return pool.query(`select * from user where id_user = ?`, [id])
 }
@@ -23,5 +19,5 @@ function insertUser({name, surname, email, password, role, assigned_id_warehouse
 
 
 module.exports = {
-    selectByEmail, selectAll, selectById, insertUser
+    selectByEmail, selectById, insertUser
 }
