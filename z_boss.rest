@@ -1,6 +1,9 @@
 @url = http://localhost:3000/boss
 
-// /api/boss/USERS (el post y el put se debe hacer con postman para adjuntar imagen)
+// /api/boss/USERS (el post y el put se debe hacer con postman para poder subir archivos (el campo image))
+// La ruta para crear usuario: post /api/boss/register
+// La ruta para actualizar usuario: /api/boss/users/2
+// Ambas rutas llevan la Authorization
 
 // Mostrar todos los usuarios
 
@@ -18,10 +21,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9u
 
 // Borrar un usuario
 
-DELETE {{url}}/users/66
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzg1ODMwMCwiZXhwIjoxNzMzODYxOTAwfQ.ZSlugb65qaK1a3m_mL8lQ1JN35ASBmTEo0lpADqVClM
+DELETE {{url}}/users/98
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyX25hbWUiOiJDYXJsb3MiLCJ1c2VyX3N1cm5hbWUiOiJMw7NwZXoiLCJ1c2VyX3JvbGUiOiJib3NzIiwidXNlcl9wbGF0ZSI6bnVsbCwidXNlcl9pbWFnZSI6InVzZXItMS5qcGciLCJpYXQiOjE3MzQxMDQ2MDAsImV4cCI6MTczNDEwODIwMH0.Kr3gW3PU4iARSL1ZwM9bbrHu-OaDVRsvnQYdluNWt1Y
 
-// / api/boss/TRUCKS
+// /api/boss/TRUCKS
 
 //Mostrar los camiones que hay disponibles
 ###
@@ -36,14 +39,10 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9u
 GET {{url}}/truck/11
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzc3NTQxOCwiZXhwIjoxNzMzNzc5MDE4fQ.E3DTsbHa1Gd0Gi2JaQr3HhoUoU9K0SGIol3A7hXtkOs
 
-// /api/boss/WAREHOUSE (el post y el put se debe hacer con postman para adjuntar imagen)
-
-###
-
-// Mostrar los almacenes disponibles para el manager
-GET {{url}}/available-warehouse
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNTYsInVzZXJfbmFtZSI6Ikplc2ljYSIsInVzZXJfc3VybmFtZSI6IlJ1aXoiLCJ1c2VyX3JvbGUiOiJib3NzIiwidXNlcl9wbGF0ZSI6bnVsbCwidXNlcl9pbWFnZSI6InVzZXItMTU2LmpwZyIsImlhdCI6MTczMzk0MTk4NCwiZXhwIjoxNzMzOTQ1NTg0fQ.7gSBQqqkGzl6aK_uHE_zvkD7Bm-f_ctnnwBXV-Laz7A
-
+// /api/boss/WAREHOUSE (el post y el put se debe hacer con postman para poder subir archivos (el campo image))
+// La ruta para crear almacén: post /api/boss/warehouse
+// La ruta para actualizar almacén: put /api/boss/warehouse/1
+// Ambas rutas llevan la Authorization
 
 ###
 
@@ -58,6 +57,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9u
 
 GET {{url}}/warehouse/1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0NywidXNlcl9uYW1lIjoiUHJ1ZWJhIiwidXNlcl9zdXJuYW1lIjoiUHJ1ZWJhIiwidXNlcl9yb2xlIjoiYm9zcyIsImlhdCI6MTczMzc3NTQxOCwiZXhwIjoxNzMzNzc5MDE4fQ.E3DTsbHa1Gd0Gi2JaQr3HhoUoU9K0SGIol3A7hXtkOs
+
+###
+
+// Mostrar los almacenes que hay disponibles para el manager (sin un manager asociado previamente)
+GET {{url}}/available-warehouse
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxNTYsInVzZXJfbmFtZSI6Ikplc2ljYSIsInVzZXJfc3VybmFtZSI6IlJ1aXoiLCJ1c2VyX3JvbGUiOiJib3NzIiwidXNlcl9wbGF0ZSI6bnVsbCwidXNlcl9pbWFnZSI6InVzZXItMTU2LmpwZyIsImlhdCI6MTczMzk0MTk4NCwiZXhwIjoxNzMzOTQ1NTg0fQ.7gSBQqqkGzl6aK_uHE_zvkD7Bm-f_ctnnwBXV-Laz7A
 
 ###
 
